@@ -1,12 +1,13 @@
 import React from "react";
-import { Text, TextInput, View } from "react-native";
+import { KeyboardTypeOptions, Text, TextInput, View } from "react-native";
 
 interface CustomInputTextProps {
   value: any;
-  label: string;
+  label?: string | null;
   placeholder: string;
-  onChange: () => void;
+  onChange: (text: string) => void;
   className: string;
+  keyboardType?: KeyboardTypeOptions;
 }
 
 export default function CustomInputText({
@@ -15,6 +16,7 @@ export default function CustomInputText({
   placeholder,
   onChange,
   className,
+  keyboardType = "default",
 }: CustomInputTextProps) {
   return (
     <View className="mb-4">
@@ -24,6 +26,7 @@ export default function CustomInputText({
         className={className}
         onChangeText={onChange}
         value={value}
+        keyboardType={keyboardType}
       ></TextInput>
     </View>
   );
