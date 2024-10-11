@@ -10,6 +10,7 @@ export default function Page() {
       <Header />
       {/* <Content /> */}
       {/* <Footer /> */}
+      <Link href={"/usuarios"}>USUARIOS</Link>
       <DescongeladoSalmuera />
     </View>
   );

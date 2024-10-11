@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "acme",
+    "scheme": "gscalidad",
     "userInterfaceStyle": "automatic",
     "orientation": "default",
     "web": {
@@ -13,9 +13,35 @@
         {
           "origin": "https://n"
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "extraPods": [
+              {
+                "name": "simdjson",
+                "configurations": [
+                  "Debug",
+                  "Release"
+                ],
+                "path": "../node_modules/@nozbe/simdjson",
+                "modular_headers": true
+              }
+            ]
+          }
+        }
       ]
     ],
     "name": "gscalidad",
-    "slug": "gscalidad"
+    "slug": "gscalidad",
+    "android": {
+      "package": "com.santa_priscila.gscalidad"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a0084fab-b4a6-46c3-aa6f-367c7c63280c"
+      }
+    }
   }
 }
