@@ -5,7 +5,7 @@ import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite';
 import schema from './schema';
 import migrations from './migrations';
 import Account from '../model/Account';
-import { name as UsersTableName, UserOffline } from '@/model/user';
+import { name as UsersTableName, UserOffline } from '@/model/User';
 
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({

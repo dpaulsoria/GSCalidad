@@ -1,4 +1,4 @@
-import { UserOfflineSchema } from '@/model/user';
+import { UserOfflineSchema } from '@/model/User';
 import { appSchema, tableSchema } from '@nozbe/watermelondb';
 
 export default appSchema({
