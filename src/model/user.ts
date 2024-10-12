@@ -1,9 +1,6 @@
 import { Model, tableSchema } from "@nozbe/watermelondb";
 import {
   field,
-  readonly,
-  date,
-  json,
   text,
 } from "@nozbe/watermelondb/decorators";
 
