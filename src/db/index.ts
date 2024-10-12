@@ -13,7 +13,7 @@ const adapter = new SQLiteAdapter({
   // (You might want to comment it out for development purposes -- see Migrations documentation)
   migrations,
   // (optional database name or file system path)
-  // dbName: 'myapp',
+  // dbName: 'gscalidad_db',
   // (recommended option, should work flawlessly out of the box on iOS. On Android,
   // additional installation steps have to be taken - disable if you run into issues...)
   // TODO: Verificar si debe estar en true o false

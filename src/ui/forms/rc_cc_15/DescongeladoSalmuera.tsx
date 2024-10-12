@@ -1,5 +1,3 @@
-import { useForm } from "@/app/hooks/useForm";
-import React from "react";
 import {
   Alert,
   Button,
@@ -10,8 +8,9 @@ import {
   View,
 } from "react-native";
 import CustomInputText from "../../components/CustomInputText";
+import { useForm } from "@/hooks/useForm";
 
-import uuid from "react-native-uuid";
+// import uuid from "react-native-uuid";
 
 interface DescongeladoSalmueraState {
   uuid: string;
@@ -51,7 +50,7 @@ export default function DescongeladoSalmuera() {
       "Formulario Subido",
       `Se Guardo exitosamente la informacion. ${JSON.stringify({
         ...state,
-        uuid: uuid.v4(),
+        // uuid: uuid.v4(),
       })}`,
       [
         {
