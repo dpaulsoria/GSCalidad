@@ -1,3 +1,4 @@
+import { UserOfflineSchema } from '@/model/user';
 import { appSchema, tableSchema } from '@nozbe/watermelondb';
 
 export default appSchema({
@@ -11,5 +12,6 @@ export default appSchema({
         { name: 'tap', type: 'number' }
       ]
     }),
+    UserOfflineSchema,
   ],
 });
