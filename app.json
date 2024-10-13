@@ -20,6 +20,10 @@
       "bundleIdentifier": "com.santapriscila.gscalidad"
     },
     "android": {
+      "permissions": [
+        "RECEIVE_BOOT_COMPLETED",
+        "FOREGROUND_SERVICE"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -37,6 +41,12 @@
     },
     "plugins": [
       "expo-router",
+      [
+        "react-native-background-fetch",
+        {
+          "minimumFetchInterval": 15
+        }
+      ],
       [
         "expo-build-properties",
         {
