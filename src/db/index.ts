@@ -1,11 +1,11 @@
-import { Platform } from 'react-native';
-import { Database } from '@nozbe/watermelondb';
-import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite';
+import { Platform } from "react-native";
+import { Database } from "@nozbe/watermelondb";
+import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite";
 
-import schema from './schema';
-import migrations from './migrations';
-import Account from '../model/Account';
-import { name as UsersTableName, UserOffline } from '@/model/User';
+import schema from "./schema";
+import migrations from "./migrations";
+import Account from "../model/Account";
+import { name as UsersTableName, UserOffline } from "../model/User";
 
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({
@@ -21,7 +21,7 @@ const adapter = new SQLiteAdapter({
   // (optional, but you should implement this method)
   onSetUpError: (error) => {
     // Database failed to load -- offer the user to reload the app or log out
-    console.error("Error al levantar la base de datos con Watermelondb:", error)
+    console.error("Error al levantar la base de datos con Watermelondb:", error);
   },
 });
 
@@ -33,5 +33,5 @@ const database = new Database({
 
 export default database;
 
-export const accountsCollection = database.get<Account>('accounts');
+export const accountsCollection = database.get<Account>("accounts");
 export const usersCollection = database.get<UserOffline>(UsersTableName);

@@ -16,7 +16,7 @@ export default function LoginScreen() {
     <View className="flex-1">
       {/* Parte superior con imagen */}
       <View className=" relative flex-1 bg-body-dark  justify-center items-center">
-        <Image source={require("../../assets/images/logoSPnslogan.png")} className=" rounded-full" style={{ width: "50%", height: "50%" }} />
+        <Image source={require("../../../../assets/images/logoSPnslogan.png")} className=" rounded-full" style={{ width: "50%", height: "50%" }} />
         <View className="w-full absolute bottom-0">
           <Svg height="100" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
             <Path
