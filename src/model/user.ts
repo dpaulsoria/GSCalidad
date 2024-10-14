@@ -1,8 +1,5 @@
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import {
-  field,
-  text,
-} from "@nozbe/watermelondb/decorators";
+import { field, text } from "@nozbe/watermelondb/decorators";
 
 export const name = "users_offline";
 

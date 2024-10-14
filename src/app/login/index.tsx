@@ -16,7 +16,7 @@ export default function LoginScreen() {
     <View className="flex-1">
       {/* Parte superior con imagen */}
       <View className=" relative flex-1 bg-body-dark  justify-center items-center">
-        <Image source={require("../../assets/images/logoSPnslogan.png")} className=" rounded-full" style={{ width: "50%", height: "50%" }} />
+        <Image source={require("../../../assets/images/logoSPnslogan.png")} className=" rounded-full" style={{ width: "50%", height: "50%" }} />
         <View className="w-full absolute bottom-0">
           <Svg height="100" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
             <Path
@@ -37,31 +37,6 @@ export default function LoginScreen() {
             </SafeAreaView>
           </View>
 
-<<<<<<< HEAD
-const HomeScreen = () => {
-  useEffect(() => {
-    BackgroundFetch.configure(
-      {
-        minimumFetchInterval: 15,
-      },
-      async (taskId) => {
-        console.log("[SyncWorker] Done!", taskId);
-        await sync();
-        BackgroundFetch.finish(taskId);
-      },
-      (error) => {
-        console.error("[SyncWorker] Error!", error);
-      }
-    );
-    return () => {
-      BackgroundFetch.stop();
-    };
-  }, []);
-  return <Redirect href={"/allocations"} />;
-};
-
-export default HomeScreen;
-=======
           {/* Input de contraseña */}
           <View className=" w-full h-fit ">
             <SafeAreaView className="">
@@ -79,4 +54,3 @@ export default HomeScreen;
     </View>
   );
 }
->>>>>>> f9bdba683d843951e8cca69e482c416dc2b5f0af
