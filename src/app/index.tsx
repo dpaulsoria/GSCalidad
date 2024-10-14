@@ -1,9 +1,10 @@
-import { View, TextInput, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React, { useEffect } from "react";
 import FloatingLabelInput from "@/ui/components/floatInputText";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import BackgroundFetch from "react-native-background-fetch";
+import { sync } from "@/worker";
 export default function LoginScreen() {
   const [correo, setCorreo] = React.useState("");
   const [contraseña, setContraseña] = React.useState("");
@@ -47,7 +48,7 @@ export default function LoginScreen() {
         </View>
       </View>
       {/* Parte inferior con inputs */}
-      <View className="flex-1  px-4 pt-8  gap-12 ">
+      <View className="flex-1 bg-blue px-4 pt-8  gap-12 ">
         <Text className="text-xl font-semibold text-center text-gray-800 ">Bienvenidos a la App Salem</Text>
         <View className="android:gap-24 gap-5 my-5  py-10">
           {/* Input de correo */}
