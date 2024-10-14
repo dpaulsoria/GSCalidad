@@ -7,9 +7,20 @@ import migrations from "./migrations";
 import Account from "../model/Account";
 import { name as UsersTableName, UserOffline } from "@/model/User";
 import {
-  DescongeladoSalmuera,
-  descongeladoSalmueraName,
-} from "@/model/DescongeladoSalmuera";
+  DescongeladoSalmueraModel,
+  name as DescongeladoSalmueraName,
+} from "@/model/registros/Salmuera/RC_CC_15";
+
+import {
+  PeladoFrescoModel,
+  name as PeladoFrescoName,
+} from "@/model/registros/ValorAgregado/RC_CC_103";
+
+import {
+  ProdTerminadoModel,
+  name as ProdTerminadoName,
+} from "@/model/registros/ProdTerminado/RC_CC_108";
+import { ProcesoEnteroFrescoModel, name as ProcesoEnteroName } from "@/model/registros/ProcesoEntero/RC_CC_07";
 
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({
@@ -35,12 +46,26 @@ const adapter = new SQLiteAdapter({
 // Then, make a Watermelon database from it!
 const database = new Database({
   adapter,
-  modelClasses: [Account, UserOffline],
+  modelClasses: [
+    Account,
+    UserOffline,
+    DescongeladoSalmueraModel,
+    PeladoFrescoModel,
+    ProdTerminadoModel,
+    ProcesoEnteroFrescoModel,
+  ],
 });
 
 export default database;
 
 export const accountsCollection = database.get<Account>("accounts");
 export const usersCollection = database.get<UserOffline>(UsersTableName);
-export const descongeladoSalmueraCollection =
-  database.get<DescongeladoSalmuera>(descongeladoSalmueraName);
+
+export const rc15Collection = database.get<DescongeladoSalmueraModel>(
+  DescongeladoSalmueraName
+);
+export const rc103Collection =
+  database.get<PeladoFrescoModel>(PeladoFrescoName);
+export const rc108Collection =
+  database.get<ProdTerminadoModel>(ProdTerminadoName);
+export const rc07Collection = database.get<ProcesoEnteroFrescoModel>(ProcesoEnteroName);

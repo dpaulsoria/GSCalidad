@@ -10,7 +10,7 @@ import {
 import CustomInputText from "../../components/CustomInputText";
 import { useForm } from "@/hooks/useForm";
 import database, { descongeladoSalmueraCollection } from "@/db";
-import { DescongeladoSalmuera } from "@/model/DescongeladoSalmuera";
+import { DescongeladoSalmuera } from "@/model/registros/Salmuera/RC_CC_15";
 
 // import uuid from "react-native-uuid";
 
