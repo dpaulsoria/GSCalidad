@@ -2,11 +2,11 @@ import {
   createTable,
   schemaMigrations,
 } from "@nozbe/watermelondb/Schema/migrations";
-import { name as UsersTableName } from "@/model/User";
+import { name as UsersTableName } from "@/model/user";
 import { name as DescongeladoSalmueraName } from "@/model/registros/Salmuera/RC_CC_15";
-import { name as PeladoFrescoName } from "@/model/registros/ValorAgregado/RC_CC_103"
-import { name as ProdTerminadoName } from "@/model/registros/ProdTerminado/RC_CC_108"
-import { name as ProcesoEnteroName } from "@/model/registros/ProcesoEntero/RC_CC_07"
+import { name as PeladoFrescoName } from "@/model/registros/ValorAgregado/RC_CC_103";
+import { name as ProdTerminadoName } from "@/model/registros/ProdTerminado/RC_CC_108";
+import { name as ProcesoEnteroName } from "@/model/registros/ProcesoEntero/RC_CC_07";
 
 // Nota: Se debe especificar aqui lo mismo que en el esquema, pero no se puede usar el esquema
 export default schemaMigrations({
@@ -211,7 +211,7 @@ export default schemaMigrations({
             { name: "planta_id", type: "number", isOptional: true },
             { name: "state", type: "number" },
           ],
-        })
+        }),
       ],
     },
   ],

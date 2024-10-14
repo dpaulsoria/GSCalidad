@@ -5,7 +5,7 @@ import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite";
 import schema from "./schema";
 import migrations from "./migrations";
 import Account from "../model/Account";
-import { name as UsersTableName, UserOffline } from "@/model/User";
+import { name as UsersTableName, UserOffline } from "@/model/user";
 import {
   DescongeladoSalmueraModel,
   name as DescongeladoSalmueraName,
@@ -20,7 +20,10 @@ import {
   ProdTerminadoModel,
   name as ProdTerminadoName,
 } from "@/model/registros/ProdTerminado/RC_CC_108";
-import { ProcesoEnteroFrescoModel, name as ProcesoEnteroName } from "@/model/registros/ProcesoEntero/RC_CC_07";
+import {
+  ProcesoEnteroFrescoModel,
+  name as ProcesoEnteroName,
+} from "@/model/registros/ProcesoEntero/RC_CC_07";
 
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({
@@ -68,4 +71,5 @@ export const rc103Collection =
   database.get<PeladoFrescoModel>(PeladoFrescoName);
 export const rc108Collection =
   database.get<ProdTerminadoModel>(ProdTerminadoName);
-export const rc07Collection = database.get<ProcesoEnteroFrescoModel>(ProcesoEnteroName);
+export const rc07Collection =
+  database.get<ProcesoEnteroFrescoModel>(ProcesoEnteroName);
