@@ -11,7 +11,7 @@ const HomeScreen = () => {
       },
       async (taskId) => {
         console.log("[SyncWorker] Done!", taskId);
-        sync();
+        await sync();
         BackgroundFetch.finish(taskId);
       },
       (error) => {

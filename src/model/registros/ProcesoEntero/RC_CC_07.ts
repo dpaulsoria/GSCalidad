@@ -1,9 +1,10 @@
 import { Model, tableSchema } from "@nozbe/watermelondb";
 import { field, text, date } from "@nozbe/watermelondb/decorators";
+import { Migrable } from "../base";
 
 export const name = "a26401_proceso_entero_fresco";
 
-export class ProcesoEnteroFrescoModel extends Model implements Migrable{
+export class ProcesoEnteroFrescoModel extends Model implements Migrable {
   static table = name;
 
   @text("Fecha") Fecha!: string;

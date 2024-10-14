@@ -1,3 +1,7 @@
-export const sync = () => {
-    console.log("Funcion ejecutada")
-}
+import { rc15Collection } from "@/db";
+import { getUnsync } from "@/db/transactions/read";
+
+export const sync = async () => {
+  console.log("Funcion ejecutada");
+  console.log(await getUnsync(rc15Collection));
+};

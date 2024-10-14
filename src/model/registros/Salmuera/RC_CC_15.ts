@@ -1,5 +1,6 @@
 import { Model, tableSchema } from "@nozbe/watermelondb";
 import { field, text, date } from "@nozbe/watermelondb/decorators";
+import { Migrable } from "../base";
 
 export const name = "a26401_descongelado_salmuera";
 
