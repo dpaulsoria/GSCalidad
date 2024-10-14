@@ -5,7 +5,8 @@ import SQLiteAdapter from "@nozbe/watermelondb/adapters/sqlite";
 import schema from "./schema";
 import migrations from "./migrations";
 import Account from "../model/Account";
-import { name as UsersTableName, UserOffline } from "@/model/user";
+
+import { name as UsersTableName, UserOffline } from "@/model/User";
 import {
   DescongeladoSalmueraModel,
   name as DescongeladoSalmueraName,
@@ -59,17 +60,22 @@ const database = new Database({
   ],
 });
 
-export default database;
-
 export const accountsCollection = database.get<Account>("accounts");
-export const usersCollection = database.get<UserOffline>(UsersTableName);
+const usersCollection = database.get<UserOffline>(UsersTableName);
 
-export const rc15Collection = database.get<DescongeladoSalmueraModel>(
+const rc15Collection = database.get<DescongeladoSalmueraModel>(
   DescongeladoSalmueraName
 );
-export const rc103Collection =
-  database.get<PeladoFrescoModel>(PeladoFrescoName);
-export const rc108Collection =
-  database.get<ProdTerminadoModel>(ProdTerminadoName);
-export const rc07Collection =
+const rc103Collection = database.get<PeladoFrescoModel>(PeladoFrescoName);
+const rc108Collection = database.get<ProdTerminadoModel>(ProdTerminadoName);
+const rc07Collection =
   database.get<ProcesoEnteroFrescoModel>(ProcesoEnteroName);
+
+export {
+  database as db,
+  usersCollection,
+  rc15Collection,
+  rc103Collection,
+  rc108Collection,
+  rc07Collection,
+};

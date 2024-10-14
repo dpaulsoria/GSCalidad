@@ -6,7 +6,7 @@ export const name = "a26401_clasificacion_camaron_entero";
 // TODO: Agregar al esquema y la db
 // TODO: Primero revisar 
 
-export class ClasificacionCamaronEnteroModel extends Model {
+export class ClasificacionCamaronEnteroModel extends Model implements Migrable {
   static table = name;
 
   @text("lote") lote!: string;

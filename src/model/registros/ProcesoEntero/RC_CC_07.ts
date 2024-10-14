@@ -3,7 +3,7 @@ import { field, text, date } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_proceso_entero_fresco";
 
-export class ProcesoEnteroFrescoModel extends Model {
+export class ProcesoEnteroFrescoModel extends Model implements Migrable{
   static table = name;
 
   @text("Fecha") Fecha!: string;

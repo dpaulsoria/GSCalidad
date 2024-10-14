@@ -3,7 +3,7 @@ import { field, text, date } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_pelado_fresco";
 
-export class PeladoFrescoModel extends Model {
+export class PeladoFrescoModel extends Model implements Migrable {
     static table = name;
 
     @text("unidad_peso") unidad_peso!: string;

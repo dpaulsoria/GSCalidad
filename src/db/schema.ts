@@ -3,7 +3,7 @@ import { ProdTerminadoSchema } from "@/model/registros/ProdTerminado/RC_CC_108";
 import { DescongeladoSalmueraSchema } from "@/model/registros/Salmuera/RC_CC_15";
 import { appSchema, tableSchema } from "@nozbe/watermelondb";
 import { ProcesoEnteroFrescoSchema } from "@/model/registros/ProcesoEntero/RC_CC_07";
-import { UserOfflineSchema } from "@/model/user";
+import { UserOfflineSchema } from "@/model/User";
 
 export default appSchema({
   version: 3,
