@@ -1,11 +1,31 @@
 import { View, TextInput, Text, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import FloatingLabelInput from "@/ui/components/floatInputText";
 import { SafeAreaView, StyleSheet } from "react-native";
 import Svg, { Path } from "react-native-svg";
+import BackgroundFetch from "react-native-background-fetch";
 export default function LoginScreen() {
   const [correo, setCorreo] = React.useState("");
   const [contraseña, setContraseña] = React.useState("");
+
+  useEffect(() => {
+    BackgroundFetch.configure(
+      {
+        minimumFetchInterval: 15,
+      },
+      async (taskId) => {
+        console.log("[SyncWorker] Done!", taskId);
+        await sync();
+        BackgroundFetch.finish(taskId);
+      },
+      (error) => {
+        console.error("[SyncWorker] Error!", error);
+      }
+    );
+    return () => {
+      BackgroundFetch.stop();
+    };
+  }, []);
   const handleCorreo = (correo: string) => {
     setCorreo(correo);
   };
@@ -36,32 +56,6 @@ export default function LoginScreen() {
               <FloatingLabelInput label="Correo Salem" value={""} onChangeText={handleCorreo} />
             </SafeAreaView>
           </View>
-
-<<<<<<< HEAD
-const HomeScreen = () => {
-  useEffect(() => {
-    BackgroundFetch.configure(
-      {
-        minimumFetchInterval: 15,
-      },
-      async (taskId) => {
-        console.log("[SyncWorker] Done!", taskId);
-        await sync();
-        BackgroundFetch.finish(taskId);
-      },
-      (error) => {
-        console.error("[SyncWorker] Error!", error);
-      }
-    );
-    return () => {
-      BackgroundFetch.stop();
-    };
-  }, []);
-  return <Redirect href={"/allocations"} />;
-};
-
-export default HomeScreen;
-=======
           {/* Input de contraseña */}
           <View className=" w-full h-fit ">
             <SafeAreaView className="">
@@ -79,4 +73,3 @@ export default HomeScreen;
     </View>
   );
 }
->>>>>>> f9bdba683d843951e8cca69e482c416dc2b5f0af
