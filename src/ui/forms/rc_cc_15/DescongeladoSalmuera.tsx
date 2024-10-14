@@ -1,9 +1,11 @@
-import { Alert, Button, ScrollView, Text, View } from "react-native";
+import { Alert, Button, Pressable, ScrollView, Text, View } from "react-native";
 import FloatingLabelInput from "@/ui/components/floatInputText";
 import { useForm } from "@/hooks/useForm";
 import database, { rc15Collection } from "@/db";
 import { DescongeladoSalmueraModel } from "@/model/registros/Salmuera/RC_CC_15";
 import { formatDate } from "@/utils/formatDate";
+import { useState } from "react";
+import AlertNotification from "@/ui/modals/AlertNotification";
 
 interface DescongeladoSalmueraState {
   uuid: string;
@@ -38,14 +40,16 @@ export default function DescongeladoSalmuera() {
     {} as DescongeladoSalmueraState
   );
 
+  const [showModal, setShowModal] = useState(false);
+
   async function onSubmitForm() {
-    Alert.alert(
-      "Formulario Subido",
-      `Se Guardo exitosamente la informacion. ${JSON.stringify({
-        ...state,
-      })}`,
-      [{ text: "OK", onPress: () => console.log("Upload") }]
-    );
+    // Alert.alert(
+    //   "Formulario Subido",
+    //   `Se Guardo exitosamente la informacion. ${JSON.stringify({
+    //     ...state,
+    //   })}`,
+    //   [{ text: "OK", onPress: () => console.log("Upload") }]
+    // );
     await database.write(async () => {
       await rc15Collection.create(
         (descongeladoSalmuera: DescongeladoSalmueraModel) => {
@@ -82,7 +86,7 @@ export default function DescongeladoSalmuera() {
         }
       );
     });
-    await resetForm();
+    setShowModal(true);
   }
 
   return (
@@ -204,9 +208,26 @@ export default function DescongeladoSalmuera() {
         </View>
 
         <View className="w-full md:w-1/2 p-2">
-          <Button title="Subir" onPress={onSubmitForm} />
+          <Pressable
+            className="text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+            onPress={onSubmitForm}
+          >
+            <Text>Subir</Text>
+          </Pressable>
         </View>
       </View>
+
+      {showModal && (
+        <AlertNotification
+          visible={showModal}
+          title="Exito"
+          message="Registro RC.CC.15 Guardado Sastifactoriamente"
+          onClose={() => {
+            resetForm();
+            setShowModal(false);
+          }}
+        />
+      )}
     </ScrollView>
   );
 }
