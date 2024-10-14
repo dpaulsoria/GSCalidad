@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import CustomInputText from "../../components/CustomInputText";
 import { useForm } from "@/hooks/useForm";
+import database, { descongeladoSalmueraCollection } from "@/db";
+import { DescongeladoSalmuera } from "@/model/DescongeladoSalmuera";
 
 // import uuid from "react-native-uuid";
 
@@ -20,8 +22,8 @@ interface DescongeladoSalmueraState {
   Lote: string;
   Proveedor: string;
   Talla: string;
-  pesoNetoFresco: string;
-  peso_bruto: string;
+  pesoNetoFresco: number;
+  peso_bruto: number;
   unidad_medida: string;
   pesoCongelado: number;
   pesoDescongelado: number;
@@ -36,8 +38,8 @@ interface DescongeladoSalmueraState {
   Fecha: string;
   correccion: number;
   foto: number;
-  sincro: number;
   state: number;
+  sync_state?: number;
 }
 
 export default function DescongeladoSalmuera() {
@@ -45,7 +47,7 @@ export default function DescongeladoSalmuera() {
     {} as DescongeladoSalmueraState
   );
 
-  function onSubmitForm() {
+  async function onSubmitForm() {
     Alert.alert(
       "Formulario Subido",
       `Se Guardo exitosamente la informacion. ${JSON.stringify({
@@ -61,7 +63,40 @@ export default function DescongeladoSalmuera() {
         { text: "OK", onPress: () => console.log("Upload") },
       ]
     );
-    resetForm();
+    await database.write(async () => {
+      await descongeladoSalmueraCollection.create(
+        (descongeladoSalmuera: DescongeladoSalmuera) => {
+          descongeladoSalmuera.Cabinplant = state.Cabinplant;
+          descongeladoSalmuera.uuid = state.uuid;
+          descongeladoSalmuera.tipo_analisis = state.tipo_analisis;
+          descongeladoSalmuera.Importador = state.Importador;
+          descongeladoSalmuera.Cabinplant = state.Cabinplant;
+          descongeladoSalmuera.Lote = state.Lote;
+          descongeladoSalmuera.Proveedor = state.Proveedor;
+          descongeladoSalmuera.Talla = state.Talla;
+          descongeladoSalmuera.pesoNetoFresco = state.pesoNetoFresco;
+          descongeladoSalmuera.peso_bruto = state.peso_bruto;
+          descongeladoSalmuera.unidad_medida = state.unidad_medida;
+          descongeladoSalmuera.pesoCongelado = state.pesoCongelado;
+          descongeladoSalmuera.pesoDescongelado = state.pesoDescongelado;
+          descongeladoSalmuera.Cta_PesoNetoFresco = state.Cta_PesoNetoFresco;
+          descongeladoSalmuera.Cta_PesoCongelado = state.Cta_PesoCongelado;
+          descongeladoSalmuera.Cta_PesoDescongelado =
+            state.Cta_PesoDescongelado;
+          descongeladoSalmuera.Observacion = state.Observacion;
+          descongeladoSalmuera.UsuCrea = state.UsuCrea;
+          descongeladoSalmuera.FechaCrea = state.FechaCrea;
+          descongeladoSalmuera.FechaModi = state.FechaModi;
+          descongeladoSalmuera.UsuModi = state.UsuModi;
+          descongeladoSalmuera.Fecha = state.Fecha;
+          descongeladoSalmuera.correccion = state.correccion;
+          descongeladoSalmuera.foto = state.foto;
+          descongeladoSalmuera.state = state.state;
+          descongeladoSalmuera.sync_state = state.sync_state;
+        }
+      );
+    });
+    await resetForm();
   }
   return (
     <ScrollView className="flex-1 bg-gray-100 p-4 block border border-gray-200 rounded-lg shadow">
