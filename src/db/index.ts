@@ -12,19 +12,10 @@ import {
   name as DescongeladoSalmueraName,
 } from "@/model/registros/Salmuera/RC_CC_15";
 
-import {
-  PeladoFrescoModel,
-  name as PeladoFrescoName,
-} from "@/model/registros/ValorAgregado/RC_CC_103";
+import { PeladoFrescoModel, name as PeladoFrescoName } from "@/model/registros/ValorAgregado/RC_CC_103";
 
-import {
-  ProdTerminadoModel,
-  name as ProdTerminadoName,
-} from "@/model/registros/ProdTerminado/RC_CC_108";
-import {
-  ProcesoEnteroFrescoModel,
-  name as ProcesoEnteroName,
-} from "@/model/registros/ProcesoEntero/RC_CC_07";
+import { ProdTerminadoModel, name as ProdTerminadoName } from "@/model/registros/ProdTerminado/RC_CC_108";
+import { ProcesoEnteroFrescoModel, name as ProcesoEnteroName } from "@/model/registros/ProcesoEntero/RC_CC_07";
 
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({
@@ -35,30 +26,19 @@ const adapter = new SQLiteAdapter({
   // dbName: 'gscalidad_db',
   // (recommended option, should work flawlessly out of the box on iOS. On Android,
   // additional installation steps have to be taken - disable if you run into issues...)
-  // Nota: Creo que se arreglo con el plugin de @morrowdigital/watermelondb-plugin-expo
-  jsi: true /* Platform.OS === 'ios' */,
+  // TODO: Verificar si debe estar en true o false
+  jsi: false /* Platform.OS === 'ios' */,
   // (optional, but you should implement this method)
   onSetUpError: (error) => {
     // Database failed to load -- offer the user to reload the app or log out
-    console.error(
-      "Error al levantar la base de datos con Watermelondb:",
-      error
-    );
-    alert(`Error en setup: ${error.message}`);
+    console.error("Error al levantar la base de datos con Watermelondb:", error);
   },
 });
 
 // Then, make a Watermelon database from it!
 const database = new Database({
   adapter,
-  modelClasses: [
-    Account,
-    UserOffline,
-    DescongeladoSalmueraModel,
-    PeladoFrescoModel,
-    ProdTerminadoModel,
-    ProcesoEnteroFrescoModel,
-  ],
+  modelClasses: [Account, UserOffline, DescongeladoSalmueraModel, PeladoFrescoModel, ProdTerminadoModel, ProcesoEnteroFrescoModel],
 });
 
 export const accountsCollection = database.get<Account>("accounts");
