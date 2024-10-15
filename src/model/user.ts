@@ -1,7 +1,7 @@
 import { Model, tableSchema } from "@nozbe/watermelondb";
 import { field, text } from "@nozbe/watermelondb/decorators";
 
-export const name = "users_offline";
+export const name = "a26401_offline_data";
 
 export class UserOffline extends Model {
   static table = name;
