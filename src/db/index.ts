@@ -7,10 +7,7 @@ import migrations from "./migrations";
 import Account from "../model/Account";
 
 import { name as UsersTableName, UserOffline } from "@/model/User";
-import {
-  DescongeladoSalmueraModel,
-  name as DescongeladoSalmueraName,
-} from "@/model/registros/Salmuera/RC_CC_15";
+import { DescongeladoSalmueraModel, name as DescongeladoSalmueraName } from "@/model/registros/Salmuera/RC_CC_15";
 
 import { PeladoFrescoModel, name as PeladoFrescoName } from "@/model/registros/ValorAgregado/RC_CC_103";
 
@@ -44,19 +41,9 @@ const database = new Database({
 export const accountsCollection = database.get<Account>("accounts");
 const usersCollection = database.get<UserOffline>(UsersTableName);
 
-const rc15Collection = database.get<DescongeladoSalmueraModel>(
-  DescongeladoSalmueraName
-);
+const rc15Collection = database.get<DescongeladoSalmueraModel>(DescongeladoSalmueraName);
 const rc103Collection = database.get<PeladoFrescoModel>(PeladoFrescoName);
 const rc108Collection = database.get<ProdTerminadoModel>(ProdTerminadoName);
-const rc07Collection =
-  database.get<ProcesoEnteroFrescoModel>(ProcesoEnteroName);
+const rc07Collection = database.get<ProcesoEnteroFrescoModel>(ProcesoEnteroName);
 
-export {
-  database as db,
-  usersCollection,
-  rc15Collection,
-  rc103Collection,
-  rc108Collection,
-  rc07Collection,
-};
+export { database as db, usersCollection, rc15Collection, rc103Collection, rc108Collection, rc07Collection };
