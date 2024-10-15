@@ -1,7 +1,85 @@
-import { rc15Collection } from "@/db";
-import { getUnsync } from "@/db/transactions/read";
+import dotenv from "dotenv";
+dotenv.config(); // Cargar las variables del archivo .env
 
-export const upload = async () => {
-  console.log("Funcion ejecutada");
-  console.log(await getUnsync(rc15Collection));
+// Validación de las variables importantes con tipos explícitos
+function getEnvVar(key: string, defaultValue?: string): string {
+  const value = process.env[key] || defaultValue;
+  if (!value) {
+    throw new Error(`La variable de entorno ${key} no está definida.`);
+  }
+  return value;
+}
+
+import { useEffect } from "react";
+import BackgroundFetch from "react-native-background-fetch";
+import { db, rc15Collection } from "@/db";
+import { getUnsync } from "@/db/transactions/read";
+import { synchronize } from "@nozbe/watermelondb/sync";
+
+const SYNC_URL = getEnvVar("API_URL");
+
+export const syncWatermelon = async () => {
+  await synchronize({
+    database: db,
+    pullChanges: async ({ lastPulledAt }) => {
+      console.log("[SyncWorker] Pulling changes from server...");
+      const response = await fetch(
+        `${SYNC_URL}/exp/pull?lastPulledAt=${lastPulledAt || 0}`
+      );
+      if (!response.ok) throw new Error("Failed to pull changes from server");
+      const { changes, timestamp } = await response.json();
+      console.log("[SyncWorker] Changes pulled:", changes);
+      return { changes, timestamp };
+    },
+    // pushChanges: async ({ changes }) => {
+    //   console.log("[SyncWorker] Pushing changes to server...");
+    //   const response = await fetch(`${SYNC_URL}/exp-push`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ changes }),
+    //   });
+    //   if (!response.ok) {
+    //     throw new Error("Failed to push changes to server");
+    //   }
+    // },
+    migrationsEnabledAtVersion: 1,
+  });
+};
+
+export const SyncWorker = () => {
+  useEffect(() => {
+    const initializeBackgroundFetch = async () => {
+      try {
+        await BackgroundFetch.configure(
+          {
+            minimumFetchInterval: 15,
+          },
+          async (taskId) => {
+            console.log("[SyncWorker] In progress...", taskId);
+            try {
+              await syncWatermelon();
+            } catch (error) {
+              console.error("[SyncWorker] Sync failed", error);
+            }
+            BackgroundFetch.finish(taskId);
+          },
+          (error) => {
+            console.error("[SyncWorker] Error!", error);
+          }
+        );
+      } catch (error) {
+        console.error("Error configuring BackgroundFetch", error);
+      }
+    };
+
+    initializeBackgroundFetch();
+
+    return () => {
+      BackgroundFetch.stop();
+    };
+  }, []);
+
+  return null;
 };

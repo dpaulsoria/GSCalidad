@@ -4,28 +4,13 @@ import FloatingLabelInput from "@/ui/components/floatInputText";
 import { SafeAreaView } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import BackgroundFetch from "react-native-background-fetch";
-import { upload } from "@/worker";
+import { syncWatermelon } from "@/worker";
 export default function LoginScreen() {
   const [correo, setCorreo] = React.useState("");
   const [contraseña, setContraseña] = React.useState("");
 
   useEffect(() => {
-    BackgroundFetch.configure(
-      {
-        minimumFetchInterval: 15,
-      },
-      async (taskId) => {
-        console.log("[SyncWorker] In progress...", taskId);
-        await upload();
-        BackgroundFetch.finish(taskId);
-      },
-      (error) => {
-        console.error("[SyncWorker] Error!", error);
-      },
-    );
-    return () => {
-      BackgroundFetch.stop();
-    };
+    syncWatermelon()
   }, []);
   
   const handleCorreo = (correo: string) => {
