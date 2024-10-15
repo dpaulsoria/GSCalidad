@@ -22,7 +22,9 @@
     "android": {
       "permissions": [
         "RECEIVE_BOOT_COMPLETED",
-        "FOREGROUND_SERVICE"
+        "FOREGROUND_SERVICE",
+        // TODO: Reverificar si este permiso no es un fallo critico de seguridad
+        "DETECT_SCREEN_CAPTURE"
       ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -40,6 +42,7 @@
       "bundler": "metro"
     },
     "plugins": [
+      ["@morrowdigital/watermelondb-expo-plugin"],
       "expo-router",
       [
         "react-native-background-fetch",
@@ -50,6 +53,16 @@
       [
         "expo-build-properties",
         {
+          "android": {
+            "enableHermes": true,
+            "kotlinVersion": "1.6.10",
+            "packagingOptions": {
+              "pickFirst": [
+                "**/libc++_shared.so"
+              ]
+            }
+          },
+          // No se usa en ios, pero igual esta
           "ios": {
             "extraPods": [
               {
