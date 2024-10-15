@@ -15,6 +15,9 @@ export default function LoginScreen() {
   return (
     <View className="flex-1">
       {/* Parte superior con imagen */}
+      <View>
+        <Text>Hoal Mundo</Text>
+      </View>
       <View className=" relative flex-1 bg-body-dark  justify-center items-center">
         <Image source={require("../../../assets/images/logoSPnslogan.png")} className=" rounded-full" style={{ width: "50%", height: "50%" }} />
         <View className="w-full absolute bottom-0">

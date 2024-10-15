@@ -36,7 +36,7 @@ export default function LoginScreen() {
   return (
     <View className="flex-1">
       {/* Parte superior con imagen */}
-      <View className=" relative flex-1 bg-body-dark  justify-center items-center">
+      <View className=" relative flex-1 bg-slate-300  justify-center items-center">
         <Image source={require("../../assets/images/logoSPnslogan.png")} className=" rounded-full" style={{ width: "50%", height: "50%" }} />
         <View className="w-full absolute bottom-0">
           <Svg height="100" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -48,6 +48,9 @@ export default function LoginScreen() {
         </View>
       </View>
       {/* Parte inferior con inputs */}
+      <View className="w-min">
+        <Text className="bg-amber-500">Hoal Mundo</Text>
+      </View>
       <View className="flex-1 bg-blue px-4 pt-8  gap-12 ">
         <Text className="text-xl font-semibold text-center text-gray-800 ">Bienvenidos a la App Salem</Text>
         <View className="android:gap-24 gap-5 my-5  py-10">
