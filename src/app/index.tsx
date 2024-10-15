@@ -49,7 +49,10 @@ export default function LoginScreen() {
         </View>
       </View>
       {/* Parte inferior con inputs */}
-      <View className="h-3/5 px-4 pt-8  gap-12  ">
+      <View className="w-min">
+        <Text className="bg-amber-500">Hoal Mundo</Text>
+      </View>
+      <View className="flex-1 bg-blue px-4 pt-8  gap-12 ">
         <Text className="text-xl font-semibold text-center text-gray-800 ">Bienvenidos a la App Salem</Text>
         <View className="flex gap-y-5">
           {/* Input de correo */}
