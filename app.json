@@ -4,7 +4,7 @@
     "slug": "gscalidad",
     "scheme": "gscalidad",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default", // Permite rotaciones libres
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -12,18 +12,13 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.santapriscila.gscalidad"
     },
     "android": {
-      "permissions": [
-        "RECEIVE_BOOT_COMPLETED",
-        "FOREGROUND_SERVICE"
-      ],
+      "permissions": ["RECEIVE_BOOT_COMPLETED", "FOREGROUND_SERVICE"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -54,10 +49,7 @@
             "extraPods": [
               {
                 "name": "simdjson",
-                "configurations": [
-                  "Debug",
-                  "Release"
-                ],
+                "configurations": ["Debug", "Release"],
                 "path": "../node_modules/@nozbe/simdjson",
                 "modular_headers": true
               }
