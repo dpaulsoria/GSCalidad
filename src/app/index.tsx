@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BackgroundFetch from "react-native-background-fetch";
 import { useRootNavigationState, Redirect, useRouter } from "expo-router";
@@ -30,5 +30,5 @@ export default function LoginScreen() {
   if (isLoggedIn === null) {
     return null; // Mientras se carga la información de sesión
   }
-  return <View>Hola</View>;
+  return <View><Text>Hola</Text></View>;
 }

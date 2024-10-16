@@ -1,34 +1,13 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React, { useEffect } from "react";
+import { useState } from "react";
 import FloatingLabelInput from "@/ui/components/floatInputText";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
-import BackgroundFetch from "react-native-background-fetch";
-import { sync } from "@/worker";
 import { StatusBar } from "expo-status-bar";
 
 export default function LoginScreen() {
-  const [correo, setCorreo] = React.useState("");
-  const [contraseña, setContraseña] = React.useState("");
-
-  useEffect(() => {
-    BackgroundFetch.configure(
-      {
-        minimumFetchInterval: 15,
-      },
-      async (taskId) => {
-        console.log("[SyncWorker] Done!", taskId);
-        await sync();
-        BackgroundFetch.finish(taskId);
-      },
-      (error) => {
-        console.error("[SyncWorker] Error!", error);
-      },
-    );
-    return () => {
-      BackgroundFetch.stop();
-    };
-  }, []);
+  const [correo, setCorreo] = useState("");
+  const [contraseña, setContraseña] = useState("");
 
   const handleCorreo = (correo: string) => {
     setCorreo(correo);

@@ -1,22 +1,10 @@
-import dotenv from "dotenv";
-dotenv.config(); // Cargar las variables del archivo .env
-
-// Validación de las variables importantes con tipos explícitos
-function getEnvVar(key: string, defaultValue?: string): string {
-  const value = process.env[key] || defaultValue;
-  if (!value) {
-    throw new Error(`La variable de entorno ${key} no está definida.`);
-  }
-  return value;
-}
-
 import { useEffect } from "react";
 import BackgroundFetch from "react-native-background-fetch";
 import { db, rc15Collection } from "@/db";
 import { getUnsync } from "@/db/transactions/read";
 import { synchronize } from "@nozbe/watermelondb/sync";
 
-const SYNC_URL = getEnvVar("API_URL");
+const SYNC_URL = "http://10.51.12.141:8000";
 
 export const syncWatermelon = async () => {
   await synchronize({
