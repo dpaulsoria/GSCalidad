@@ -1,25 +1,25 @@
-// import { Drawer } from "expo-router/drawer";
-// import "react-native-gesture-handler";
-// // import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Drawer } from "expo-router/drawer";
 
-// const DrawerLayout = () => {
-//   return (
-//     <Drawer>
-//       <Drawer.Screen
-//         name="index"
-//         options={{
-//           drawerLabel: "Home", // Nombre que se mostrará en el Drawer
-//           title: "Home Page", // Título de la pantalla
-//         }}
-//       />
-//       <Drawer.Screen
-//         name="about"
-//         options={{
-//           drawerLabel: "About", // Nombre que se mostrará en el Drawer
-//           title: "About Us", // Título de la pantalla
-//         }}
-//       />
-//     </Drawer>
-//   );
-// };
-// export default DrawerLayout;
+export default function Layout() {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Drawer>
+        <Drawer.Screen
+          name="home" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: "Home",
+            title: "overview",
+          }}
+        />
+        <Drawer.Screen
+          name="profile" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: "User",
+            title: "overview",
+          }}
+        />
+      </Drawer>
+    </GestureHandlerRootView>
+  );
+}

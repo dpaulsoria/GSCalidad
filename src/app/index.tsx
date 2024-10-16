@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BackgroundFetch from "react-native-background-fetch";
 import { useRootNavigationState, Redirect, useRouter } from "expo-router";
+import "react-native-gesture-handler";
 
 import { syncWatermelon } from "@/worker";
 export default function LoginScreen() {
@@ -30,5 +31,9 @@ export default function LoginScreen() {
   if (isLoggedIn === null) {
     return null; // Mientras se carga la información de sesión
   }
-  return <View><Text>Hola</Text></View>;
+  return (
+    <View>
+      <Text>Hola</Text>
+    </View>
+  );
 }
