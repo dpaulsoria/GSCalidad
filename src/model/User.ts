@@ -3,18 +3,22 @@ import { field, text } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_offline_data";
 
-export class UserOffline extends Model {
+export class UserOfflineModel extends Model {
   static table = name;
 
-  @text("cedula") cedula: string | null;
-  @text("user_name") user_name: string;
-  @text("user_username") user_username: string;
-  @text("user_email") user_email: string;
-  @field("user_activo") user_activo: number;
-  @text("user_password") user_password: string;
-  @field("rol_id") rol_id: number;
-  @field("planta") planta: number | null;
-  @field("area") area: number | null;
+  @text("cedula") cedula!: string | null;
+  @text("user_name") user_name!: string;
+  @text("user_username") user_username!: string;
+  @text("user_email") user_email!: string;
+  @field("user_activo") user_activo!: number;
+  @text("user_password") user_password!: string;
+  @field("rol_id") rol_id!: number;
+  @field("planta_id") planta!: number | null;
+  @field("area_id") area!: number | null;
+  @field("remote_id") remote_id!: number;
+  @field("created_at") created_at!: number;
+  @field("updated_at") updated_at!: number;
+  @field("deleted_at") deleted_at!: number | null;
 }
 
 export const UserOfflineSchema = tableSchema({
@@ -27,7 +31,11 @@ export const UserOfflineSchema = tableSchema({
     { name: "user_activo", type: "number" },
     { name: "user_password", type: "string" },
     { name: "rol_id", type: "number" },
-    { name: "planta", type: "number", isOptional: true },
-    { name: "area", type: "number", isOptional: true },
+    { name: "planta_id", type: "number", isOptional: true },
+    { name: "area_id", type: "number", isOptional: true },
+    { name: "remote_id", type: "number" },
+    { name: "created_at", type: "number" },
+    { name: "updated_at", type: "number" },
+    { name: "deleted_at", type: "number", isOptional: true },
   ],
 });

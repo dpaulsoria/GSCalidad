@@ -1,6 +1,6 @@
+import { Migrable } from "@/types/Migrable";
 import { Model, tableSchema } from "@nozbe/watermelondb";
 import { field, text, date } from "@nozbe/watermelondb/decorators";
-import { Migrable } from "../base";
 
 export const name = "a26401_control_pt_congelado_fresco";
 
@@ -76,6 +76,7 @@ export class ProdTerminadoModel extends Model implements Migrable {
   @date("FechaModi") FechaModi!: string | null;
   @field("state") state!: number;
   @field("planta_id") planta_id!: number | null;
+  @field("remote_id") remote_id!: number;
 }
 
 
@@ -114,5 +115,6 @@ export const ProdTerminadoSchema = tableSchema({
       { name: "UsuModi", type: "string", isOptional: true },
       { name: "FechaModi", type: "string", isOptional: true },
       { name: "planta_id", type: "number", isOptional: true },
+      { name: "remote_id", type: "number" },
     ],
   });

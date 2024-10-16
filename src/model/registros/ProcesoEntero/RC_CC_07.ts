@@ -1,6 +1,6 @@
+import { Migrable } from "@/types/Migrable";
 import { Model, tableSchema } from "@nozbe/watermelondb";
 import { field, text, date } from "@nozbe/watermelondb/decorators";
-import { Migrable } from "../base";
 
 export const name = "a26401_proceso_entero_fresco";
 
@@ -58,6 +58,7 @@ export class ProcesoEnteroFrescoModel extends Model implements Migrable {
   @field("foto") foto!: number;
   @field("planta_id") planta_id!: number | null;
   @field("state") state!: number;
+  @field("remote_id") remote_id!: number;
 }
 
 export const ProcesoEnteroFrescoSchema = tableSchema({
@@ -112,5 +113,6 @@ export const ProcesoEnteroFrescoSchema = tableSchema({
     { name: "foto", type: "number" },
     { name: "planta_id", type: "number", isOptional: true },
     { name: "state", type: "number" },
+    { name: "remote_id", type: "number" },
   ],
 });

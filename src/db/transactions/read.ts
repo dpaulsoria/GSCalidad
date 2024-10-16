@@ -1,4 +1,4 @@
-import { Migrable } from "@/model/registros/base";
+import { Migrable } from "@/types/Migrable";
 import { Collection, Model, Q } from "@nozbe/watermelondb";
 
 // Función genérica para obtener registros con state = 0

@@ -1,16 +1,4 @@
-export interface Migrable {
-  FechaCrea: string | null;
-  UsuCrea: string | null;
-  FechaModi: string | null;
-  UsuModi: string | null;
-  state: number;
-}
-
-export interface Forms {
-  parse(): string;
-  identifierName(): string;
-  fullName(): string;
-}
+import { Forms } from "./Form";
 
 // Enum para los tipos de registro
 export enum RegisterTypes {

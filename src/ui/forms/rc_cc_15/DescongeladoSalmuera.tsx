@@ -1,7 +1,7 @@
 import { Alert, Button, Pressable, ScrollView, Text, View } from "react-native";
 import FloatingLabelInput from "@/ui/components/floatInputText";
 import { useForm } from "@/hooks/useForm";
-import database, { rc15Collection } from "@/db";
+import { db, rc15Collection } from "@/db";
 import { DescongeladoSalmueraModel } from "@/model/registros/Salmuera/RC_CC_15";
 import { formatDate } from "@/utils/formatDate";
 import { useState } from "react";
@@ -50,7 +50,7 @@ export default function DescongeladoSalmuera() {
     //   })}`,
     //   [{ text: "OK", onPress: () => console.log("Upload") }]
     // );
-    await database.write(async () => {
+    await db.write(async () => {
       await rc15Collection.create(
         (descongeladoSalmuera: DescongeladoSalmueraModel) => {
           descongeladoSalmuera.cabinplant = state.Cabinplant;

@@ -1,4 +1,4 @@
-import { Migrable } from "@/model/registros/base";
+import { Migrable } from "@/types/Migrable";
 
 function printMigrableInfo<T extends Migrable>(item: T) {
   console.log(`Fecha de Creación: ${item.FechaCrea}`);

@@ -22,6 +22,7 @@ export class ClasificacionCamaronEnteroModel extends Model implements Migrable {
   @text("UsuModi") UsuModi!: string | null;
   @date("FechaModi") FechaModi!: string | null;
   @field("state") state!: number;
+  @field("remote_id") remote_id!: number;
 }
 
 export const ClasificacionCamaronEnteroSchema = tableSchema({
@@ -40,5 +41,6 @@ export const ClasificacionCamaronEnteroSchema = tableSchema({
     { name: "UsuModi", type: "string", isOptional: true },
     { name: "FechaModi", type: "string", isOptional: true },
     { name: "state", type: "number" },
+    { name: "remote_id", type: "number" },
   ],
 });
