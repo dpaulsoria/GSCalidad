@@ -1,34 +1,26 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BackgroundFetch from "react-native-background-fetch";
-import { sync } from "@/worker";
 import { useRootNavigationState, Redirect, useRouter } from "expo-router";
 
+import { syncWatermelon } from "@/worker";
 export default function LoginScreen() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
   const rootNavigationState = useRootNavigationState();
-
+  const [correo, setCorreo] = useState("");
+  const [contraseña, setContraseña] = useState("");
   useEffect(() => {
-    // Configura BackgroundFetch
-    BackgroundFetch.configure(
-      { minimumFetchInterval: 15 },
-      async (taskId) => {
-        console.log("[SyncWorker] Done!", taskId);
-        await sync();
-        BackgroundFetch.finish(taskId);
-      },
-      (error) => {
-        console.error("[SyncWorker] Error!", error);
-      },
-    );
-
-    return () => {
-      BackgroundFetch.stop();
-    };
+    syncWatermelon();
   }, []);
 
+  const handleCorreo = (correo: string) => {
+    setCorreo(correo);
+  };
+  const handleContraseña = (contraseña: string) => {
+    setContraseña(contraseña);
+  };
   useEffect(() => {
     if (rootNavigationState?.key && isLoggedIn === false) {
       router.push("/(auth)/login");
@@ -38,10 +30,5 @@ export default function LoginScreen() {
   if (isLoggedIn === null) {
     return null; // Mientras se carga la información de sesión
   }
-
-  return (
-    <View className="h-screen flex justify-center items-center">
-      <Text>Init Page</Text>
-    </View>
-  );
+  return <View>Hola</View>;
 }
