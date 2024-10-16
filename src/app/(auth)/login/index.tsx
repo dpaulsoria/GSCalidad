@@ -4,19 +4,20 @@ import FloatingLabelInput from "@/ui/components/floatInputText";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 import { StatusBar } from "expo-status-bar";
-import ReanimatedTest from "@/test/Reanimated";
-
+import { useRouter } from "expo-router";
 export default function LoginScreen() {
   const [correo, setCorreo] = useState("");
   const [contraseña, setContraseña] = useState("");
-
+  const router = useRouter();
   const handleCorreo = (correo: string) => {
     setCorreo(correo);
   };
   const handleContraseña = (contraseña: string) => {
     setContraseña(contraseña);
   };
-
+  const handlelogin = () => {
+    router.push("/(dashboard)/home");
+  };
   return (
     <View className="h-screen">
       {/* Parte superior con imagen */}
@@ -47,8 +48,7 @@ export default function LoginScreen() {
           <View>
             <FloatingLabelInput label="Correo Salem" value={correo} onChangeText={handleCorreo} />
           </View>
-          
-        <ReanimatedTest />
+
           {/* Input de contraseña */}
           <View>
             <FloatingLabelInput label="Contraseña" value={contraseña} onChangeText={handleContraseña} />
@@ -56,7 +56,9 @@ export default function LoginScreen() {
         </View>
         {/* Botón de Iniciar Sesión */}
         <TouchableOpacity className="h-12 bg-table-header-dark rounded-lg justify-center items-center">
-          <Text className="text-white text-lg font-semibold">Iniciar Sesión</Text>
+          <Text onPress={handlelogin} className="text-white text-lg font-semibold">
+            Iniciar Sesión
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
