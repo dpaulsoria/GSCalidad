@@ -14,11 +14,12 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "jsEngine": "hermes",
       "supportsTablet": true,
       "bundleIdentifier": "com.santapriscila.gscalidad"
     },
     "android": {
-      "jsEngine": "jsc",
+      "jsEngine": "hermes",
       "permissions": ["RECEIVE_BOOT_COMPLETED", "FOREGROUND_SERVICE"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",

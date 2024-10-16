@@ -6,6 +6,7 @@ import { useRootNavigationState, Redirect, useRouter } from "expo-router";
 import "react-native-gesture-handler";
 
 import { syncWatermelon } from "@/worker";
+import ReanimatedTest from "@/test/Reanimated";
 export default function LoginScreen() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
