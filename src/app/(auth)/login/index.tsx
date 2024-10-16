@@ -4,6 +4,7 @@ import FloatingLabelInput from "@/ui/components/floatInputText";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 import { StatusBar } from "expo-status-bar";
+import ReanimatedTest from "@/test/Reanimated";
 
 export default function LoginScreen() {
   const [correo, setCorreo] = useState("");
@@ -46,6 +47,8 @@ export default function LoginScreen() {
           <View>
             <FloatingLabelInput label="Correo Salem" value={correo} onChangeText={handleCorreo} />
           </View>
+          
+        <ReanimatedTest />
           {/* Input de contraseña */}
           <View>
             <FloatingLabelInput label="Contraseña" value={contraseña} onChangeText={handleContraseña} />

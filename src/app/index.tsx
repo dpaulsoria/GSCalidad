@@ -5,6 +5,7 @@ import BackgroundFetch from "react-native-background-fetch";
 import { useRootNavigationState, Redirect, useRouter } from "expo-router";
 
 import { syncWatermelon } from "@/worker";
+import ReanimatedTest from "@/test/Reanimated";
 export default function LoginScreen() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
@@ -30,5 +31,9 @@ export default function LoginScreen() {
   if (isLoggedIn === null) {
     return null; // Mientras se carga la información de sesión
   }
-  return <View><Text>Hola</Text></View>;
+  return (
+    <View>
+      <Text>Hola</Text>
+    </View>
+  );
 }
