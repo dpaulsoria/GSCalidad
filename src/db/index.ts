@@ -69,18 +69,25 @@ import {
   RegistrosPlantaModel,
 } from "@/model/data/pivot/RegistrosPlanta";
 // Signatures
-import {
-  name as FirmasName,
-  FirmasModel,
-} from "@/model/data/signatures/Firma";
+import { name as FirmasName, FirmasModel } from "@/model/data/signatures/Firma";
 // Fallido
 import {
   name as RegistroFallidoName,
   RegistroFallidoModel,
 } from "@/model/data/log/RegistroFallido";
-import { name as ImportadoresName, ImportadoresModel } from "@/model/data/list/Importador";
+import {
+  name as ImportadoresName,
+  ImportadoresModel,
+} from "@/model/data/list/Importador";
 import { name as MarcasName, MarcasModel } from "@/model/data/list/Marcas";
-import { name as MaquinasName, MaquinasModel } from "@/model/data/list/Maquinas";
+import {
+  name as MaquinasName,
+  MaquinasModel,
+} from "@/model/data/list/Maquinas";
+import {
+  name as ProveedoresINPName,
+  ProveedoresINPModel,
+} from "@/model/data/list/ProveedoresINP";
 
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({
@@ -129,6 +136,7 @@ export const db = new Database({
     ImportadoresModel,
     MarcasModel,
     MaquinasModel,
+    ProveedoresINPModel,
     // Pivot
     RegistrosAreaModel,
     RegistrosPlantaModel,
@@ -168,9 +176,12 @@ export const tipoRegistroEstadoCollection = db.get<TipoRegistroEstadoModel>(
   TipoRegistroEstadoName
 );
 export const unidadPesoCollection = db.get<UnidadPesoModel>(UnidadPesoName);
-export const importadoresCollection = db.get<ImportadoresModel>(ImportadoresName);
+export const importadoresCollection =
+  db.get<ImportadoresModel>(ImportadoresName);
 export const marcasCollection = db.get<MarcasModel>(MarcasName);
 export const maquinasCollection = db.get<MaquinasModel>(MaquinasName);
+export const proveedoresINPCollection =
+  db.get<ProveedoresINPModel>(ProveedoresINPName);
 // Pivot
 export const registrosAreaCollection =
   db.get<RegistrosAreaModel>(RegistrosAreaName);
@@ -179,4 +190,5 @@ export const registrosPlantaCollection =
 // Signatures
 export const firmasCollection = db.get<FirmasModel>(FirmasName);
 // Fallido
-export const registroFallidoCollection = db.get<RegistroFallidoModel>(RegistroFallidoName);
+export const registroFallidoCollection =
+  db.get<RegistroFallidoModel>(RegistroFallidoName);

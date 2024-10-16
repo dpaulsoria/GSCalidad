@@ -3,4 +3,9 @@ import { name as PeladoFrescoName } from "@/model/registros/ValorAgregado/RC_CC_
 import { name as ProdTerminadoName } from "@/model/registros/ProdTerminado/RC_CC_108";
 import { name as ProcesoEnteroName } from "@/model/registros/ProcesoEntero/RC_CC_07";
 
-export const TablesToPush = [DescongeladoSalmueraName, PeladoFrescoName, ProdTerminadoName, ProcesoEnteroName];
+export const TablesToPush = [
+  DescongeladoSalmueraName,
+  PeladoFrescoName,
+  ProdTerminadoName,
+  ProcesoEnteroName,
+];

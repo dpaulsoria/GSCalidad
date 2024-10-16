@@ -21,6 +21,7 @@ import { RegistroFallidoSchema } from "@/model/data/log/RegistroFallido";
 import { ImportadoresSchema } from "@/model/data/list/Importador";
 import { MarcasSchema } from "@/model/data/list/Marcas";
 import { MaquinasSchema } from "@/model/data/list/Maquinas";
+import { ProveedoresINPSchema } from "@/model/data/list/ProveedoresINP";
 
 export default appSchema({
   version: 1,
@@ -47,6 +48,7 @@ export default appSchema({
     ImportadoresSchema,
     MarcasSchema,
     MaquinasSchema,
+    ProveedoresINPSchema,
     // Pivot
     RegistrosAreaSchema,
     RegistrosPlantaSchema,

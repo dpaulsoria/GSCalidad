@@ -3,7 +3,7 @@ import BackgroundFetch from "react-native-background-fetch";
 import { db } from "@/db";
 import { synchronize } from "@nozbe/watermelondb/sync";
 import { TablesToPush } from "@/model/TablesToPush";
-import ApiService from "@/service/Api"; // Asegúrate de importar la clase ApiService
+import ApiService from "@/service/Api";
 
 const TAG = "[SyncWorker]";
 const URL_BASE = "/api/usuarioExterno/control-calidad-off/exp"
