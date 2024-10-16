@@ -1,11 +1,19 @@
-import { Alert, Button, Pressable, ScrollView, Text, View } from "react-native";
-import FloatingLabelInput from "@/ui/components/floatInputText";
+import {
+  Alert,
+  Button,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 import { useForm } from "@/hooks/useForm";
 import database, { rc15Collection } from "@/db";
 import { DescongeladoSalmueraModel } from "@/model/registros/Salmuera/RC_CC_15";
 import { formatDate } from "@/utils/formatDate";
 import { useState } from "react";
 import AlertNotification from "@/ui/modals/AlertNotification";
+import ColumnTextField from "@/ui/components/ColumnTextField";
 
 interface DescongeladoSalmueraState {
   uuid: string;
@@ -43,13 +51,8 @@ export default function DescongeladoSalmuera() {
   const [showModal, setShowModal] = useState(false);
 
   async function onSubmitForm() {
-    // Alert.alert(
-    //   "Formulario Subido",
-    //   `Se Guardo exitosamente la informacion. ${JSON.stringify({
-    //     ...state,
-    //   })}`,
-    //   [{ text: "OK", onPress: () => console.log("Upload") }]
-    // );
+    setShowModal(true);
+
     await database.write(async () => {
       await rc15Collection.create(
         (descongeladoSalmuera: DescongeladoSalmueraModel) => {
@@ -86,135 +89,142 @@ export default function DescongeladoSalmuera() {
         }
       );
     });
-    setShowModal(true);
   }
 
   return (
-    <ScrollView className="flex-1 bg-gray-100 p-4 block border border-gray-200 rounded-lg shadow">
-      <Text className="text-center text-2xl text-sla">RC.CC.15</Text>
-      <View className="flex flex-column flex-wrap justify-between gap-1">
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("tipo_analisis", text)}
+    <ScrollView className="bg-gray-100 p-4 block border border-gray-200 rounded-lg shadow w-full">
+      <Text className="text-center text-3xl text-slate-600 font-bolder ">
+        RC.CC.15
+      </Text>
+      <View className="flex flex-row flex-wrap justify-between align-center">
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("tipo_analisis", text)}
             value={state.tipo_analisis}
             label="Tipo Analisis"
+            placeholder={`Ingrese el tipo de analisis`}
           />
         </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("unidad_medida", text)}
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("unidad_medida", text)}
+            placeholder="Ingrese la Unidad Peso"
             value={state.unidad_medida}
             label="Unidad de Peso"
           />
         </View>
-
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("Cabinplant", text)}
+      </View>
+      <View className="flex flex-row flex-wrap">
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("Cabinplant", text)}
             value={state.Cabinplant}
             label="Cabinplant"
           />
         </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("Importador", text)}
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("Importador", text)}
             value={state.Importador}
             label="Importador"
           />
         </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("Lote", text)}
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("Lote", text)}
             value={state.Lote}
             label="Lote"
           />
         </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("Proveedor", text)}
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("Proveedor", text)}
             value={state.Proveedor}
             label="Proveedor"
           />
         </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("Talla", text)}
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("Talla", text)}
             value={state.Talla}
             label="Talla"
           />
         </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("pesoNetoFresco", text)}
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("pesoNetoFresco", text)}
             value={state.pesoNetoFresco}
             label="Peso Neto Fresco"
           />
 
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("Cta_PesoNetoFresco", text)}
+          <ColumnTextField
+            className="w-1/3"
+            onChange={(text) => handleChange("Cta_PesoNetoFresco", text)}
             value={state.Cta_PesoNetoFresco}
-            label="Cta Peso Neto Fresco"
+            placeholder="Cta Peso Neto Fresco"
           />
         </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("peso_bruto", text)}
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("peso_bruto", text)}
             value={state.peso_bruto}
             label="Peso Bruto"
           />
         </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("pesoCongelado", text)}
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("pesoCongelado", text)}
             value={state.pesoCongelado}
             label="Peso Congelado"
           />
 
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("Cta_PesoCongelado", text)}
+          <ColumnTextField
+            onChange={(text) => handleChange("Cta_PesoCongelado", text)}
             value={state.Cta_PesoCongelado}
-            label="Cta Peso Congelado"
+            placeholder="Cta Peso Congelado"
           />
         </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("pesoDescongelado", text)}
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("pesoDescongelado", text)}
             value={state.pesoDescongelado}
             label="Peso Descongelado"
           />
 
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("Cta_PesoDescongelado", text)}
+          <ColumnTextField
+            onChange={(text) => handleChange("Cta_PesoDescongelado", text)}
             value={state.Cta_PesoDescongelado}
-            label="Cta Peso Descongelado"
+            placeholder="Cta Peso Descongelado"
           />
         </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <FloatingLabelInput
-            onChangeText={(text) => handleChange("Observacion", text)}
+        <View className="w-1/2 p-2">
+          <ColumnTextField
+            onChange={(text) => handleChange("Observacion", text)}
             value={state.Observacion}
             label="Observacion"
           />
         </View>
+      </View>
 
-        <View className="w-full md:w-1/2 p-2">
-          <Pressable
-            className="text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
-            onPress={onSubmitForm}
-          >
-            <Text>Subir</Text>
-          </Pressable>
-        </View>
+      <View className="border p-2 flex flex-row justify-end">
+        <Pressable
+          className="w-1/4 bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          onPress={onSubmitForm}
+        >
+          <Text className="text-white text-center text-xl text-bold">
+            Subir
+          </Text>
+        </Pressable>
       </View>
 
       {showModal && (
