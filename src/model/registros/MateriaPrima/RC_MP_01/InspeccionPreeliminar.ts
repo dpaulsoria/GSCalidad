@@ -64,7 +64,7 @@ export class InspeccionPreeliminarModel extends Model implements Migrable {
   @text("lote_apto") lote_apto!: string;
   @field("state") state!: number;
 }
-export const RegistrosPorAreaSchema = tableSchema({
+export const InspeccionPreeliminarSchema = tableSchema({
   name,
   columns: [
     { name: "id", type: "number" },
