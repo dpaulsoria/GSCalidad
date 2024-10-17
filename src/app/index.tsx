@@ -1,12 +1,9 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text } from "react-native";
 import { useEffect, useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import BackgroundFetch from "react-native-background-fetch";
-import { useRootNavigationState, Redirect, useRouter } from "expo-router";
+import { useRootNavigationState, useRouter } from "expo-router";
 import "react-native-gesture-handler";
 
 import { syncWatermelon } from "@/worker";
-import ReanimatedTest from "@/test/Reanimated";
 export default function LoginScreen() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
