@@ -88,6 +88,8 @@ import {
   name as ProveedoresINPName,
   ProveedoresINPModel,
 } from "@/model/data/list/ProveedoresINP";
+import { name as CorreccionesName, CorreccionesModel } from "@/model/data/extra/Correccion";
+import { name as FotosName, FotosModel } from "@/model/data/extra/Foto";
 
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({
@@ -144,6 +146,9 @@ export const db = new Database({
     FirmasModel,
     // Fallidos
     RegistroFallidoModel,
+    // Extra
+    CorreccionesModel,
+    FotosModel,
   ],
 });
 
@@ -192,3 +197,6 @@ export const firmasCollection = db.get<FirmasModel>(FirmasName);
 // Fallido
 export const registroFallidoCollection =
   db.get<RegistroFallidoModel>(RegistroFallidoName);
+// Extra
+export const correccionCollection = db.get<CorreccionesModel>(CorreccionesName);
+export const fotoCollection = db.get<FotosModel>(FotosName);

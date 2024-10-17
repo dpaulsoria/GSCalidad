@@ -22,6 +22,8 @@ import { ImportadoresSchema } from "@/model/data/list/Importador";
 import { MarcasSchema } from "@/model/data/list/Marcas";
 import { MaquinasSchema } from "@/model/data/list/Maquinas";
 import { ProveedoresINPSchema } from "@/model/data/list/ProveedoresINP";
+import { CorreccionesSchema } from "@/model/data/extra/Correccion";
+import { FotosSchema } from "@/model/data/extra/Foto";
 
 export default appSchema({
   version: 1,
@@ -56,5 +58,8 @@ export default appSchema({
     FirmasSchema,
     // Fallido
     RegistroFallidoSchema,
+    // Extras
+    CorreccionesSchema,
+    FotosSchema,
   ],
 });
