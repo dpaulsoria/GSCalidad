@@ -7,15 +7,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@assets/*": ["./assets/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
-  "include": [
-    "nativewind-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx"
-  ],
+  "include": ["nativewind-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
   "extends": "expo/tsconfig.base"
 }

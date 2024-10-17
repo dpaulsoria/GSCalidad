@@ -18,7 +18,7 @@ export default function App() {
 
     // Cerrar el Bottom Sheet Modal
     bottomSheetModalRef.current.dismiss();
-  };
+        };
 
   const renderBackdrop = (props) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />;
 
