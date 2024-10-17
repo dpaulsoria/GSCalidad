@@ -27,6 +27,7 @@ import { FotosSchema } from "@/model/data/extra/Foto";
 import { InspeccionPreeliminarColaSchema } from "@/model/registros/MateriaPrima/RC_MP_01/jr/Cola";
 import { InspeccionPreeliminarSchema } from "@/model/registros/MateriaPrima/RC_MP_01/InspeccionPreeliminar";
 import { InspeccionPreeliminarEnteroSchema } from "@/model/registros/MateriaPrima/RC_MP_01/jr/Entero";
+import { ClasificacionCamaronEnteroSchema } from "@/model/registros/ProcesoEntero/RC_CC_08";
 
 export default appSchema({
   version: 1,
@@ -38,6 +39,7 @@ export default appSchema({
     PeladoFrescoSchema,
     ProdTerminadoSchema,
     ProcesoEnteroFrescoSchema,
+    ClasificacionCamaronEnteroSchema,
     // Navegacion
     PlantasSchema,
     TipoRegistroSchema,

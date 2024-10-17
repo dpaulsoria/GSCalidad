@@ -35,6 +35,10 @@ import {
   name as InspeccionPreeliminarEnteroName,
   InspeccionPreeliminarEnteroModel,
 } from "@/model/registros/MateriaPrima/RC_MP_01/jr/Entero";
+import {
+  name as ClasificacionCamaronEnteroName,
+  ClasificacionCamaronEnteroModel,
+} from "@/model/registros/ProcesoEntero/RC_CC_08";
 
 // Navegacion
 import {
@@ -140,6 +144,7 @@ export const db = new Database({
     ProdTerminadoModel,
     ProcesoEnteroFrescoModel,
     InspeccionPreeliminarModel,
+    ClasificacionCamaronEnteroModel,
     // Navegacion
     PlantasModel,
     TipoRegistroModel,
@@ -177,13 +182,18 @@ export const rc15Collection = db.get<DescongeladoSalmueraModel>(
 );
 export const rc103Collection = db.get<PeladoFrescoModel>(PeladoFrescoName);
 export const rc108Collection = db.get<ProdTerminadoModel>(ProdTerminadoName);
+export const rc08Collection = db.get<ClasificacionCamaronEnteroModel>(ClasificacionCamaronEnteroName);
 export const rc07Collection =
   db.get<ProcesoEnteroFrescoModel>(ProcesoEnteroName);
 export const rc01Collection = db.get<InspeccionPreeliminarModel>(
   InspeccionPreeliminarName
 );
-export const rc01ColaCollection = db.get<InspeccionPreeliminarColaModel>(InspeccionPreeliminarColaName);
-export const rc01EnteroCollection = db.get<InspeccionPreeliminarEnteroModel>(InspeccionPreeliminarEnteroName);
+export const rc01ColaCollection = db.get<InspeccionPreeliminarColaModel>(
+  InspeccionPreeliminarColaName
+);
+export const rc01EnteroCollection = db.get<InspeccionPreeliminarEnteroModel>(
+  InspeccionPreeliminarEnteroName
+);
 
 // Navegacion
 export const plantasCollection = db.get<PlantasModel>(PlantasName);
