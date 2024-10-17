@@ -14,38 +14,11 @@ import { formatDate } from "@/utils/formatDate";
 import { useState } from "react";
 import AlertNotification from "@/ui/modals/AlertNotification";
 import ColumnTextField from "@/ui/components/ColumnTextField";
-
-interface DescongeladoSalmueraState {
-  uuid: string;
-  tipo_analisis: string;
-  Importador: string;
-  Cabinplant: string;
-  Lote: string;
-  Proveedor: string;
-  Talla: string;
-  pesoNetoFresco: number;
-  peso_bruto: number;
-  unidad_medida: string;
-  pesoCongelado: number;
-  pesoDescongelado: number;
-  Cta_PesoNetoFresco: number;
-  Cta_PesoCongelado: number;
-  Cta_PesoDescongelado: number;
-  Observacion: string;
-  UsuCrea: string;
-  FechaCrea: string;
-  FechaModi?: string | null;
-  UsuModi?: string | null;
-  Fecha: string;
-  correccion: number;
-  foto: number;
-  state: number;
-  sync_state?: number;
-}
+import { SaveRC_CC_15 } from "@/db/transactions/write";
 
 export default function DescongeladoSalmuera() {
-  const { state, handleChange, resetForm } = useForm<DescongeladoSalmueraState>(
-    {} as DescongeladoSalmueraState
+  const { state, handleChange, resetForm } = useForm<DescongeladoSalmueraModel>(
+    {} as DescongeladoSalmueraModel
   );
 
   const [showModal, setShowModal] = useState(false);
@@ -53,42 +26,7 @@ export default function DescongeladoSalmuera() {
   async function onSubmitForm() {
     setShowModal(true);
 
-    await db.write(async () => {
-      await rc15Collection.create(
-        (descongeladoSalmuera: DescongeladoSalmueraModel) => {
-          descongeladoSalmuera.cabinplant = state.Cabinplant;
-          descongeladoSalmuera.tipo_analisis = state.tipo_analisis;
-          descongeladoSalmuera.co_importador = state.Importador;
-          descongeladoSalmuera.cabinplant = state.Cabinplant;
-          descongeladoSalmuera.lote = state.Lote;
-          descongeladoSalmuera.proveedor = state.Proveedor;
-          descongeladoSalmuera.co_talla = state.Talla;
-          descongeladoSalmuera.pesoNetoFresco = state.pesoNetoFresco;
-          descongeladoSalmuera.peso_bruto = state.peso_bruto;
-          descongeladoSalmuera.unidad_medida = state.unidad_medida;
-          descongeladoSalmuera.pesoCongelado = state.pesoCongelado;
-          descongeladoSalmuera.pesoDescongelado = state.pesoDescongelado;
-          descongeladoSalmuera.Cta_PesoNetoFresco = state.Cta_PesoNetoFresco;
-          descongeladoSalmuera.Cta_PesoCongelado = state.Cta_PesoCongelado;
-          descongeladoSalmuera.Cta_PesoDescongelado =
-            state.Cta_PesoDescongelado;
-          descongeladoSalmuera.observaciones = state.Observacion;
-          descongeladoSalmuera.UsuCrea = state.UsuCrea;
-          descongeladoSalmuera.FechaCrea = state?.FechaCrea
-            ? state.FechaCrea
-            : formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
-          descongeladoSalmuera.FechaModi = state?.FechaModi
-            ? state.FechaModi
-            : formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
-          descongeladoSalmuera.UsuModi = state?.UsuModi;
-          descongeladoSalmuera.correccionBln = state.correccion;
-          // descongeladoSalmuera.foto = state.foto;
-          descongeladoSalmuera.state = state.state;
-          // descongeladoSalmuera.sync_state = state.sync_state;
-          descongeladoSalmuera.planta_id = 1;
-        }
-      );
-    });
+    await SaveRC_CC_15(state, 1);
   }
 
   return (
@@ -118,40 +56,40 @@ export default function DescongeladoSalmuera() {
       <View className="flex flex-row flex-wrap">
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("Cabinplant", text)}
-            value={state.Cabinplant}
+            onChange={(text) => handleChange("cabinplant", text)}
+            value={state.cabinplant}
             label="Cabinplant"
           />
         </View>
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("Importador", text)}
-            value={state.Importador}
+            onChange={(text) => handleChange("co_importador", text)}
+            value={state.co_importador}
             label="Importador"
           />
         </View>
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("Lote", text)}
-            value={state.Lote}
+            onChange={(text) => handleChange("lote", text)}
+            value={state.lote}
             label="Lote"
           />
         </View>
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("Proveedor", text)}
-            value={state.Proveedor}
+            onChange={(text) => handleChange("proveedor", text)}
+            value={state.proveedor}
             label="Proveedor"
           />
         </View>
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("Talla", text)}
-            value={state.Talla}
+            onChange={(text) => handleChange("co_talla", text)}
+            value={state.co_talla}
             label="Talla"
           />
         </View>
@@ -209,8 +147,8 @@ export default function DescongeladoSalmuera() {
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("Observacion", text)}
-            value={state.Observacion}
+            onChange={(text) => handleChange("observaciones", text)}
+            value={state.observaciones}
             label="Observacion"
           />
         </View>
