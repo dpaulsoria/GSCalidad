@@ -1,6 +1,8 @@
 import { Migrable } from "@/types/Migrable";
 import {
+  correccionCollection,
   db,
+  fotoCollection,
   rc08Collection,
   rc103Collection,
   rc108Collection,
@@ -11,6 +13,8 @@ import { formatDate } from "@/utils/formatDate";
 import { PeladoFrescoModel } from "@/model/registros/ValorAgregado/RC_CC_103";
 import { ProdTerminadoModel } from "@/model/registros/ProdTerminado/RC_CC_108";
 import { ClasificacionCamaronEnteroModel } from "@/model/registros/ProcesoEntero/RC_CC_08";
+import { CorreccionesModel } from "@/model/data/extra/Correccion";
+import { FotosModel } from "@/model/data/extra/Foto";
 
 function printMigrableInfo<T extends Migrable>(item: T) {
   console.log(`Fecha de Creación: ${item.created_at}`);
@@ -87,5 +91,39 @@ export const SaveRC_CC_08 = async (
         : formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
       record.planta_id = plantaId;
     });
+  });
+};
+
+export const SaveCorreccion = async (it: CorreccionesModel, plantaId: number) => {
+  await db.write(async () => {
+    await correccionCollection.create(
+      (record: CorreccionesModel) => {
+        record = it;
+        record.created_at = it?.created_at
+          ? it.created_at
+          : formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
+        record.updated_at = it?.updated_at
+          ? it.updated_at
+          : formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
+        record.deleted_at = it?.deleted_at ? it.deleted_at : null;
+      }
+    );
+  });
+};
+
+export const SaveFoto = async (it: FotosModel, plantaId: number) => {
+  await db.write(async () => {
+    await fotoCollection.create(
+      (record: FotosModel) => {
+        record = it;
+        record.created_at = it?.created_at
+          ? it.created_at
+          : formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
+        record.updated_at = it?.updated_at
+          ? it.updated_at
+          : formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
+        record.deleted_at = it?.deleted_at ? it.deleted_at : null;
+      }
+    );
   });
 };
