@@ -23,6 +23,19 @@ import {
   name as ProcesoEnteroName,
   ProcesoEnteroFrescoModel,
 } from "@/model/registros/ProcesoEntero/RC_CC_07";
+import {
+  name as InspeccionPreeliminarName,
+  InspeccionPreeliminarModel,
+} from "@/model/registros/MateriaPrima/RC_MP_01/InspeccionPreeliminar";
+import {
+  name as InspeccionPreeliminarColaName,
+  InspeccionPreeliminarColaModel,
+} from "@/model/registros/MateriaPrima/RC_MP_01/jr/Cola";
+import {
+  name as InspeccionPreeliminarEnteroName,
+  InspeccionPreeliminarEnteroModel,
+} from "@/model/registros/MateriaPrima/RC_MP_01/jr/Entero";
+
 // Navegacion
 import {
   name as PlantasName,
@@ -88,7 +101,10 @@ import {
   name as ProveedoresINPName,
   ProveedoresINPModel,
 } from "@/model/data/list/ProveedoresINP";
-import { name as CorreccionesName, CorreccionesModel } from "@/model/data/extra/Correccion";
+import {
+  name as CorreccionesName,
+  CorreccionesModel,
+} from "@/model/data/extra/Correccion";
 import { name as FotosName, FotosModel } from "@/model/data/extra/Foto";
 
 // First, create the adapter to the underlying database:
@@ -123,6 +139,7 @@ export const db = new Database({
     PeladoFrescoModel,
     ProdTerminadoModel,
     ProcesoEnteroFrescoModel,
+    InspeccionPreeliminarModel,
     // Navegacion
     PlantasModel,
     TipoRegistroModel,
@@ -162,6 +179,11 @@ export const rc103Collection = db.get<PeladoFrescoModel>(PeladoFrescoName);
 export const rc108Collection = db.get<ProdTerminadoModel>(ProdTerminadoName);
 export const rc07Collection =
   db.get<ProcesoEnteroFrescoModel>(ProcesoEnteroName);
+export const rc01Collection = db.get<InspeccionPreeliminarModel>(
+  InspeccionPreeliminarName
+);
+export const rc01ColaCollection = db.get<InspeccionPreeliminarColaModel>(InspeccionPreeliminarColaName);
+export const rc01EnteroCollection = db.get<InspeccionPreeliminarEnteroModel>(InspeccionPreeliminarEnteroName);
 
 // Navegacion
 export const plantasCollection = db.get<PlantasModel>(PlantasName);

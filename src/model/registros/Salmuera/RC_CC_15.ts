@@ -22,8 +22,8 @@ export class DescongeladoSalmueraModel extends Model implements Migrable {
   @field("Cta_PesoCongelado") Cta_PesoCongelado!: number;
   @field("Cta_PesoDescongelado") Cta_PesoDescongelado!: number;
   @text("observaciones") observaciones!: string | null;
-  @text("UsuCrea") UsuCrea!: string | null;
-  @date("updated_at") created_at!: string | null;
+  @text("UsuCrea") UsuCrea!: string;
+  @date("updated_at") created_at!: string;
   @text("UsuModi") UsuModi!: string | null;
   @date("updated_at") updated_at!: string | null;
   @field("correccion") correccion!: number;
@@ -52,8 +52,8 @@ export const DescongeladoSalmueraSchema = tableSchema({
     { name: "Cta_PesoCongelado", type: "number" },
     { name: "Cta_PesoDescongelado", type: "number" },
     { name: "observaciones", type: "string", isOptional: true },
-    { name: "UsuCrea", type: "string", isOptional: true },
-    { name: "created_at", type: "string", isOptional: true },
+    { name: "UsuCrea", type: "string" },
+    { name: "created_at", type: "string" },
     { name: "UsuModi", type: "string", isOptional: true },
     { name: "updated_at", type: "string", isOptional: true },
     { name: "correccion", type: "number" },

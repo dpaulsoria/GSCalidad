@@ -50,8 +50,8 @@ export class ProcesoEnteroFrescoModel extends Model implements Migrable {
   @text("Declara_Sulfitos") Declara_Sulfitos!: string;
   @text("Observaciones") Observaciones!: string | null;
 
-  @text("UsuCrea") UsuCrea!: string | null;
-  @date("created_at") created_at!: string | null;
+  @text("UsuCrea") UsuCrea!: string;
+  @date("created_at") created_at!: string;
   @text("UsuModi") UsuModi!: string | null;
   @date("updated_at") updated_at!: string | null;
   @field("correccion") correccion!: number;
@@ -62,7 +62,7 @@ export class ProcesoEnteroFrescoModel extends Model implements Migrable {
 }
 
 export const ProcesoEnteroFrescoSchema = tableSchema({
-  name: "a26401_proceso_entero_fresco",
+  name,
   columns: [
     { name: "Fecha", type: "string" },
     { name: "co_maquina", type: "number" },
@@ -105,8 +105,8 @@ export const ProcesoEnteroFrescoSchema = tableSchema({
     { name: "Temperatura", type: "number" },
     { name: "Declara_Sulfitos", type: "string" },
     { name: "Observaciones", type: "string", isOptional: true },
-    { name: "UsuCrea", type: "string", isOptional: true },
-    { name: "created_at", type: "string", isOptional: true },
+    { name: "UsuCrea", type: "string" },
+    { name: "created_at", type: "string" },
     { name: "UsuModi", type: "string", isOptional: true },
     { name: "updated_at", type: "string", isOptional: true },
     { name: "correccion", type: "number" },

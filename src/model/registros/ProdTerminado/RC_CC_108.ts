@@ -70,8 +70,8 @@ export class ProdTerminadoModel extends Model implements Migrable {
   @field("crustaceos") crustaceos!: number | null;
   @field("tratamiento") tratamiento!: number | null;
   @text("observacion") observacion!: string | null;
-  @text("UsuCrea") UsuCrea!: string | null;
-  @date("created_at") created_at!: string | null;
+  @text("UsuCrea") UsuCrea!: string;
+  @date("created_at") created_at!: string;
   @text("UsuModi") UsuModi!: string | null;
   @date("updated_at") updated_at!: string | null;
   @field("state") state!: number;
@@ -81,7 +81,7 @@ export class ProdTerminadoModel extends Model implements Migrable {
 
 
 export const ProdTerminadoSchema = tableSchema({
-    name: "a26401_control_pt_congelado_fresco",
+    name,
     columns: [
       { name: "fecha_etiqueta", type: "string" },
       { name: "tipo_control", type: "string" },
@@ -110,8 +110,8 @@ export const ProdTerminadoSchema = tableSchema({
       { name: "uniformidad_t", type: "number" },
       { name: "state", type: "number" },
       { name: "observacion", type: "string", isOptional: true },
-      { name: "UsuCrea", type: "string", isOptional: true },
-      { name: "created_at", type: "string", isOptional: true },
+      { name: "UsuCrea", type: "string" },
+      { name: "created_at", type: "string" },
       { name: "UsuModi", type: "string", isOptional: true },
       { name: "updated_at", type: "string", isOptional: true },
       { name: "planta_id", type: "number", isOptional: true },

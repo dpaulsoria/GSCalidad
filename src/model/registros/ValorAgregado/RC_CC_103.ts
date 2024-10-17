@@ -54,8 +54,8 @@ export class PeladoFrescoModel extends Model implements Migrable {
     @field("temperatura") temperatura!: number;
     @text("sulfito") sulfito!: string;
     @text("observacion") observacion!: string | null;
-    @text("UsuCrea") UsuCrea!: string | null;
-    @date("created_at") created_at!: string | null;
+    @text("UsuCrea") UsuCrea!: string;
+    @date("created_at") created_at!: string;
     @text("UsuModi") UsuModi!: string | null;
     @date("updated_at") updated_at!: string | null;
     @field("correccion") correccion!: number;
@@ -115,8 +115,8 @@ export const PeladoFrescoSchema = tableSchema({
         { name: "temperatura", type: "number" },
         { name: "sulfito", type: "string" },
         { name: "observacion", type: "string", isOptional: true },
-        { name: "UsuCrea", type: "string", isOptional: true },
-        { name: "created_at", type: "string", isOptional: true },
+        { name: "UsuCrea", type: "string" },
+        { name: "created_at", type: "string" },
         { name: "UsuModi", type: "string", isOptional: true },
         { name: "updated_at", type: "string", isOptional: true },
         { name: "correccion", type: "number" },

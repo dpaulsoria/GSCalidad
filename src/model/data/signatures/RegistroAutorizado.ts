@@ -1,5 +1,5 @@
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text } from "@nozbe/watermelondb/decorators";
+import { field, text, date } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_registros_autorizados";
 
@@ -10,12 +10,10 @@ export class RegistroAutorizadoModel extends Model {
   @field("rol_id") rol_id!: number;
   @field("registro_id") registro_id!: number;
   @field("tipo_reporte") tipo_reporte!: number;
-  @text("fecha_creacion") fecha_creacion!: string;
-  @text("fecha_actualizacion") fecha_actualizacion!: string;
   @field("remote_id") remote_id!: number;
-  // @field("created_at") created_at!: number;
-  // @field("updated_at") updated_at!: number;
-  // @field("deleted_at") deleted_at!: number | null;
+  @date("created_at") created_at!: string;
+  @date("updated_at") updated_at!: string | null;
+  @date("deleted_at") deleted_at!: string | null;
 }
 
 export const RegistroAutorizadoSchema = tableSchema({
@@ -28,8 +26,8 @@ export const RegistroAutorizadoSchema = tableSchema({
     { name: "fecha_creacion", type: "string"},
     { name: "fecha_actualizacion", type: "string"},
     { name: "remote_id", type: "number"},
-    // { name: "created_at", type: "number" },
-    // { name: "updated_at", type: "number" },
-    // { name: "deleted_at", type: "number", isOptional: true },
+    { name: "created_at", type: "string" },
+    { name: "updated_at", type: "string", isOptional: true },
+    { name: "deleted_at", type: "string", isOptional: true },
   ],
 });

@@ -1,5 +1,5 @@
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text } from "@nozbe/watermelondb/decorators";
+import { field, text, date } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_sp_tipo_producto";
 
@@ -9,9 +9,9 @@ export class TipoProductoModel extends Model {
   @text("name") name!: string;
   @text("value") tipo!: string;
   @field("remote_id") remote_id!: number;
-  @field("created_at") created_at!: number;
-  @field("updated_at") updated_at!: number;
-  @field("deleted_at") deleted_at!: number | null;
+  @date("created_at") created_at!: string;
+  @date("updated_at") updated_at!: string | null;
+  @date("deleted_at") deleted_at!: string | null;
 }
 
 export const TipoProductoSchema = tableSchema({
@@ -20,8 +20,8 @@ export const TipoProductoSchema = tableSchema({
       { name: "name", type: "string" },
       { name: "value", type: "string" },
       { name: "remote_id", type: "number" },
-      { name: "created_at", type: "number" },
-      { name: "updated_at", type: "number" },
-      { name: "deleted_at", type: "number", isOptional: true },
+      { name: "created_at", type: "string" },
+      { name: "updated_at", type: "string", isOptional: true },
+      { name: "deleted_at", type: "string", isOptional: true },
   ],
 });

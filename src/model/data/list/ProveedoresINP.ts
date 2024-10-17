@@ -1,5 +1,5 @@
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text } from "@nozbe/watermelondb/decorators";
+import { field, text, date } from "@nozbe/watermelondb/decorators";
 
 export const name = "a20t6";
 
@@ -10,9 +10,9 @@ export class ProveedoresINPModel extends Model {
   @text("value") inp!: string; // INP
   @text("co_prov") co_prov!: number; // co_prov
   @field("remote_id") remote_id!: number;
-  @field("created_at") created_at!: number;
-  @field("updated_at") updated_at!: number;
-  @field("deleted_at") deleted_at!: number | null;
+  @date("created_at") created_at!: string;
+  @date("updated_at") updated_at!: string | null;
+  @date("deleted_at") deleted_at!: string | null;
 }
 
 export const ProveedoresINPSchema = tableSchema({
@@ -22,8 +22,8 @@ export const ProveedoresINPSchema = tableSchema({
       { name: "value", type: "string" },
       { name: "co_prov", type: "number" },
       { name: "remote_id", type: "number" },
-      { name: "created_at", type: "number" },
-      { name: "updated_at", type: "number" },
-      { name: "deleted_at", type: "number", isOptional: true },
+      { name: "created_at", type: "string" },
+      { name: "updated_at", type: "string", isOptional: true },
+      { name: "deleted_at", type: "string", isOptional: true },
   ],
 });

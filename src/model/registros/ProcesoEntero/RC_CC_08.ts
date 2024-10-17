@@ -1,3 +1,4 @@
+import { Migrable } from "@/types/Migrable";
 import { Model, tableSchema } from "@nozbe/watermelondb";
 import { field, text, date } from "@nozbe/watermelondb/decorators";
 
@@ -16,8 +17,8 @@ export class ClasificacionCamaronEnteroModel extends Model implements Migrable {
   @text("tallas") tallas!: string;
   @field("gramos_promedio") gramos_promedio!: number;
   @text("clasificacion_promedio") clasificacion_promedio!: string;
-  @text("UsuCrea") UsuCrea!: string | null;
-  @date("created_at") created_at!: string | null;
+  @text("UsuCrea") UsuCrea!: string;
+  @date("created_at") created_at!: string;
   @field("planta_id") planta_id!: number | null;
   @text("UsuModi") UsuModi!: string | null;
   @date("updated_at") updated_at!: string | null;
@@ -26,7 +27,7 @@ export class ClasificacionCamaronEnteroModel extends Model implements Migrable {
 }
 
 export const ClasificacionCamaronEnteroSchema = tableSchema({
-  name: "a26401_clasificacion_camaron_entero",
+  name,
   columns: [
     { name: "lote", type: "string" },
     { name: "co_proveedor_gr", type: "string" },
@@ -35,8 +36,8 @@ export const ClasificacionCamaronEnteroSchema = tableSchema({
     { name: "tallas", type: "string" },
     { name: "gramos_promedio", type: "number" },
     { name: "clasificacion_promedio", type: "string" },
-    { name: "UsuCrea", type: "string", isOptional: true },
-    { name: "created_at", type: "string", isOptional: true },
+    { name: "UsuCrea", type: "string" },
+    { name: "created_at", type: "string" },
     { name: "planta_id", type: "number", isOptional: true },
     { name: "UsuModi", type: "string", isOptional: true },
     { name: "updated_at", type: "string", isOptional: true },
