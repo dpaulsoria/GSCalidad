@@ -1,16 +1,11 @@
 import {
-  Alert,
-  Button,
   Pressable,
-  SafeAreaView,
   ScrollView,
   Text,
   View,
 } from "react-native";
 import { useForm } from "@/hooks/useForm";
-import { db, rc15Collection } from "@/db";
 import { DescongeladoSalmueraModel } from "@/model/registros/Salmuera/RC_CC_15";
-import { formatDate } from "@/utils/formatDate";
 import { useState } from "react";
 import AlertNotification from "@/ui/modals/AlertNotification";
 import ColumnTextField from "@/ui/components/ColumnTextField";
