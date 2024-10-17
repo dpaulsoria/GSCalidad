@@ -17,10 +17,10 @@ export class ClasificacionCamaronEnteroModel extends Model implements Migrable {
   @field("gramos_promedio") gramos_promedio!: number;
   @text("clasificacion_promedio") clasificacion_promedio!: string;
   @text("UsuCrea") UsuCrea!: string | null;
-  @date("FechaCrea") FechaCrea!: string | null;
+  @date("created_at") created_at!: string | null;
   @field("planta_id") planta_id!: number | null;
   @text("UsuModi") UsuModi!: string | null;
-  @date("FechaModi") FechaModi!: string | null;
+  @date("updated_at") updated_at!: string | null;
   @field("state") state!: number;
   @field("remote_id") remote_id!: number;
 }
@@ -36,10 +36,10 @@ export const ClasificacionCamaronEnteroSchema = tableSchema({
     { name: "gramos_promedio", type: "number" },
     { name: "clasificacion_promedio", type: "string" },
     { name: "UsuCrea", type: "string", isOptional: true },
-    { name: "FechaCrea", type: "string", isOptional: true },
+    { name: "created_at", type: "string", isOptional: true },
     { name: "planta_id", type: "number", isOptional: true },
     { name: "UsuModi", type: "string", isOptional: true },
-    { name: "FechaModi", type: "string", isOptional: true },
+    { name: "updated_at", type: "string", isOptional: true },
     { name: "state", type: "number" },
     { name: "remote_id", type: "number" },
   ],

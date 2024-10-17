@@ -71,9 +71,9 @@ export class ProdTerminadoModel extends Model implements Migrable {
   @field("tratamiento") tratamiento!: number | null;
   @text("observacion") observacion!: string | null;
   @text("UsuCrea") UsuCrea!: string | null;
-  @date("FechaCrea") FechaCrea!: string | null;
+  @date("created_at") created_at!: string | null;
   @text("UsuModi") UsuModi!: string | null;
-  @date("FechaModi") FechaModi!: string | null;
+  @date("updated_at") updated_at!: string | null;
   @field("state") state!: number;
   @field("planta_id") planta_id!: number | null;
   @field("remote_id") remote_id!: number;
@@ -111,9 +111,9 @@ export const ProdTerminadoSchema = tableSchema({
       { name: "state", type: "number" },
       { name: "observacion", type: "string", isOptional: true },
       { name: "UsuCrea", type: "string", isOptional: true },
-      { name: "FechaCrea", type: "string", isOptional: true },
+      { name: "created_at", type: "string", isOptional: true },
       { name: "UsuModi", type: "string", isOptional: true },
-      { name: "FechaModi", type: "string", isOptional: true },
+      { name: "updated_at", type: "string", isOptional: true },
       { name: "planta_id", type: "number", isOptional: true },
       { name: "remote_id", type: "number" },
     ],

@@ -1,7 +1,7 @@
 export interface Migrable {
-  FechaCrea: string | null;
+  created_at: string | null;
   UsuCrea: string | null;
-  FechaModi: string | null;
+  updated_at: string | null;
   UsuModi: string | null;
   state: number;
 }
