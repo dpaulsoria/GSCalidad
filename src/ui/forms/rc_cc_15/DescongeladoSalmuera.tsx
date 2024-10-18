@@ -18,8 +18,8 @@ export default function DescongeladoSalmuera() {
   }
 
   return (
-    <ScrollView className="bg-gray-100 p-4 block border border-gray-200 rounded-lg shadow w-full">
-      <Text className="text-center text-3xl text-slate-600 font-bolder ">RC.CC.15</Text>
+    <ScrollView className="bg-body-light dark:bg-body-dark px-3">
+      <Text className="text-start text-xl text-slate-600 font-semibold pl-4 ">RC.CC.15</Text>
       <View className="flex flex-row flex-wrap justify-between align-center">
         <View className="w-1/2 p-2">
           <ColumnTextField

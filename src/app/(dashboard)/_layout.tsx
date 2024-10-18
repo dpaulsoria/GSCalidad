@@ -30,6 +30,7 @@ function CustomDrawerContent(props) {
           icon={({ color, size }) => <AntDesign name="filetext1" size={24} color="black" />} // Icono para User
         />
         <DrawerItem label={"logout"} onPress={() => router.replace("/")} />
+        <DrawerItem label={"Tema"} onPress={() => router.replace("/")} />
       </DrawerContentScrollView>
       <View
         style={{
