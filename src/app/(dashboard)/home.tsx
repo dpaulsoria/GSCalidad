@@ -1,14 +1,15 @@
 import { View, Text, Button } from "react-native";
 import { useState } from "react";
 import Toast from "react-native-toast-message";
-import KeyBoardHandling from "@/ui/components/bottonSheet/KeyBoardHandling";
 import BreadCrumbs from "@/ui/components/breadCrumbs";
 import { Calendar } from "react-native-calendars";
 import CalendarComponent from "@/ui/components/calendar";
 import RadioButtonGroup from "@/ui/components/radioBottonsGroup";
 import CustomSelectOption from "@/ui/components/selectOptions";
-
+import KeyBoardHandling from "@/ui/components/bottonSheet/keyBoardHandling";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function HomeScreen({ navigation }) {
+  const { top, bottom, left, right } = useSafeAreaInsets();
   const [pathBreadcrums, setPathBreadcrums] = useState([
     { id: 1, name: "Step_1", condition: true },
     { id: 2, name: "Step_2", condition: true },
@@ -33,10 +34,10 @@ export default function HomeScreen({ navigation }) {
   };
 
   return (
-    <View className="flex-1 bg-stale-300">
+    <View className="flex-1 bg-stale-300 " style={{ paddingTop: top }}>
       <Text>Pantalla de Home</Text>
       <Button title="Ir al Perfil" onPress={showToast} />
-      <Text className="p-3 bg-stone-300">Hola</Text>
+      <Text className="p-3 bg-stone-300">Hodasdla</Text>
       <BreadCrumbs steps={pathBreadcrums} activeStep={activeStep} onStepPress={setActiveStep} />
       {activeStep === 0 && <Paso1 />}
       {activeStep === 1 && <Paso2 />}
