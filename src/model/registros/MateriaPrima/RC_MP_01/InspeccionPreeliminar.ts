@@ -45,7 +45,7 @@ export class InspeccionPreeliminarModel extends Model implements Migrable {
   @nochange @text("UsuCrea") UsuCrea!: string;
   @readonly @date("created_at") createdAt!: number;
   @text("UsuModi") UsuModi!: string | null;
-  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("updated_at") updatedAt!: number;
   @field("remote_id") uuid!: number;
   @field("sabor_muy_fuerte_cabeza") sabor_muy_fuerte_cabeza!: number;
   @field("sabor_muy_fuerte_cola") sabor_muy_fuerte_cola!: number;
@@ -105,7 +105,7 @@ export const InspeccionPreeliminarSchema = tableSchema({
     { name: "UsuCrea", type: "string" },
     { name: "created_at", type: "number" },
     { name: "UsuModi", type: "string", isOptional: true },
-    { name: "updated_at", type: "number", isOptional: true },
+    { name: "updated_at", type: "number" },
     { name: "remote_id", type: "number" },
     { name: "sabor_muy_fuerte_cabeza", type: "number" },
     { name: "sabor_muy_fuerte_cola", type: "number" },

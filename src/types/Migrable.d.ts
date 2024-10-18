@@ -1,7 +1,7 @@
 export interface Migrable {
   createdAt: number;
-  UsuCrea: string | null;
-  updatedAt: number | null;
+  UsuCrea: string;
+  updatedAt: number;
   UsuModi: string | null;
   state: number;
 }

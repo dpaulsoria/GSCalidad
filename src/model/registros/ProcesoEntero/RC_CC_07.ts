@@ -53,7 +53,7 @@ export class ProcesoEnteroFrescoModel extends Model implements Migrable {
   @nochange @text("UsuCrea") UsuCrea!: string;
   @readonly @date("created_at") createdAt!: number;
   @text("UsuModi") UsuModi!: string | null;
-  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("updated_at") updatedAt!: number;
   @field("correccion") correccion!: number;
   @field("foto") foto!: number;
   @field("planta_id") planta_id!: number | null;
@@ -108,7 +108,7 @@ export const ProcesoEnteroFrescoSchema = tableSchema({
     { name: "UsuCrea", type: "string" },
     { name: "created_at", type: "string" },
     { name: "UsuModi", type: "string", isOptional: true },
-    { name: "updated_at", type: "string", isOptional: true },
+    { name: "updated_at", type: "string" },
     { name: "correccion", type: "number" },
     { name: "foto", type: "number" },
     { name: "planta_id", type: "number", isOptional: true },

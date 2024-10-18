@@ -17,7 +17,7 @@ export class UserOfflineModel extends Model {
   @field("area_id") area!: number | null;
   @field("remote_id") remote_id!: number;
   @readonly @date("created_at") createdAt!: number;
-  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("updated_at") updatedAt!: number;
   @readonly @date("deleted_at") deletedAt!: number | null;
 }
 
@@ -35,7 +35,7 @@ export const UserOfflineSchema = tableSchema({
     { name: "area_id", type: "number", isOptional: true },
     { name: "remote_id", type: "number" },
     { name: "created_at", type: "number" },
-    { name: "updated_at", type: "number", isOptional: true },
+    { name: "updated_at", type: "number" },
     { name: "deleted_at", type: "number", isOptional: true },
   ],
 });

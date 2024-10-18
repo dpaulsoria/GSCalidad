@@ -12,7 +12,7 @@ export class TipoRegistroModel extends Model {
   @field("register_state") register_state!: number;
   @field("remote_id") remote_id!: number;
   @readonly @date("created_at") createdAt!: number;
-  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("updated_at") updatedAt!: number;
   @readonly @date("deleted_at") deletedAt!: number | null;
 }
 
@@ -25,7 +25,7 @@ export const TipoRegistroSchema = tableSchema({
       { name: "register_state", type: "number" },
       { name: "remote_id", type: "number" },
       { name: "created_at", type: "number" },
-      { name: "updated_at", type: "number", isOptional: true },
+      { name: "updated_at", type: "number" },
       { name: "deleted_at", type: "number", isOptional: true },
   ],
 });
