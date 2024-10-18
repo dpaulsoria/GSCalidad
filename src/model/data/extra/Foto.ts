@@ -15,23 +15,23 @@ export class FotosModel extends Model {
   @text("real_path") real_path!: string;
   @field("remote_id") remote_id!: number;
   @readonly @date("created_at") createdAt!: number;
-  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("updated_at") updatedAt!: number;
   @readonly @date("deleted_at") deletedAt!: number | null;
 }
 
 export const FotosSchema = tableSchema({
   name,
   columns: [
-      { name: "id_reporte", type: "number" },
-      { name: "TipoReporte", type: "string" },
-      { name: "Nombre", type: "string" },
-      { name: "mime", type: "string" },
-      { name: "path", type: "string" },
-      { name: "disk", type: "string" },
-      { name: "real_path", type: "string" },
-      { name: "remote_id", type: "number" },
-      { name: "created_at", type: "number" },
-      { name: "updated_at", type: "number", isOptional: true },
-      { name: "deleted_at", type: "number", isOptional: true },
+    { name: "id_reporte", type: "number" },
+    { name: "TipoReporte", type: "string" },
+    { name: "Nombre", type: "string" },
+    { name: "mime", type: "string" },
+    { name: "path", type: "string" },
+    { name: "disk", type: "string" },
+    { name: "real_path", type: "string" },
+    { name: "remote_id", type: "number" },
+    { name: "created_at", type: "number" },
+    { name: "updated_at", type: "number" },
+    { name: "deleted_at", type: "number", isOptional: true },
   ],
 });

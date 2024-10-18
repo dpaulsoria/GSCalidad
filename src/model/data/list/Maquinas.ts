@@ -11,7 +11,7 @@ export class MaquinasModel extends Model {
   @field("status") status!: number;
   @field("remote_id") remote_id!: number;
   @readonly @date("created_at") createdAt!: number;
-  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("updated_at") updatedAt!: number ;
   @readonly @date("deleted_at") deletedAt!: number | null;
 }
 
@@ -23,7 +23,7 @@ export const MaquinasSchema = tableSchema({
       { name: "status", type: "number" },
       { name: "remote_id", type: "number" },
       { name: "created_at", type: "number" },
-      { name: "updated_at", type: "number", isOptional: true },
+      { name: "updated_at", type: "number" },
       { name: "deleted_at", type: "number", isOptional: true },
   ],
 });

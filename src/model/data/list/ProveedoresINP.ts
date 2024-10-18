@@ -11,7 +11,7 @@ export class ProveedoresINPModel extends Model {
   @text("co_prov") co_prov!: number; // co_prov
   @field("remote_id") remote_id!: number;
   @readonly @date("created_at") createdAt!: number;
-  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("updated_at") updatedAt!: number ;
   @readonly @date("deleted_at") deletedAt!: number | null;
 }
 
@@ -23,7 +23,7 @@ export const ProveedoresINPSchema = tableSchema({
       { name: "co_prov", type: "number" },
       { name: "remote_id", type: "number" },
       { name: "created_at", type: "number" },
-      { name: "updated_at", type: "number", isOptional: true },
+      { name: "updated_at", type: "number"},
       { name: "deleted_at", type: "number", isOptional: true },
   ],
 });
