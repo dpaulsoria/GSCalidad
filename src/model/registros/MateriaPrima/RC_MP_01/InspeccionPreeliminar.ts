@@ -17,7 +17,6 @@ export class InspeccionPreeliminarModel extends Model implements Migrable {
   @text("movil") movil!: string;
   @text("escala") escala!: string; //  Escala de colores
   @field("sulfitos") sulfitos!: number;
-  @text("necrosis") necrosis!: string;
   @field("tipo_fuerte") tipo_fuerte!: number;
   @field("tipo_medio") tipo_medio!: number;
   @field("tipo_leve") tipo_leve!: number;
@@ -77,7 +76,6 @@ export const InspeccionPreeliminarSchema = tableSchema({
     { name: "movil", type: "string" },
     { name: "escala", type: "string" },
     { name: "sulfitos", type: "number" },
-    { name: "necrosis", type: "string" },
     { name: "tipo_fuerte", type: "number" },
     { name: "tipo_medio", type: "number" },
     { name: "tipo_leve", type: "number" },
