@@ -4,7 +4,7 @@ import { BottomSheetTextInput, BottomSheetModal, BottomSheetModalProvider, Botto
 import Animated, { Easing } from "react-native-reanimated";
 import SearchAndSuggest from "../searchAndSuggest";
 
-export default function App() {
+export default function KeyBoardHandling() {
   const bottomSheetModalRef = useRef(null);
   const snapPoints = useMemo(() => ["40%"], []);
 
@@ -18,7 +18,7 @@ export default function App() {
 
     // Cerrar el Bottom Sheet Modal
     bottomSheetModalRef.current.dismiss();
-        };
+  };
 
   const renderBackdrop = (props) => <BottomSheetBackdrop {...props} opacity={0.5} disappearsOnIndex={-1} appearsOnIndex={0} />;
 
