@@ -53,10 +53,10 @@
       [
         "expo-notifications",
         {
-          "icon": "./local/assets/notification-icon.png",
+          "icon": "./src/assets/logo_salem.png",
           "color": "#ffffff",
           "defaultChannel": "default",
-          "sounds": ["./local/assets/notification-sound.wav", "./local/assets/notification-sound-other.wav"]
+          "sounds": ["./src/assets/notification-sound.wav", "./src/assets/notification-sound-other.wav"]
         }
       ],
       [
