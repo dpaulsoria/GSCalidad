@@ -1,6 +1,6 @@
 import { Migrable } from "@/types/Migrable";
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text, date } from "@nozbe/watermelondb/decorators";
+import { field, text, date, readonly, nochange } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_clasificacion_camaron_entero";
 
@@ -17,12 +17,12 @@ export class ClasificacionCamaronEnteroModel extends Model implements Migrable {
   @text("tallas") tallas!: string;
   @field("gramos_promedio") gramos_promedio!: number;
   @text("clasificacion_promedio") clasificacion_promedio!: string;
-  @text("UsuCrea") UsuCrea!: string;
-  @date("created_at") created_at!: string;
-  @field("planta_id") planta_id!: number | null;
+  @nochange @text("UsuCrea") UsuCrea!: string;
+  @readonly @date("created_at") createdAt!: number;
   @text("UsuModi") UsuModi!: string | null;
-  @date("updated_at") updated_at!: string | null;
+  @readonly @date("updated_at") updatedAt!: number | null;
   @field("state") state!: number;
+  @field("planta_id") planta_id!: number | null;
   @field("remote_id") remote_id!: number;
 }
 
@@ -37,10 +37,10 @@ export const ClasificacionCamaronEnteroSchema = tableSchema({
     { name: "gramos_promedio", type: "number" },
     { name: "clasificacion_promedio", type: "string" },
     { name: "UsuCrea", type: "string" },
-    { name: "created_at", type: "string" },
+    { name: "created_at", type: "number" },
     { name: "planta_id", type: "number", isOptional: true },
     { name: "UsuModi", type: "string", isOptional: true },
-    { name: "updated_at", type: "string", isOptional: true },
+    { name: "updated_at", type: "number", isOptional: true },
     { name: "state", type: "number" },
     { name: "remote_id", type: "number" },
   ],

@@ -1,6 +1,6 @@
 import { Migrable } from "@/types/Migrable";
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text, date } from "@nozbe/watermelondb/decorators";
+import { field, text, date, nochange, readonly } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_inspeccion_preeliminar_entero";
 
@@ -30,14 +30,13 @@ export class InspeccionPreeliminarEnteroModel extends Model implements Migrable 
   @field("deshidratados_leve") deshidratados_leve!: number;
   @field("deshidratados_fuerte") deshidratados_fuerte!: number;
   @field("principio_melanosis") principio_melanosis!: number;
-  @date("created_at") created_at!: string;
-  // ** No se utiliza, se pone por la interfaz
-  @text("UsuCrea") UsuCrea!: string;
-  @date("updated_at") updated_at!: string | null;
-  // ** No se utiliza, se pone por la interfaz
-  @text("UsuModi") UsuModi!: string | null;
-  @date("deleted_at") deleted_at!: string | null;
+  @readonly @date("created_at") createdAt!: number;
+  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("deleted_at") deletedAt!: number | null;
   @field("state") state!: number;
+  // ** No se utiliza, se pone por la interfaz
+  @nochange @text("UsuCrea") UsuCrea!: string;
+  @text("UsuModi") UsuModi!: string | null;
 }
 
 export const InspeccionPreeliminarEnteroSchema = tableSchema({
@@ -67,11 +66,11 @@ export const InspeccionPreeliminarEnteroSchema = tableSchema({
     { name: "deshidratados_leve", type: "number" },
     { name: "deshidratados_fuerte", type: "number" },
     { name: "principio_melanosis", type: "number" },
-    { name: "created_at", type: "string" },
+    { name: "created_at", type: "number" },
     { name: "UsuCrea", type: "string" },
-    { name: "updated_at", type: "string", isOptional: true },
+    { name: "updated_at", type: "number", isOptional: true },
     { name: "UsuModi", type: "string", isOptional: true },
-    { name: "deleted_at", type: "string", isOptional: true },
+    { name: "deleted_at", type: "number", isOptional: true },
     { name: "state", type: "number" },
   ]
 });

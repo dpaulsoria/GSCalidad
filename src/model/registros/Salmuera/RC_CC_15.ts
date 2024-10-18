@@ -1,6 +1,6 @@
 import { Migrable } from "@/types/Migrable";
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text, date } from "@nozbe/watermelondb/decorators";
+import { field, text, date, readonly, nochange } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_descongelado_salmuera";
 
@@ -22,10 +22,10 @@ export class DescongeladoSalmueraModel extends Model implements Migrable {
   @field("Cta_PesoCongelado") Cta_PesoCongelado!: number;
   @field("Cta_PesoDescongelado") Cta_PesoDescongelado!: number;
   @text("observaciones") observaciones!: string | null;
-  @text("UsuCrea") UsuCrea!: string;
-  @date("updated_at") created_at!: string;
+  @nochange @text("UsuCrea") UsuCrea!: string;
+  @readonly @date("created_at") createdAt!: number;
   @text("UsuModi") UsuModi!: string | null;
-  @date("updated_at") updated_at!: string | null;
+  @readonly @date("updated_at") updatedAt!: number | null;
   @field("correccion") correccion!: number;
   @field("foto") foto!: number;
   @field("estado") estado!: number;
@@ -53,9 +53,9 @@ export const DescongeladoSalmueraSchema = tableSchema({
     { name: "Cta_PesoDescongelado", type: "number" },
     { name: "observaciones", type: "string", isOptional: true },
     { name: "UsuCrea", type: "string" },
-    { name: "created_at", type: "string" },
+    { name: "created_at", type: "number" },
     { name: "UsuModi", type: "string", isOptional: true },
-    { name: "updated_at", type: "string", isOptional: true },
+    { name: "updated_at", type: "number", isOptional: true },
     { name: "correccion", type: "number" },
     { name: "foto", type: "number" },
     { name: "estado", type: "number" },

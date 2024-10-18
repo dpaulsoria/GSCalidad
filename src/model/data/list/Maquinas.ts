@@ -1,5 +1,5 @@
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text, date } from "@nozbe/watermelondb/decorators";
+import { field, text, date, readonly } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26t33";
 
@@ -10,9 +10,9 @@ export class MaquinasModel extends Model {
   @text("value") tipo!: string; // co_maquina
   @field("status") status!: number;
   @field("remote_id") remote_id!: number;
-  @date("created_at") created_at!: string; // FechaCrea
-  @date("updated_at") updated_at!: string | null; // FechaModi
-  @date("deleted_at") deleted_at!: string | null;
+  @readonly @date("created_at") createdAt!: number;
+  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("deleted_at") deletedAt!: number | null;
 }
 
 export const MaquinasSchema = tableSchema({
@@ -22,8 +22,8 @@ export const MaquinasSchema = tableSchema({
       { name: "value", type: "string" },
       { name: "status", type: "number" },
       { name: "remote_id", type: "number" },
-      { name: "created_at", type: "string" },
-      { name: "updated_at", type: "string", isOptional: true },
-      { name: "deleted_at", type: "string", isOptional: true },
+      { name: "created_at", type: "number" },
+      { name: "updated_at", type: "number", isOptional: true },
+      { name: "deleted_at", type: "number", isOptional: true },
   ],
 });

@@ -1,6 +1,6 @@
 import { Migrable } from "@/types/Migrable";
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text, date } from "@nozbe/watermelondb/decorators";
+import { field, text, date, readonly, nochange } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_pelado_fresco";
 
@@ -54,10 +54,10 @@ export class PeladoFrescoModel extends Model implements Migrable {
     @field("temperatura") temperatura!: number;
     @text("sulfito") sulfito!: string;
     @text("observacion") observacion!: string | null;
-    @text("UsuCrea") UsuCrea!: string;
-    @date("created_at") created_at!: string;
+    @nochange @text("UsuCrea") UsuCrea!: string;
+    @readonly @date("created_at") createdAt!: number;
     @text("UsuModi") UsuModi!: string | null;
-    @date("updated_at") updated_at!: string | null;
+    @readonly @date("updated_at") updatedAt!: number | null;
     @field("correccion") correccion!: number;
     @field("foto") foto!: number;
     @field("state") state!: number;
@@ -116,9 +116,9 @@ export const PeladoFrescoSchema = tableSchema({
         { name: "sulfito", type: "string" },
         { name: "observacion", type: "string", isOptional: true },
         { name: "UsuCrea", type: "string" },
-        { name: "created_at", type: "string" },
+        { name: "created_at", type: "number" },
         { name: "UsuModi", type: "string", isOptional: true },
-        { name: "updated_at", type: "string", isOptional: true },
+        { name: "updated_at", type: "number", isOptional: true },
         { name: "correccion", type: "number" },
         { name: "foto", type: "number" },
         { name: "state", type: "number" },

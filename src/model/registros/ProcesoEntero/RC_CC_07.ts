@@ -1,6 +1,6 @@
 import { Migrable } from "@/types/Migrable";
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text, date } from "@nozbe/watermelondb/decorators";
+import { field, text, date, nochange, readonly } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_proceso_entero_fresco";
 
@@ -50,10 +50,10 @@ export class ProcesoEnteroFrescoModel extends Model implements Migrable {
   @text("Declara_Sulfitos") Declara_Sulfitos!: string;
   @text("Observaciones") Observaciones!: string | null;
 
-  @text("UsuCrea") UsuCrea!: string;
-  @date("created_at") created_at!: string;
+  @nochange @text("UsuCrea") UsuCrea!: string;
+  @readonly @date("created_at") createdAt!: number;
   @text("UsuModi") UsuModi!: string | null;
-  @date("updated_at") updated_at!: string | null;
+  @readonly @date("updated_at") updatedAt!: number | null;
   @field("correccion") correccion!: number;
   @field("foto") foto!: number;
   @field("planta_id") planta_id!: number | null;

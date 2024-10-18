@@ -1,6 +1,6 @@
 import { Migrable } from "@/types/Migrable";
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text, date } from "@nozbe/watermelondb/decorators";
+import { field, text, date, readonly, nochange } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_inspeccion_preliminar";
 
@@ -42,10 +42,10 @@ export class InspeccionPreeliminarModel extends Model implements Migrable {
   @field("buenos_empaque") buenos_empaque!: number;
   @field("total_demeritos") total_demeritos!: number;
   @text("observacion") observacion!: string | null;
-  @text("UsuCrea") UsuCrea!: string;
-  @date("created_at") created_at!: string;
+  @nochange @text("UsuCrea") UsuCrea!: string;
+  @readonly @date("created_at") createdAt!: number;
   @text("UsuModi") UsuModi!: string | null;
-  @date("updated_at") updated_at!: string | null;
+  @readonly @date("updated_at") updatedAt!: number | null;
   @field("remote_id") uuid!: number;
   @field("sabor_muy_fuerte_cabeza") sabor_muy_fuerte_cabeza!: number;
   @field("sabor_muy_fuerte_cola") sabor_muy_fuerte_cola!: number;
@@ -103,9 +103,9 @@ export const InspeccionPreeliminarSchema = tableSchema({
     { name: "total_demeritos", type: "number" },
     { name: "observacion", type: "string", isOptional: true },
     { name: "UsuCrea", type: "string" },
-    { name: "created_at", type: "string" },
+    { name: "created_at", type: "number" },
     { name: "UsuModi", type: "string", isOptional: true },
-    { name: "updated_at", type: "string", isOptional: true },
+    { name: "updated_at", type: "number", isOptional: true },
     { name: "remote_id", type: "number" },
     { name: "sabor_muy_fuerte_cabeza", type: "number" },
     { name: "sabor_muy_fuerte_cola", type: "number" },

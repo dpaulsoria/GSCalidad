@@ -1,6 +1,6 @@
 import { Migrable } from "@/types/Migrable";
 import { Model, tableSchema } from "@nozbe/watermelondb";
-import { field, text, date } from "@nozbe/watermelondb/decorators";
+import { field, text, date, readonly, nochange } from "@nozbe/watermelondb/decorators";
 
 export const name = "a26401_control_pt_congelado_fresco";
 
@@ -70,10 +70,10 @@ export class ProdTerminadoModel extends Model implements Migrable {
   @field("crustaceos") crustaceos!: number | null;
   @field("tratamiento") tratamiento!: number | null;
   @text("observacion") observacion!: string | null;
-  @text("UsuCrea") UsuCrea!: string;
-  @date("created_at") created_at!: string;
+  @nochange @text("UsuCrea") UsuCrea!: string;
+  @readonly @date("created_at") createdAt!: number;
   @text("UsuModi") UsuModi!: string | null;
-  @date("updated_at") updated_at!: string | null;
+  @readonly @date("updated_at") updatedAt!: number | null;
   @field("state") state!: number;
   @field("planta_id") planta_id!: number | null;
   @field("remote_id") remote_id!: number;
@@ -111,9 +111,9 @@ export const ProdTerminadoSchema = tableSchema({
       { name: "state", type: "number" },
       { name: "observacion", type: "string", isOptional: true },
       { name: "UsuCrea", type: "string" },
-      { name: "created_at", type: "string" },
+      { name: "created_at", type: "number" },
       { name: "UsuModi", type: "string", isOptional: true },
-      { name: "updated_at", type: "string", isOptional: true },
+      { name: "updated_at", type: "number", isOptional: true },
       { name: "planta_id", type: "number", isOptional: true },
       { name: "remote_id", type: "number" },
     ],
