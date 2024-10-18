@@ -16,11 +16,23 @@ export const syncWatermelon = async () => {
       console.log(`${TAG} Pulling changes from server...`);
 
       try {
+        console.log(`${TAG}`, `${URL_BASE}/pull`)
         const response = await ApiService.pull(`${URL_BASE}/pull`, lastPulledAt);
+        // console.log(`${TAG} Response:`, `${JSON.stringify(response ?? 'd').slice(0, 10)}`);
         
-        const { changes, timestamp } = response;
-        console.log(`${TAG} response -> ${JSON.stringify(changes)}...`);
-        console.log(`${TAG} response -> ${JSON.stringify(timestamp)}`);
+        // Check if the changes or timestamp is undefined or null
+        const { changes, timestamp } = response.data;
+        console.log(`test ${response.data.changes}`);
+        console.log(`Type of changes: ${typeof changes}, Value: ${JSON.stringify(changes ?? 'd').slice(0, 10)}`);
+        console.log(`Type of timestamp: ${typeof timestamp}, Value: ${timestamp ?? 'd'}`);
+
+        if (changes == null || timestamp == null) {
+          console.log(`${TAG} Error: Either changes or timestamp is missing`);
+          return;  // Exit early if any of the values are invalid
+        }
+        
+        console.log(`${TAG} response -> ${JSON.stringify(changes ?? 'd').slice(0, 10)}`);
+        console.log(`${TAG} response -> ${JSON.stringify(timestamp) ?? 'd'}`);
         console.log("[SyncWorker] Changes pulled:", changes);
 
         return { changes, timestamp };
@@ -28,7 +40,7 @@ export const syncWatermelon = async () => {
         console.error("Error pulling changes from server:", error);
         throw error; // Rethrow to ensure the caller knows about the error
       }
-    },
+    },    
     pushChanges: async (dataToPush) => {
       console.log(`${TAG} Pushing changes to server...`);
 

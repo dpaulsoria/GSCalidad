@@ -4,7 +4,7 @@ import { DescongeladoSalmueraModel } from "@/model/registros/Salmuera/RC_CC_15";
 import { useState } from "react";
 import AlertNotification from "@/ui/modals/AlertNotification";
 import ColumnTextField from "@/ui/components/ColumnTextField";
-// import { SaveRC_CC_15 } from "@/db/transactions/write";
+import { SaveSalmuera } from "@/db/transactions/write";
 
 export default function DescongeladoSalmuera() {
   const { state, handleChange, resetForm } = useForm<DescongeladoSalmueraModel>({} as DescongeladoSalmueraModel);
@@ -14,7 +14,7 @@ export default function DescongeladoSalmuera() {
   async function onSubmitForm() {
     setShowModal(true);
 
-    // await SaveRC_CC_15(state, 1);
+    await SaveSalmuera(state, 1);
   }
 
   return (
@@ -100,7 +100,7 @@ export default function DescongeladoSalmuera() {
         </View>
       </View>
 
-      <View className="border p-2 flex flex-row justify-end">
+      <View className="p-2 flex flex-row justify-end">
         <Pressable className="w-1/4 bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onPress={onSubmitForm}>
           <Text className="text-white text-center text-xl text-bold">Subir</Text>
         </Pressable>
