@@ -1,3 +1,4 @@
+import DescongeladoSalmuera from "@/ui/forms/rc_cc_15/DescongeladoSalmuera";
 import { View, Text, Button, StyleSheet } from "react-native";
 
 export default function ProfileScreen({ navigation }) {
@@ -5,6 +6,7 @@ export default function ProfileScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.text}>Pantalla de Perfil</Text>
       <Button title="Volver a Inicio" onPress={() => navigation.navigate("Home")} />
+      <DescongeladoSalmuera />
     </View>
   );
 }

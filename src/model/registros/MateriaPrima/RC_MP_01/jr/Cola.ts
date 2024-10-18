@@ -41,7 +41,6 @@ export class InspeccionPreeliminarColaModel extends Model implements Migrable {
 export const InspeccionPreeliminarColaSchema = tableSchema({
   name,
   columns: [
-    { name: "id", type: "number" },
     { name: "lote", type: "string" },
     { name: "piscina", type: "string" },
     { name: "peso_muestra", type: "number" },
@@ -67,7 +66,7 @@ export const InspeccionPreeliminarColaSchema = tableSchema({
     { name: "principio_melanosis", type: "number" },
     { name: "created_at", type: "number" },
     { name: "UsuCrea", type: "string" },
-    { name: "updated_at", type: "number", isOptional: true },
+    { name: "updated_at", type: "number"},
     { name: "UsuModi", type: "string", isOptional: true },
     { name: "deleted_at", type: "number", isOptional: true },
     { name: "state", type: "number" },

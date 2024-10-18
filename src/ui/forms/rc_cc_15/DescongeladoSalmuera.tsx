@@ -1,34 +1,25 @@
-import {
-  Pressable,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import { useForm } from "@/hooks/useForm";
 import { DescongeladoSalmueraModel } from "@/model/registros/Salmuera/RC_CC_15";
 import { useState } from "react";
 import AlertNotification from "@/ui/modals/AlertNotification";
 import ColumnTextField from "@/ui/components/ColumnTextField";
-import { SaveRC_CC_15 } from "@/db/transactions/write";
+// import { SaveRC_CC_15 } from "@/db/transactions/write";
 
 export default function DescongeladoSalmuera() {
-  const { state, handleChange, resetForm } = useForm<DescongeladoSalmueraModel>(
-    {} as DescongeladoSalmueraModel
-  );
+  const { state, handleChange, resetForm } = useForm<DescongeladoSalmueraModel>({} as DescongeladoSalmueraModel);
 
   const [showModal, setShowModal] = useState(false);
 
   async function onSubmitForm() {
     setShowModal(true);
 
-    await SaveRC_CC_15(state, 1);
+    // await SaveRC_CC_15(state, 1);
   }
 
   return (
     <ScrollView className="bg-gray-100 p-4 block border border-gray-200 rounded-lg shadow w-full">
-      <Text className="text-center text-3xl text-slate-600 font-bolder ">
-        RC.CC.15
-      </Text>
+      <Text className="text-center text-3xl text-slate-600 font-bolder ">RC.CC.15</Text>
       <View className="flex flex-row flex-wrap justify-between align-center">
         <View className="w-1/2 p-2">
           <ColumnTextField
@@ -50,51 +41,27 @@ export default function DescongeladoSalmuera() {
       </View>
       <View className="flex flex-row flex-wrap">
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("cabinplant", text)}
-            value={state.cabinplant}
-            label="Cabinplant"
-          />
+          <ColumnTextField onChange={(text) => handleChange("cabinplant", text)} value={state.cabinplant} label="Cabinplant" />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("co_importador", text)}
-            value={state.co_importador}
-            label="Importador"
-          />
+          <ColumnTextField onChange={(text) => handleChange("co_importador", text)} value={state.co_importador} label="Importador" />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("lote", text)}
-            value={state.lote}
-            label="Lote"
-          />
+          <ColumnTextField onChange={(text) => handleChange("lote", text)} value={state.lote} label="Lote" />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("proveedor", text)}
-            value={state.proveedor}
-            label="Proveedor"
-          />
+          <ColumnTextField onChange={(text) => handleChange("proveedor", text)} value={state.proveedor} label="Proveedor" />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("co_talla", text)}
-            value={state.co_talla}
-            label="Talla"
-          />
+          <ColumnTextField onChange={(text) => handleChange("co_talla", text)} value={state.co_talla} label="Talla" />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("pesoNetoFresco", text)}
-            value={state.pesoNetoFresco}
-            label="Peso Neto Fresco"
-          />
+          <ColumnTextField onChange={(text) => handleChange("pesoNetoFresco", text)} value={state.pesoNetoFresco} label="Peso Neto Fresco" />
 
           <ColumnTextField
             className="w-1/3"
@@ -105,19 +72,11 @@ export default function DescongeladoSalmuera() {
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("peso_bruto", text)}
-            value={state.peso_bruto}
-            label="Peso Bruto"
-          />
+          <ColumnTextField onChange={(text) => handleChange("peso_bruto", text)} value={state.peso_bruto} label="Peso Bruto" />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("pesoCongelado", text)}
-            value={state.pesoCongelado}
-            label="Peso Congelado"
-          />
+          <ColumnTextField onChange={(text) => handleChange("pesoCongelado", text)} value={state.pesoCongelado} label="Peso Congelado" />
 
           <ColumnTextField
             onChange={(text) => handleChange("Cta_PesoCongelado", text)}
@@ -127,11 +86,7 @@ export default function DescongeladoSalmuera() {
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("pesoDescongelado", text)}
-            value={state.pesoDescongelado}
-            label="Peso Descongelado"
-          />
+          <ColumnTextField onChange={(text) => handleChange("pesoDescongelado", text)} value={state.pesoDescongelado} label="Peso Descongelado" />
 
           <ColumnTextField
             onChange={(text) => handleChange("Cta_PesoDescongelado", text)}
@@ -141,22 +96,13 @@ export default function DescongeladoSalmuera() {
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("observaciones", text)}
-            value={state.observaciones}
-            label="Observacion"
-          />
+          <ColumnTextField onChange={(text) => handleChange("observaciones", text)} value={state.observaciones} label="Observacion" />
         </View>
       </View>
 
       <View className="border p-2 flex flex-row justify-end">
-        <Pressable
-          className="w-1/4 bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
-          onPress={onSubmitForm}
-        >
-          <Text className="text-white text-center text-xl text-bold">
-            Subir
-          </Text>
+        <Pressable className="w-1/4 bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onPress={onSubmitForm}>
+          <Text className="text-white text-center text-xl text-bold">Subir</Text>
         </Pressable>
       </View>
 

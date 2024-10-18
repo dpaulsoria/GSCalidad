@@ -67,7 +67,6 @@ export class InspeccionPreeliminarModel extends Model implements Migrable {
 export const InspeccionPreeliminarSchema = tableSchema({
   name,
   columns: [
-    { name: "id", type: "number" },
     { name: "fecha", type: "string" },
     { name: "proveedor", type: "string" },
     { name: "registro_inp", type: "string", isOptional: true },

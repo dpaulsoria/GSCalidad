@@ -42,7 +42,6 @@ export class InspeccionPreeliminarEnteroModel extends Model implements Migrable 
 export const InspeccionPreeliminarEnteroSchema = tableSchema({
   name,
   columns: [
-    { name: "id", type: "number" },
     { name: "lote", type: "string" },
     { name: "piscina", type: "string" },
     { name: "peso_muestra", type: "number" },
