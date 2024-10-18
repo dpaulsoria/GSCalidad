@@ -30,7 +30,7 @@ export class InspeccionPreeliminarColaModel extends Model implements Migrable {
   @field("deshidratados_fuerte") deshidratados_fuerte!: number;
   @field("principio_melanosis") principio_melanosis!: number;
   @readonly @date("created_at") createdAt!: number;
-  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("updated_at") updatedAt!: number;
   @readonly @date("deleted_at") deletedAt!: number | null;
   @field("state") state!: number;
   // ** No se utiliza, se pone por la interfaz

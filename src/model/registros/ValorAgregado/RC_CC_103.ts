@@ -57,7 +57,7 @@ export class PeladoFrescoModel extends Model implements Migrable {
     @nochange @text("UsuCrea") UsuCrea!: string;
     @readonly @date("created_at") createdAt!: number;
     @text("UsuModi") UsuModi!: string | null;
-    @readonly @date("updated_at") updatedAt!: number | null;
+    @readonly @date("updated_at") updatedAt!: number;
     @field("correccion") correccion!: number;
     @field("foto") foto!: number;
     @field("state") state!: number;
@@ -118,7 +118,7 @@ export const PeladoFrescoSchema = tableSchema({
         { name: "UsuCrea", type: "string" },
         { name: "created_at", type: "number" },
         { name: "UsuModi", type: "string", isOptional: true },
-        { name: "updated_at", type: "number", isOptional: true },
+        { name: "updated_at", type: "number" },
         { name: "correccion", type: "number" },
         { name: "foto", type: "number" },
         { name: "state", type: "number" },

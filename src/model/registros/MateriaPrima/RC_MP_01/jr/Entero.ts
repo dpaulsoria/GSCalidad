@@ -31,7 +31,7 @@ export class InspeccionPreeliminarEnteroModel extends Model implements Migrable 
   @field("deshidratados_fuerte") deshidratados_fuerte!: number;
   @field("principio_melanosis") principio_melanosis!: number;
   @readonly @date("created_at") createdAt!: number;
-  @readonly @date("updated_at") updatedAt!: number | null;
+  @readonly @date("updated_at") updatedAt!: number;
   @readonly @date("deleted_at") deletedAt!: number | null;
   @field("state") state!: number;
   // ** No se utiliza, se pone por la interfaz
@@ -68,7 +68,7 @@ export const InspeccionPreeliminarEnteroSchema = tableSchema({
     { name: "principio_melanosis", type: "number" },
     { name: "created_at", type: "number" },
     { name: "UsuCrea", type: "string" },
-    { name: "updated_at", type: "number", isOptional: true },
+    { name: "updated_at", type: "number" },
     { name: "UsuModi", type: "string", isOptional: true },
     { name: "deleted_at", type: "number", isOptional: true },
     { name: "state", type: "number" },
