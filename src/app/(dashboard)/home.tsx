@@ -6,7 +6,7 @@ import { Calendar } from "react-native-calendars";
 import CalendarComponent from "@/ui/components/calendar";
 import RadioButtonGroup from "@/ui/components/radioBottonsGroup";
 import CustomSelectOption from "@/ui/components/selectOptions";
-import KeyBoardHandling from "@/ui/components/bottonSheet/keyBoardHandling";
+import KeyBoardHandling from "@/ui/components/bottonSheet/KeyBoardHandling";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function HomeScreen({ navigation }) {
   const { top, bottom, left, right } = useSafeAreaInsets();

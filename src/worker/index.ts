@@ -8,7 +8,6 @@ import ApiService from "@/service/Api";
 const TAG = "[SyncWorker]";
 const URL_BASE = "/api/usuarioExterno/control-calidad-off/exp"
 
-
 export const syncWatermelon = async () => {
   await synchronize({
     database: db,
@@ -18,23 +17,14 @@ export const syncWatermelon = async () => {
       try {
         console.log(`${TAG}`, `${URL_BASE}/pull`)
         const response = await ApiService.pull(`${URL_BASE}/pull`, lastPulledAt);
-        // console.log(`${TAG} Response:`, `${JSON.stringify(response ?? 'd').slice(0, 10)}`);
         
         // Check if the changes or timestamp is undefined or null
-        const { changes, timestamp } = response.data;
-        console.log(`test ${response.data.changes}`);
-        console.log(`Type of changes: ${typeof changes}, Value: ${JSON.stringify(changes ?? 'd').slice(0, 10)}`);
-        console.log(`Type of timestamp: ${typeof timestamp}, Value: ${timestamp ?? 'd'}`);
+        const { changes, timestamp } = response;
 
         if (changes == null || timestamp == null) {
           console.log(`${TAG} Error: Either changes or timestamp is missing`);
           return;  // Exit early if any of the values are invalid
         }
-        
-        console.log(`${TAG} response -> ${JSON.stringify(changes ?? 'd').slice(0, 10)}`);
-        console.log(`${TAG} response -> ${JSON.stringify(timestamp) ?? 'd'}`);
-        console.log("[SyncWorker] Changes pulled:", changes);
-
         return { changes, timestamp };
       } catch (error) {
         console.error("Error pulling changes from server:", error);
