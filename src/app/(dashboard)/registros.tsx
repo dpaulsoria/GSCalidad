@@ -1,14 +1,14 @@
 import { View, Text, Button } from "react-native";
 import { useState } from "react";
 import Toast from "react-native-toast-message";
-import BreadCrumbs from "@/ui/components/breadCrumbs";
+import BreadCrumbs from "@/ui/components/BreadCrumbs";
 import { Calendar } from "react-native-calendars";
 import CalendarComponent from "@/ui/components/calendar";
 import RadioButtonGroup from "@/ui/components/radioBottonsGroup";
 import CustomSelectOption from "@/ui/components/selectOptions";
 import KeyBoardHandling from "@/ui/components/bottonSheet/KeyBoardHandling";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-export default function HomeScreen({ navigation }) {
+export default function RegistrosScreem({ navigation }) {
   const { top, bottom, left, right } = useSafeAreaInsets();
   const [pathBreadcrums, setPathBreadcrums] = useState([
     { id: 1, name: "Step_1", condition: true },

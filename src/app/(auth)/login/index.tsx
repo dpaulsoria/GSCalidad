@@ -16,7 +16,7 @@ export default function LoginScreen() {
     setContraseña(contraseña);
   };
   const handlelogin = () => {
-    router.push("/(dashboard)/home");
+    router.push("/(dashboard)/registros");
   };
   return (
     <View className="h-screen">
