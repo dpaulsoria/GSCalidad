@@ -3,7 +3,8 @@ import { PeladoFrescoModel } from "@/model/registros/ValorAgregado/RC_CC_103";
 
 export const SavePeladoFresco = async (
   it: PeladoFrescoModel,
-  plantaId: number
+  plantaId: number,
+  username: string | void = "none"
 ) => {
   await db.write(async () => {
     await rc103Collection.create(async (record: PeladoFrescoModel) => {
@@ -58,7 +59,8 @@ export const SavePeladoFresco = async (
       record.state = it.state;
       record.planta_id = plantaId;
       record.remote_id = it.remote_id;
-      record.UsuCrea = it.UsuCrea;
+      // record.UsuCrea = it.UsuCrea;
+      record.UsuCrea = typeof username === "string" ? username : "none"
     });
   });
 };

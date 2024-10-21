@@ -3,7 +3,8 @@ import { DescongeladoSalmueraModel } from "@/model/registros/Salmuera/RC_CC_15";
 
 export const SaveSalmuera = async (
   it: DescongeladoSalmueraModel,
-  plantaId: number
+  plantaId: number,
+  username: string | void = "none"
 ) => {
   await db.write(async () => {
     await rc15Collection.create(async (record: DescongeladoSalmueraModel) => {
@@ -30,7 +31,8 @@ export const SaveSalmuera = async (
       record.planta_id = plantaId;
       record.remote_id = it.remote_id;
       // No need to set createdAt and updatedAt manually as @readonly handles it.
-      record.UsuCrea = it.UsuCrea;
+      // record.UsuCrea = it.UsuCrea;
+      record.UsuCrea = typeof username === "string" ? username : "none"
     });
   });
 };

@@ -3,7 +3,8 @@ import { ProdTerminadoModel } from "@/model/registros/ProdTerminado/RC_CC_108";
 
 export const SaveProdTerminado = async (
   it: ProdTerminadoModel,
-  plantaId: number
+  plantaId: number,
+  username: string | void = "none"
 ) => {
   await db.write(async () => {
     await rc108Collection.create((record: ProdTerminadoModel) => {
@@ -72,7 +73,7 @@ export const SaveProdTerminado = async (
       record.state = it.state;
       record.planta_id = plantaId;
       record.remote_id = it.remote_id;
-      record.UsuCrea = it.UsuCrea;
-    });
+      // record.UsuCrea = it.UsuCrea;
+      record.UsuCrea = typeof username === "string" ? username : "none"    });
   });
 };
