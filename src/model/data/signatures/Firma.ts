@@ -1,7 +1,7 @@
 import { Model, tableSchema } from "@nozbe/watermelondb";
 import { field, text, date, readonly } from "@nozbe/watermelondb/decorators";
 
-export const name = "a26401_cc_tipo_registro";
+export const name = "a26401_firmas_cc";
 
 export class FirmasModel extends Model {
   static table = name;
