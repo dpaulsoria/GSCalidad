@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet } from "react-native";
 
 export default function ProfileScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} className="bg-body-light dark:bg-body-dark">
       <Text style={styles.text}>Pantalla de Perfil</Text>
       <Button title="Volver a Inicio" onPress={() => navigation.navigate("Home")} />
       <DescongeladoSalmuera />
