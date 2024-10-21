@@ -6,55 +6,63 @@ import { TablesToPush } from "@/model/TablesToPush";
 import ApiService from "@/service/Api";
 
 const TAG = "[SyncWorker]";
-const URL_BASE = "/api/usuarioExterno/control-calidad-off/exp"
-
-export const syncWatermelon = async () => {
+const URL_BASE = "/api/usuarioExterno/control-calidad-off/exp";
+export const syncWatermelon = async (localData = null) => {
   await synchronize({
     database: db,
     pullChanges: async ({ lastPulledAt }) => {
-      console.log(`${TAG} Pulling changes from server...`);
-
-      try {
-        console.log(`${TAG}`, `${URL_BASE}/pull`)
-        const response = await ApiService.pull(`${URL_BASE}/pull`, lastPulledAt);
-        
-        // Check if the changes or timestamp is undefined or null
-        const { changes, timestamp } = response;
-
-        if (changes == null || timestamp == null) {
-          console.log(`${TAG} Error: Either changes or timestamp is missing`);
-          return;  // Exit early if any of the values are invalid
+      if (localData) {
+        console.log("Pulling changes from local JSON...");
+        try {
+          const { changes, timestamp } = localData;
+          if (!changes || !timestamp) {
+            console.log("Error: Missing changes or timestamp in local data.");
+            return;
+          }
+          // Actualiza lastPulledAt con el timestamp del JSON
+          return { changes, timestamp };
+        } catch (error) {
+          console.error("Error pulling changes from local data:", error);
+          throw error;
         }
-        return { changes, timestamp };
-      } catch (error) {
-        console.error("Error pulling changes from server:", error);
-        throw error; // Rethrow to ensure the caller knows about the error
+      } else {
+        console.log("Pulling changes from server...");
+        try {
+          const response = await ApiService.pull(
+            `${URL_BASE}/pull`,
+            lastPulledAt
+          );
+          const { changes, timestamp } = response;
+          if (!changes || !timestamp) {
+            console.log("Error: Missing changes or timestamp from server.");
+            return;
+          }
+          return { changes, timestamp };
+        } catch (error) {
+          console.error("Error pulling changes from server:", error);
+          throw error;
+        }
       }
-    },    
+    },
     pushChanges: async (dataToPush) => {
-      console.log(`${TAG} Pushing changes to server...`);
-
+      console.log("Pushing changes to server...");
       const data = {};
       for (const table of TablesToPush) {
         if (dataToPush[table]) {
-          data[table] = dataToPush[table]; // Solo incluir la tabla si tiene datos
+          data[table] = dataToPush[table];
         }
       }
-
       if (Object.keys(data).length === 0) {
-        console.log(`${TAG} No data to push for the specified tables.`);
+        console.log("No data to push for the specified tables.");
         return;
       }
-
       try {
         const response = await ApiService.push(`${URL_BASE}/push`, data);
-        console.log(`${TAG} response -> ${JSON.stringify(response)}`);
-        console.log("[SyncWorker] Changes pushed successfully:", response);
-
-        return response; // Puedes retornar la respuesta si necesitas usarla
+        console.log("Changes pushed successfully:", response);
+        return response;
       } catch (error) {
         console.error("Error pushing changes to server:", error);
-        throw error; // Rethrow to ensure the caller knows about the error
+        throw error;
       }
     },
     migrationsEnabledAtVersion: 1,

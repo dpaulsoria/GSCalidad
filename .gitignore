@@ -38,3 +38,6 @@ ios
 android
 
 .env*
+
+# Assets, semilla de bd
+assets/*.json
