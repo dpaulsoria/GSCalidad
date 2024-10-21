@@ -7,7 +7,7 @@ export class MarcasModel extends Model {
   static table = name;
 
   @text("name") name!: string; // descripcion
-  @text("value") tipo!: string; // co_marca
+  @text("value") tipo!: number; // co_marca
   @text("corta") corta!: string; // corta
   @field("remote_id") remote_id!: number;
   @readonly @date("created_at") createdAt!: number;
@@ -19,7 +19,7 @@ export const MarcasSchema = tableSchema({
   name,
   columns: [
       { name: "name", type: "string" },
-      { name: "value", type: "string" },
+      { name: "value", type: "number" },
       { name: "corta", type: "string" },
       { name: "remote_id", type: "number" },
       { name: "created_at", type: "number" },

@@ -7,7 +7,7 @@ export class ImportadoresModel extends Model {
   static table = name;
 
   @text("name") name!: string; // nombre
-  @text("value") tipo!: string; // co_importador
+  @text("value") tipo!: number; // co_importador
   @field("remote_id") remote_id!: number;
   @readonly @date("created_at") createdAt!: number;
   @readonly @date("updated_at") updatedAt!: number ;
@@ -18,7 +18,7 @@ export const ImportadoresSchema = tableSchema({
   name,
   columns: [
       { name: "name", type: "string" },
-      { name: "value", type: "string" },
+      { name: "value", type: "number" },
       { name: "remote_id", type: "number" },
       { name: "created_at", type: "number" },
       { name: "updated_at", type: "number" },

@@ -7,7 +7,7 @@ export class MaquinasModel extends Model {
   static table = name;
 
   @text("name") name!: string; // descripcion
-  @text("value") tipo!: string; // co_maquina
+  @text("value") tipo!: number; // co_maquina
   @field("status") status!: number;
   @field("remote_id") remote_id!: number;
   @readonly @date("created_at") createdAt!: number;
@@ -19,7 +19,7 @@ export const MaquinasSchema = tableSchema({
   name,
   columns: [
       { name: "name", type: "string" },
-      { name: "value", type: "string" },
+      { name: "value", type: "number" },
       { name: "status", type: "number" },
       { name: "remote_id", type: "number" },
       { name: "created_at", type: "number" },
