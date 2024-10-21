@@ -54,13 +54,11 @@ export const SavePeladoFresco = async (
       record.temperatura = it.temperatura;
       record.sulfito = it.sulfito;
       record.observacion = it.observacion;
-      record.UsuCrea = it.UsuCrea;
       record.UsuModi = it.UsuModi;
       record.state = it.state;
       record.planta_id = plantaId;
       record.remote_id = it.remote_id;
-      const userName = await db.localStorage.get("user_name");
-      record.UsuCrea = typeof userName === "string" ? userName : "none";
+      record.UsuCrea = it.UsuCrea;
     });
   });
 };
