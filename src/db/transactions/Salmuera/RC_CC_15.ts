@@ -26,6 +26,7 @@ export const SaveSalmuera = async (
       record.UsuModi = it.UsuModi;
       record.correccion = it.correccion;
       record.foto = it.foto;
+      // TODO: Quitar estado
       record.estado = it.estado;
       record.state = it.state;
       record.planta_id = plantaId;

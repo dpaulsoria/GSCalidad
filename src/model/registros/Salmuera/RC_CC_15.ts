@@ -28,6 +28,7 @@ export class DescongeladoSalmueraModel extends Model implements Migrable {
   @readonly @date("updated_at") updatedAt!: number;
   @field("correccion") correccion!: number;
   @field("foto") foto!: number;
+  // TODO: Quitar estado
   @field("estado") estado!: number;
   @field("state") state!: number;
   @field("planta_id") planta_id!: number | null;
@@ -58,6 +59,7 @@ export const DescongeladoSalmueraSchema = tableSchema({
     { name: "updated_at", type: "number" },
     { name: "correccion", type: "number" },
     { name: "foto", type: "number" },
+    // TODO: Quitar estado
     { name: "estado", type: "number" },
     { name: "state", type: "number" },
     { name: "planta_id", type: "number", isOptional: true },
