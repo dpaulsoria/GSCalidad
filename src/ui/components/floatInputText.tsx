@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Animated, TextInput, View, Text, StyleSheet } from "react-native";
 
-export default function FloatingLabelInput({ label, value, onChangeText }) {
+export default function FloatInputText({ label, value, onChangeText }) {
   const [isFocused, setIsFocused] = useState(false);
   const labelPosition = useRef(new Animated.Value(value ? 1 : 0)).current;
 
