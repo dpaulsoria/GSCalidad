@@ -4,30 +4,35 @@ import { db } from "@/db";
 import { synchronize } from "@nozbe/watermelondb/sync";
 import { TablesToPush } from "@/model/TablesToPush";
 import ApiService from "@/service/Api";
+import { useSyncStore } from "@/store/util/syncStore";
 
 const TAG = "[SyncWorker]";
 const URL_BASE = "/api/usuarioExterno/control-calidad-off/exp";
+
 export const syncWatermelon = async (localData = null) => {
-  await synchronize({
-    database: db,
-    pullChanges: async ({ lastPulledAt }) => {
-      if (localData) {
-        console.log("Pulling changes from local JSON...");
-        try {
+  const { isSyncInProgress, setSyncInProgress } = useSyncStore.getState();
+
+  if (isSyncInProgress) {
+    console.log("Sync is already in progress. Skipping...");
+    return;
+  }
+
+  try {
+    setSyncInProgress(true); // Set the flag to indicate sync is running
+
+    await synchronize({
+      database: db,
+      pullChanges: async ({ lastPulledAt }) => {
+        if (localData) {
+          console.log("Pulling changes from local JSON...");
           const { changes, timestamp } = localData;
           if (!changes || !timestamp) {
             console.log("Error: Missing changes or timestamp in local data.");
             return;
           }
-          // Actualiza lastPulledAt con el timestamp del JSON
           return { changes, timestamp };
-        } catch (error) {
-          console.error("Error pulling changes from local data:", error);
-          throw error;
-        }
-      } else {
-        console.log("Pulling changes from server...");
-        try {
+        } else {
+          console.log("Pulling changes from server...");
           const response = await ApiService.pull(
             `${URL_BASE}/pull`,
             lastPulledAt
@@ -38,35 +43,36 @@ export const syncWatermelon = async (localData = null) => {
             return;
           }
           return { changes, timestamp };
+        }
+      },
+      pushChanges: async (dataToPush) => {
+        console.log("Pushing changes to server...");
+        const data = {};
+        for (const table of TablesToPush) {
+          if (dataToPush[table]) {
+            data[table] = dataToPush[table];
+          }
+        }
+        if (Object.keys(data).length === 0) {
+          console.log("No data to push for the specified tables.");
+          return;
+        }
+        try {
+          const response = await ApiService.push(`${URL_BASE}/push`, data);
+          console.log("Changes pushed successfully:", response);
+          return response;
         } catch (error) {
-          console.error("Error pulling changes from server:", error);
+          console.error("Error pushing changes to server:", error);
           throw error;
         }
-      }
-    },
-    pushChanges: async (dataToPush) => {
-      console.log("Pushing changes to server...");
-      const data = {};
-      for (const table of TablesToPush) {
-        if (dataToPush[table]) {
-          data[table] = dataToPush[table];
-        }
-      }
-      if (Object.keys(data).length === 0) {
-        console.log("No data to push for the specified tables.");
-        return;
-      }
-      try {
-        const response = await ApiService.push(`${URL_BASE}/push`, data);
-        console.log("Changes pushed successfully:", response);
-        return response;
-      } catch (error) {
-        console.error("Error pushing changes to server:", error);
-        throw error;
-      }
-    },
-    migrationsEnabledAtVersion: 1,
-  });
+      },
+      migrationsEnabledAtVersion: 1,
+    });
+  } catch (error) {
+    console.error("Error during sync:", error);
+  } finally {
+    setSyncInProgress(false);  // Reset the flag after sync completes
+  }
 };
 
 export const SyncWorker = () => {

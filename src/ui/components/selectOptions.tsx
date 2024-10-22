@@ -2,7 +2,12 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
 
-export default function CustomSelectOption({ options, onValueChange, selectedValue, placeholder }) {
+export default function CustomSelectOption({
+  options,
+  onValueChange,
+  selectedValue,
+  placeholder,
+}) {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   const handleOptionPress = (value) => {
@@ -10,7 +15,9 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
     setDropdownVisible(false);
   };
 
-  const selectedLabel = options.find((option) => option.value === selectedValue)?.label;
+  const selectedLabel = options.find(
+    (option) => option.value === selectedValue
+  )?.name;
 
   return (
     <View style={{ zIndex: 1 }}>
@@ -19,7 +26,9 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
         onPress={() => setDropdownVisible(!isDropdownVisible)}
         className="bg-white border border-gray-300 rounded-md px-4 py-2 flex-row justify-between items-center"
       >
-        <Text className="text-black">{selectedLabel || placeholder || "Selecciona una opción"}</Text>
+        <Text className="text-black">
+          {selectedLabel || placeholder || "Selecciona una opción"}
+        </Text>
         <Text className="text-gray-500">{"\u25BC"}</Text>
       </TouchableOpacity>
 
@@ -30,8 +39,11 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
             data={options}
             keyExtractor={(item) => item.value}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => handleOptionPress(item.value)} className="py-2 px-4">
-                <Text className="text-black">{item.label}</Text>
+              <TouchableOpacity
+                onPress={() => handleOptionPress(item.value)}
+                className="py-2 px-4"
+              >
+                <Text className="text-black">{item.name}</Text>
               </TouchableOpacity>
             )}
           />

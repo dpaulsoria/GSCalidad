@@ -6,13 +6,55 @@ import AlertNotification from "@/ui/modals/AlertNotification";
 import ColumnTextField from "@/ui/components/ColumnTextField";
 import { SaveSalmuera } from "@/db/transactions/Salmuera/RC_CC_15";
 import { db } from "@/db";
+import { useDescongeladoSalmueraStore } from "@/store/Salmuera/RC_CC_15";
+import { useUtilStore } from "@/store/util/store";
+import CustomSelectOption from "@/ui/components/SelectOptions";
+
+const TAG = "[15]";
 
 export default function DescongeladoSalmuera() {
-  const { state, handleChange, resetForm } = useForm<DescongeladoSalmueraModel>({} as DescongeladoSalmueraModel);
+  const validationRules = {
+    pesoNetoFresco: (value: number) =>
+      value >= 0 && value < 100
+        ? true
+        : "Peso neto fresco debe estar entre 0 y 100",
+    peso_bruto: (value: number) =>
+      value >= 0 && value < 100 ? true : "Peso bruto debe estar entre 0 y 100",
+    pesoCongelado: (value: number) =>
+      value >= 0 && value < 100
+        ? true
+        : "Peso congelado debe estar entre 0 y 100",
+    pesoDescongelado: (value: number) =>
+      value >= 0 && value < 100
+        ? true
+        : "Peso descongelado debe estar entre 0 y 100",
+    Cta_PesoNetoFresco: (value: number) =>
+      value >= 0 ? true : "Cta Peso Neto Fresco debe ser mayor o igual a 0",
+    Cta_PesoDescongelado: (value: number) =>
+      value >= 0 ? true : "Cta Peso Descongelado debe ser mayor o igual a 0",
+    unidad_medida: (value: string) =>
+      value ? true : "Debe seleccionar una unidad de peso",
+    lote: (value: string) => (value ? true : "Lote no puede estar vacío"),
+    proveedor: (value: string) =>
+      value ? true : "Proveedor no puede estar vacío",
+  };
 
+  const { state, handleChange, validateForm, resetForm, errors } =
+    useForm<DescongeladoSalmueraModel>(
+      {} as DescongeladoSalmueraModel,
+      validationRules
+    );
+  const { register, functions } = useDescongeladoSalmueraStore();
   const [showModal, setShowModal] = useState(false);
+  const { vSelectLists } = useUtilStore();
 
   async function onSubmitForm() {
+    if (!validateForm()) {
+      // Mostrar errores o mensaje de validación
+      console.log("Formulario tiene errores:", errors);
+      return;
+    }
+
     setShowModal(true);
     const username: string | void = await db.localStorage.get("user_name");
     await SaveSalmuera(state, 1, username);
@@ -26,7 +68,12 @@ export default function DescongeladoSalmuera() {
       <View className="flex flex-row flex-wrap justify-between align-center">
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("tipo_analisis", text)}
+            onChange={(text) => {
+              handleChange(
+                "tipo_analisis",
+                functions.handleChangeTipoAnalisis(text)
+              );
+            }}
             value={state.tipo_analisis}
             label="Tipo Analisis"
             placeholder={`Ingrese el tipo de analisis`}
@@ -50,18 +97,19 @@ export default function DescongeladoSalmuera() {
             label="Cabinplant"
           />
         </View>
-
-        <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("co_importador", text)}
-            value={state.co_importador}
-            label="Importador"
+        <View>
+          <CustomSelectOption
+            options={vSelectLists.importadores}
+            selectedValue={state.co_importador}
+            onValueChange={(text: string) => handleChange("co_importador", text)}
+            placeholder={"Selecciona una opción"}
           />
         </View>
-
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("lote", text)}
+            onChange={(text) =>
+              handleChange("lote", functions.handleChangeLote(text))
+            }
             value={state.lote}
             label="Lote"
           />
@@ -69,7 +117,9 @@ export default function DescongeladoSalmuera() {
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("proveedor", text)}
+            onChange={(text) =>
+              handleChange("proveedor", functions.handleChangeProveedor(text))
+            }
             value={state.proveedor}
             label="Proveedor"
           />
@@ -88,6 +138,7 @@ export default function DescongeladoSalmuera() {
             onChange={(text) => handleChange("pesoNetoFresco", text)}
             value={state.pesoNetoFresco}
             label="Peso Neto Fresco"
+            error={errors.pesoNetoFresco}
           />
 
           <ColumnTextField
@@ -103,6 +154,7 @@ export default function DescongeladoSalmuera() {
             onChange={(text) => handleChange("peso_bruto", text)}
             value={state.peso_bruto}
             label="Peso Bruto"
+            error={errors.peso_bruto}
           />
         </View>
 

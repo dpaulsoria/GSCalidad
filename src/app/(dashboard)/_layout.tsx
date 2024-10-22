@@ -28,7 +28,7 @@ export default function Layout() {
             marginLeft: -10,
           },
 
-          headerShown: false,
+          headerShown: true,
         }}
       >
         <Drawer.Screen

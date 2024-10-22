@@ -13,6 +13,8 @@ import { name as ProveedoresINPName } from "@/model/data/list/ProveedoresINP";
 import { getVSelectLists } from "@/db/transactions/read";
 import { Model } from "@nozbe/watermelondb";
 
+const TAG = "[utilStore]";
+
 export interface VSelectOption {
   name: string;
   value: string | number;
@@ -40,7 +42,6 @@ interface UtilStore {
 
 export type VSelectModel = Model & VSelectOption;
 
-// Create a mapping of the collection names to the keys of `vSelectLists`
 const vSelectListMappings: { [key: string]: keyof VSelectLists } = {
   [AreaName]: "area",
   [ColorName]: "color",
@@ -70,19 +71,29 @@ export const useUtilStore = create<UtilStore>((set) => ({
     tipoRegistro: [],
   },
   loadVSelectLists: async () => {
+    console.log(`${TAG} loadVSelectLists started`);
     const fetchedData = await fetchDataFromDB();
+    console.log(`${TAG} Fetched Data: `, fetchedData);
 
-    set((state) => ({
-      vSelectLists: {
-        ...state.vSelectLists,
-        ...fetchedData,
-      },
-    }));
+    set((state) => {
+      console.log(`${TAG} Previous state: `, state.vSelectLists);
+      const newState = {
+        vSelectLists: {
+          ...state.vSelectLists,
+          ...fetchedData,
+        },
+      };
+      console.log(`${TAG} New state: `, newState);
+      return newState;
+    });
   },
 }));
 
 async function fetchDataFromDB(): Promise<VSelectLists> {
+  console.log(`${TAG} Fetching data from DB...`);
   const vlist = await getVSelectLists();
+  console.log(`${TAG} Raw data fetched: `, vlist);
+
   const result: VSelectLists = {
     area: [],
     color: [],
@@ -97,13 +108,14 @@ async function fetchDataFromDB(): Promise<VSelectLists> {
     tipoRegistro: [],
   };
 
-  // Dynamically map the fetched data based on the vSelectListMappings
   Object.entries(vlist).forEach(([key, value]) => {
     const mappedKey = vSelectListMappings[key];
     if (mappedKey) {
+      console.log(`${TAG} Mapping ${key} to ${mappedKey}`);
       result[mappedKey] = value;
     }
   });
 
+  console.log(`${TAG} Final result after mapping: `, result);
   return result;
 }

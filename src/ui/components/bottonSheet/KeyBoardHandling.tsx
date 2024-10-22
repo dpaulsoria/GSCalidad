@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from "react";
 import { View, Text, Button, KeyboardAvoidingView, Platform } from "react-native";
 import { BottomSheetTextInput, BottomSheetModal, BottomSheetModalProvider, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import Animated, { Easing } from "react-native-reanimated";
-import SearchAndSuggest from "../searchAndSuggest";
+import SearchAndSuggest from "../SearchAndSuggest";
 
 export default function KeyBoardHandling() {
   const bottomSheetModalRef = useRef(null);
