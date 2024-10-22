@@ -4,7 +4,7 @@ import Toast from "react-native-toast-message";
 import FormWizard from "@/ui/components/FormWizard";
 import { Calendar } from "react-native-calendars";
 import CalendarComponent from "@/ui/components/Calendar";
-import RadioButtonGroup from "@/ui/components/radioBottonsGroup";
+import RadioButtonGroup from "@/ui/components/RadioBottonsGroup";
 import CustomSelectOption from "@/ui/components/selectOptions";
 import KeyBoardHandling from "@/ui/components/bottonSheet/KeyBoardHandling";
 import { ToastConfig } from "@/utils/toastConfig";
@@ -28,9 +28,9 @@ export default function RegistrosScreem({ navigation }) {
     });
   };
   const options = [
-    { label: "Opción 1", value: "opcion1" },
-    { label: "Opción 2", value: "opcion2" },
-    { label: "Opción 3", value: "opcion3" },
+    { label: "Camarones", value: "opcion1" },
+    { label: "Tilapia", value: "opcion2" },
+    { label: "Conchas", value: "opcion3" },
   ];
   const handleValueChange = (value) => {
     console.log("value", value);

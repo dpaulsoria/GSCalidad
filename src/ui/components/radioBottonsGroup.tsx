@@ -12,7 +12,7 @@ export default function RadioButtonGroup({ options, onValueChange }) {
   };
 
   return (
-    <View>
+    <View className="flex flex-wrap flex-row justify-between">
       {options.map((option) => (
         <RadioButton key={option.value} label={option.label} value={option.value} selected={option.value === selectedValue} onPress={handlePress} />
       ))}
@@ -22,10 +22,9 @@ export default function RadioButtonGroup({ options, onValueChange }) {
 function RadioButton({ label, value, selected, onPress }) {
   return (
     <TouchableOpacity onPress={() => onPress(value)} className="flex-row items-center mb-2">
-      <View className={`w-5 h-5 rounded-full border-2 border-blue-500 items-center justify-center mr-2 ${selected ? "bg-blue-500" : "bg-white"}`}>
-        {selected && <View className="w-2 h-2 rounded-full bg-white" />}
+      <View className={`px-2 py-0.5 rounded-lg items-center justify-center  ${selected ? "bg-blue-500" : "bg-white"}`}>
+        <Text className={`${selected ? "text-white" : "text-black"}`}>{label}</Text>
       </View>
-      <Text className="text-black">{label}</Text>
     </TouchableOpacity>
   );
 }
