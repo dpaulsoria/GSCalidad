@@ -21,7 +21,7 @@ export default function RegistrosScreem({ navigation }) {
   const [activeStep, setActiveStep] = useState(0);
   const showToast = () => {
     Toast.show({
-      type: "success",
+      type: "warning",
       text1: "Hello",
       text2: "This is some something",
       autoHide: false,
