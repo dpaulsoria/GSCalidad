@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "moduleResolution": "Bundler",
+    
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
+    "types": ["jest"],
     "paths": {
       "@/*": ["./src/*"],
       "@assets/*": ["./src/assets/*"]

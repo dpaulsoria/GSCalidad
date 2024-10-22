@@ -4,7 +4,8 @@ import { DescongeladoSalmueraModel } from "@/model/registros/Salmuera/RC_CC_15";
 import { useState } from "react";
 import AlertNotification from "@/ui/modals/AlertNotification";
 import ColumnTextField from "@/ui/components/ColumnTextField";
-import { SaveSalmuera } from "@/db/transactions/write";
+import { SaveSalmuera } from "@/db/transactions/Salmuera/RC_CC_15";
+import { db } from "@/db";
 
 export default function DescongeladoSalmuera() {
   const { state, handleChange, resetForm } = useForm<DescongeladoSalmueraModel>({} as DescongeladoSalmueraModel);
@@ -13,8 +14,8 @@ export default function DescongeladoSalmuera() {
 
   async function onSubmitForm() {
     setShowModal(true);
-
-    await SaveSalmuera(state, 1);
+    const username: string | void = await db.localStorage.get("user_name")
+    await SaveSalmuera(state, 1, username);
   }
 
   return (

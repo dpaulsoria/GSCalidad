@@ -10,16 +10,16 @@ class ApiService {
     this.apiClient = axios.create({
       maxContentLength: 50 * 1024 * 1024,
       baseURL, // Establece la base URL
-      transformResponse: (data) => {
-        try {
-          return JSON.parse(data);
-        } catch (error) {
-          console.error("[net] JSON parsing error:", error.message);
-          // console.error("[net] Response data received:", data);
-          console.error("[net] Stack trace:", error.stack);
-          throw new Error("Invalid JSON format received from server");
-        }
-      },
+      // transformResponse: (data) => {
+      //   try {
+      //     return JSON.parse(data);
+      //   } catch (error) {
+      //     console.error("[net] JSON parsing error:", error.message);
+      //     // console.error("[net] Response data received:", data);
+      //     console.error("[net] Stack trace:", error.stack);
+      //     throw new Error("Invalid JSON format received from server");
+      //   }
+      // },
     });
 
     // Interceptor para agregar el token a las solicitudes
@@ -60,8 +60,10 @@ class ApiService {
         },
       });
 
+      console.log(`[net] Header ${response.headers['content-type']??';'} ${response.headers['Content-Type']??';'}`)
+      console.log(`[net] Received data ${typeof response.data}`)
       console.log(
-        `[net] Received response from pull request. Status: ${response.status}`
+        `[net] Received response from pull request. Status: ${response.data.status}`
       );
 
       if (response.status !== 200 || response.data.status !== '1') {

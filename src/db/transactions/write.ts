@@ -21,4 +21,3 @@ function printMigrableInfo<T extends Migrable>(item: T) {
   console.log(`Usuario Creador: ${item.UsuCrea}`);
   console.log(`Estado: ${item.state}`);
 }
-

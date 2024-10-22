@@ -5,6 +5,10 @@ import { name as ProcesoEnteroName } from "@/model/registros/ProcesoEntero/RC_CC
 import { name as InspeccionPreeliminarName } from "@/model/registros/MateriaPrima/RC_MP_01/InspeccionPreeliminar";
 import { name as InspeccionPreeliminarColaName } from "@/model/registros/MateriaPrima/RC_MP_01/jr/Cola";
 import { name as InspeccionPreeliminarEnteroName } from "@/model/registros/MateriaPrima/RC_MP_01/jr/Entero";
+import { name as CorreccionesName } from "@/model/data/extra/Correccion";
+import { name as FotosName } from "@/model/data/extra/Foto";
+import { name as RegistroAutorizadoName } from "@/model/data/signatures/RegistroAutorizado";
+import { name as RegistroFallidoName } from "@/model/data/log/RegistroFallido";
 
 export const TablesToPush = [
   DescongeladoSalmueraName,
@@ -13,5 +17,9 @@ export const TablesToPush = [
   ProcesoEnteroName,
   InspeccionPreeliminarName,
   InspeccionPreeliminarColaName,
-  InspeccionPreeliminarEnteroName
+  InspeccionPreeliminarEnteroName,
+  CorreccionesName,
+  FotosName,
+  RegistroAutorizadoName,
+  RegistroFallidoName,
 ];
