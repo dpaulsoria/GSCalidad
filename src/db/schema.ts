@@ -28,6 +28,7 @@ import { InspeccionPreeliminarColaSchema } from "@/model/registros/MateriaPrima/
 import { InspeccionPreeliminarSchema } from "@/model/registros/MateriaPrima/RC_MP_01/InspeccionPreeliminar";
 import { InspeccionPreeliminarEnteroSchema } from "@/model/registros/MateriaPrima/RC_MP_01/jr/Entero";
 import { ClasificacionCamaronEnteroSchema } from "@/model/registros/ProcesoEntero/RC_CC_08";
+import { TallasSchema } from "@/model/data/list/Talla";
 
 export default appSchema({
   version: 1,
@@ -59,6 +60,7 @@ export default appSchema({
     InspeccionPreeliminarSchema,
     InspeccionPreeliminarColaSchema,
     InspeccionPreeliminarEnteroSchema,
+    TallasSchema,
     // Pivot
     RegistrosAreaSchema,
     RegistrosPlantaSchema,

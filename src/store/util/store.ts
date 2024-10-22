@@ -10,6 +10,7 @@ import { name as ImportadoresName } from "@/model/data/list/Importador";
 import { name as MarcasName } from "@/model/data/list/Marcas";
 import { name as MaquinasName } from "@/model/data/list/Maquinas";
 import { name as ProveedoresINPName } from "@/model/data/list/ProveedoresINP";
+import { name as TallasName } from "@/model/data/list/Talla";
 import { getVSelectLists } from "@/db/transactions/read";
 import { Model } from "@nozbe/watermelondb";
 
@@ -33,6 +34,7 @@ export interface VSelectLists {
   maquinas: VSelectOption[];
   proveedoresINP: VSelectOption[];
   tipoRegistro: VSelectOption[];
+  tallas: VSelectOption[];
 }
 
 interface UtilStore {
@@ -54,6 +56,7 @@ const vSelectListMappings: { [key: string]: keyof VSelectLists } = {
   [MaquinasName]: "maquinas",
   [ProveedoresINPName]: "proveedoresINP",
   [TipoRegistroName]: "tipoRegistro",
+  [TallasName]: "tallas",
 };
 
 export const useUtilStore = create<UtilStore>((set) => ({
@@ -69,6 +72,7 @@ export const useUtilStore = create<UtilStore>((set) => ({
     maquinas: [],
     proveedoresINP: [],
     tipoRegistro: [],
+    tallas: [],
   },
   loadVSelectLists: async () => {
     console.log(`${TAG} loadVSelectLists started`);
@@ -106,6 +110,7 @@ async function fetchDataFromDB(): Promise<VSelectLists> {
     maquinas: [],
     proveedoresINP: [],
     tipoRegistro: [],
+    tallas: [],
   };
 
   Object.entries(vlist).forEach(([key, value]) => {

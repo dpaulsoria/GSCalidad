@@ -110,6 +110,7 @@ import {
   CorreccionesModel,
 } from "@/model/data/extra/Correccion";
 import { name as FotosName, FotosModel } from "@/model/data/extra/Foto";
+import { name as TallasName, TallasModel } from "@/model/data/list/Talla";
 
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({
@@ -161,6 +162,7 @@ export const db = new Database({
     MarcasModel,
     MaquinasModel,
     ProveedoresINPModel,
+    TallasModel,
     // Pivot
     RegistrosAreaModel,
     RegistrosPlantaModel,
@@ -182,7 +184,9 @@ export const rc15Collection = db.get<DescongeladoSalmueraModel>(
 );
 export const rc103Collection = db.get<PeladoFrescoModel>(PeladoFrescoName);
 export const rc108Collection = db.get<ProdTerminadoModel>(ProdTerminadoName);
-export const rc08Collection = db.get<ClasificacionCamaronEnteroModel>(ClasificacionCamaronEnteroName);
+export const rc08Collection = db.get<ClasificacionCamaronEnteroModel>(
+  ClasificacionCamaronEnteroName
+);
 export const rc07Collection =
   db.get<ProcesoEnteroFrescoModel>(ProcesoEnteroName);
 export const rc01Collection = db.get<InspeccionPreeliminarModel>(
@@ -219,6 +223,7 @@ export const marcasCollection = db.get<MarcasModel>(MarcasName);
 export const maquinasCollection = db.get<MaquinasModel>(MaquinasName);
 export const proveedoresINPCollection =
   db.get<ProveedoresINPModel>(ProveedoresINPName);
+export const tallasCollection = db.get<TallasModel>(TallasName);
 // Pivot
 export const registrosAreaCollection =
   db.get<RegistrosAreaModel>(RegistrosAreaName);
