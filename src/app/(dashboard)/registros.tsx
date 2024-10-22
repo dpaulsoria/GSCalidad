@@ -7,6 +7,7 @@ import CalendarComponent from "@/ui/components/Calendar";
 import RadioButtonGroup from "@/ui/components/radioBottonsGroup";
 import CustomSelectOption from "@/ui/components/selectOptions";
 import KeyBoardHandling from "@/ui/components/bottonSheet/KeyBoardHandling";
+import { ToastConfig } from "@/utils/toastConfig";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function RegistrosScreem({ navigation }) {
   const { top, bottom, left, right } = useSafeAreaInsets();
@@ -22,6 +23,8 @@ export default function RegistrosScreem({ navigation }) {
     Toast.show({
       type: "success",
       text1: "Hello",
+      text2: "This is some something",
+      autoHide: false,
     });
   };
   const options = [
@@ -52,7 +55,7 @@ export default function RegistrosScreem({ navigation }) {
       <KeyBoardHandling />
       {/* <Calendar /> */}
       {/* <CalendarComponent /> */}
-      <Toast />
+      <Toast config={ToastConfig} />
     </View>
   );
 }
