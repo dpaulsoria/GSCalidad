@@ -14,13 +14,15 @@ export default function DescongeladoSalmuera() {
 
   async function onSubmitForm() {
     setShowModal(true);
-    const username: string | void = await db.localStorage.get("user_name")
+    const username: string | void = await db.localStorage.get("user_name");
     await SaveSalmuera(state, 1, username);
   }
 
   return (
     <ScrollView className="bg-body-light dark:bg-body-dark px-3">
-      <Text className="text-start text-xl text-slate-600 font-semibold pl-4 ">RC.CC.15</Text>
+      <Text className="text-start text-xl text-slate-600 font-semibold pl-4 ">
+        [RC.CC.15] - Descongelado Salmuera
+      </Text>
       <View className="flex flex-row flex-wrap justify-between align-center">
         <View className="w-1/2 p-2">
           <ColumnTextField
@@ -42,27 +44,51 @@ export default function DescongeladoSalmuera() {
       </View>
       <View className="flex flex-row flex-wrap">
         <View className="w-1/2 p-2">
-          <ColumnTextField onChange={(text) => handleChange("cabinplant", text)} value={state.cabinplant} label="Cabinplant" />
+          <ColumnTextField
+            onChange={(text) => handleChange("cabinplant", text)}
+            value={state.cabinplant}
+            label="Cabinplant"
+          />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField onChange={(text) => handleChange("co_importador", text)} value={state.co_importador} label="Importador" />
+          <ColumnTextField
+            onChange={(text) => handleChange("co_importador", text)}
+            value={state.co_importador}
+            label="Importador"
+          />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField onChange={(text) => handleChange("lote", text)} value={state.lote} label="Lote" />
+          <ColumnTextField
+            onChange={(text) => handleChange("lote", text)}
+            value={state.lote}
+            label="Lote"
+          />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField onChange={(text) => handleChange("proveedor", text)} value={state.proveedor} label="Proveedor" />
+          <ColumnTextField
+            onChange={(text) => handleChange("proveedor", text)}
+            value={state.proveedor}
+            label="Proveedor"
+          />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField onChange={(text) => handleChange("co_talla", text)} value={state.co_talla} label="Talla" />
+          <ColumnTextField
+            onChange={(text) => handleChange("co_talla", text)}
+            value={state.co_talla}
+            label="Talla"
+          />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField onChange={(text) => handleChange("pesoNetoFresco", text)} value={state.pesoNetoFresco} label="Peso Neto Fresco" />
+          <ColumnTextField
+            onChange={(text) => handleChange("pesoNetoFresco", text)}
+            value={state.pesoNetoFresco}
+            label="Peso Neto Fresco"
+          />
 
           <ColumnTextField
             className="w-1/3"
@@ -73,11 +99,19 @@ export default function DescongeladoSalmuera() {
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField onChange={(text) => handleChange("peso_bruto", text)} value={state.peso_bruto} label="Peso Bruto" />
+          <ColumnTextField
+            onChange={(text) => handleChange("peso_bruto", text)}
+            value={state.peso_bruto}
+            label="Peso Bruto"
+          />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField onChange={(text) => handleChange("pesoCongelado", text)} value={state.pesoCongelado} label="Peso Congelado" />
+          <ColumnTextField
+            onChange={(text) => handleChange("pesoCongelado", text)}
+            value={state.pesoCongelado}
+            label="Peso Congelado"
+          />
 
           <ColumnTextField
             onChange={(text) => handleChange("Cta_PesoCongelado", text)}
@@ -87,7 +121,11 @@ export default function DescongeladoSalmuera() {
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField onChange={(text) => handleChange("pesoDescongelado", text)} value={state.pesoDescongelado} label="Peso Descongelado" />
+          <ColumnTextField
+            onChange={(text) => handleChange("pesoDescongelado", text)}
+            value={state.pesoDescongelado}
+            label="Peso Descongelado"
+          />
 
           <ColumnTextField
             onChange={(text) => handleChange("Cta_PesoDescongelado", text)}
@@ -97,13 +135,22 @@ export default function DescongeladoSalmuera() {
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField onChange={(text) => handleChange("observaciones", text)} value={state.observaciones} label="Observacion" />
+          <ColumnTextField
+            onChange={(text) => handleChange("observaciones", text)}
+            value={state.observaciones}
+            label="Observacion"
+          />
         </View>
       </View>
 
       <View className="p-2 flex flex-row justify-end">
-        <Pressable className="w-1/4 bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onPress={onSubmitForm}>
-          <Text className="text-white text-center text-xl text-bold">Subir</Text>
+        <Pressable
+          className="w-1/4 bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          onPress={onSubmitForm}
+        >
+          <Text className="text-white text-center text-xl text-bold">
+            Subir
+          </Text>
         </Pressable>
       </View>
 
