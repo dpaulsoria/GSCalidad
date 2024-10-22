@@ -1,13 +1,14 @@
+import { VSelectOption } from "@/store/util/store";
 import { Model, tableSchema } from "@nozbe/watermelondb";
 import { field, text, date, readonly } from "@nozbe/watermelondb/decorators";
 
 export const name = "a20t7";
 
-export class MarcasModel extends Model {
+export class MarcasModel extends Model implements VSelectOption {
   static table = name;
 
   @text("name") name!: string; // descripcion
-  @text("value") tipo!: number; // co_marca
+  @text("value") value!: number; // co_marca
   @text("corta") corta!: string; // corta
   @field("remote_id") remote_id!: number;
   @readonly @date("created_at") createdAt!: number;

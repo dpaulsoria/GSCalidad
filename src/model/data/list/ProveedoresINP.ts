@@ -1,13 +1,14 @@
+import { VSelectOption } from "@/store/util/store";
 import { Model, tableSchema } from "@nozbe/watermelondb";
 import { field, text, date, readonly } from "@nozbe/watermelondb/decorators";
 
 export const name = "a20t6";
 
-export class ProveedoresINPModel extends Model {
+export class ProveedoresINPModel extends Model implements VSelectOption {
   static table = name;
 
   @text("name") name!: string; // nombre
-  @text("value") inp!: string; // INP
+  @text("value") value!: string; // INP
   @text("co_prov") co_prov!: number; // co_prov
   @field("remote_id") remote_id!: number;
   @readonly @date("created_at") createdAt!: number;
