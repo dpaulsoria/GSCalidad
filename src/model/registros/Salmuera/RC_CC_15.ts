@@ -66,3 +66,32 @@ export const DescongeladoSalmueraSchema = tableSchema({
     { name: "remote_id", type: "number" },
   ],
 });
+
+export const empty = {
+  tipo_analisis: "",
+  co_importador: "",
+  cabinplant: "",
+  lote: "",
+  proveedor: "",
+  co_talla: "",
+  pesoNetoFresco: 0,
+  peso_bruto: 0,
+  unidad_medida: "",
+  pesoCongelado: 0,
+  pesoDescongelado: 0,
+  Cta_PesoNetoFresco: 0,
+  Cta_PesoCongelado: 0,
+  Cta_PesoDescongelado: 0,
+  observaciones: null,
+  UsuCrea: "",
+  createdAt: 0,
+  UsuModi: null,
+  updatedAt: 0,
+  correccion: 0,
+  foto: 0,
+  // TODO: Quitar estado
+  estado: 0,
+  state: 0,
+  planta_id: null,
+  remote_id: 0,
+};
