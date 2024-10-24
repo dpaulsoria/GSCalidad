@@ -4,7 +4,7 @@ import Toast from "react-native-toast-message";
 import FormWizard from "@/ui/components/FormWizard";
 import { Calendar } from "react-native-calendars";
 import CalendarComponent from "@/ui/components/Calendar";
-import RadioButtonGroup from "@/ui/components/radioBottonsGroup";
+import RadioButtonGroup from "@/ui/components/RadioBottonsGroup";
 import CustomSelectOption from "@/ui/components/SelectOptions";
 import BottomSheetComponent from "@/ui/components/bottonSheet/KeyBoardHandling";
 import { ToastConfig } from "@/utils/toastConfig";

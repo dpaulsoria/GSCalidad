@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useCallback, useState } from "react"
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import CustomSelectOption from "@/ui/components/SelectOptions";
-import RadioButtonGroup from "../radioBottonsGroup";
+import RadioButtonGroup from "../RadioBottonsGroup";
 type BottomSheetProps = {
   isOpen: boolean;
 };
