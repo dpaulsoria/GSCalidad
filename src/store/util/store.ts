@@ -75,28 +75,22 @@ export const useUtilStore = create<UtilStore>((set) => ({
     tallas: [],
   },
   loadVSelectLists: async () => {
-    console.log(`${TAG} loadVSelectLists started`);
     const fetchedData = await fetchDataFromDB();
-    console.log(`${TAG} Fetched Data: `, fetchedData);
 
     set((state) => {
-      console.log(`${TAG} Previous state: `, state.vSelectLists);
       const newState = {
         vSelectLists: {
           ...state.vSelectLists,
           ...fetchedData,
         },
       };
-      console.log(`${TAG} New state: `, newState);
       return newState;
     });
   },
 }));
 
 async function fetchDataFromDB(): Promise<VSelectLists> {
-  console.log(`${TAG} Fetching data from DB...`);
   const vlist = await getVSelectLists();
-  console.log(`${TAG} Raw data fetched: `, vlist);
 
   const result: VSelectLists = {
     area: [],
@@ -116,11 +110,9 @@ async function fetchDataFromDB(): Promise<VSelectLists> {
   Object.entries(vlist).forEach(([key, value]) => {
     const mappedKey = vSelectListMappings[key];
     if (mappedKey) {
-      console.log(`${TAG} Mapping ${key} to ${mappedKey}`);
       result[mappedKey] = value;
     }
   });
 
-  console.log(`${TAG} Final result after mapping: `, result);
   return result;
 }
