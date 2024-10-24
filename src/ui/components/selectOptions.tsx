@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, FlatList, Animated } from "react-native";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import Feather from "@expo/vector-icons/Feather";
 
 type customSelectoptionTyle = {
   options: { name: string; value: string }[];
@@ -63,18 +65,40 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
             setDropdownVisible(!isDropdownVisible);
           }
         }}
-        className={`bg-white border ${disable ? "border-gray-400" : "border-gray-300"} rounded-md px-4 py-2 flex-row justify-between items-center`}
+        style={{
+          backgroundColor: "white",
+          borderWidth: 1,
+          borderColor: disable ? "gray" : "lightgray",
+          borderRadius: 8,
+          paddingHorizontal: 16,
+          paddingVertical: 10,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          minHeight: 50,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 3,
+          elevation: 3,
+        }}
         disabled={disable}
       >
-        <Text className="text-black">{selectedLabel || placeholder || "Selecciona una opción"}</Text>
+        <Text style={{ color: "black", fontSize: 16 }}>{selectedLabel || placeholder || "Selecciona una opción"}</Text>
 
         {/* Animación entre la flecha y la "X" */}
-        <View>
-          <Animated.View style={{ position: "absolute", opacity: arrowOpacity }}></Animated.View>
+        <View style={{ position: "relative", width: 30, height: 30 }}>
+          <Animated.View
+            style={{ position: "absolute", opacity: arrowOpacity, justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}
+          >
+            <AntDesign name={isDropdownVisible ? "caretup" : "caretdown"} size={18} color="black" />
+          </Animated.View>
 
-          <Animated.View style={{ position: "absolute", opacity: clearOpacity }}>
+          <Animated.View
+            style={{ position: "absolute", opacity: clearOpacity, justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}
+          >
             <TouchableOpacity onPress={handleClearSelection}>
-              <Text className="text-gray-500">{"\u2715"}</Text> {/* "X" para borrar */}
+              <Feather name="x-circle" size={20} color="black" />
             </TouchableOpacity>
           </Animated.View>
         </View>
@@ -82,15 +106,39 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
 
       {/* Dropdown */}
       {isDropdownVisible && !disable && (
-        <View className="absolute w-full self-center top-9 mt-2 bg-white border border-gray-300 shadow-lg rounded-lg z-10">
+        <View
+          style={{
+            position: "absolute",
+            top: 60,
+            width: "100%",
+            backgroundColor: "white",
+            borderColor: "lightgray",
+            borderWidth: 1,
+            borderRadius: 8,
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.2,
+            shadowRadius: 5,
+            elevation: 5,
+            zIndex: 10,
+          }}
+        >
           <FlatList
             data={options}
             keyExtractor={(item) => item.value}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => handleOptionPress(item.value)} className="py-2 px-4">
-                <Text className="text-black">{item.name}</Text>
+              <TouchableOpacity
+                onPress={() => handleOptionPress(item.value)}
+                style={{
+                  padding: 12,
+                  borderBottomWidth: 1,
+                  borderBottomColor: "#f0f0f0",
+                }}
+              >
+                <Text style={{ color: "black", fontSize: 16 }}>{item.name}</Text>
               </TouchableOpacity>
             )}
+            ListFooterComponent={<View style={{ padding: 5 }} />} // Espacio adicional al final
           />
         </View>
       )}

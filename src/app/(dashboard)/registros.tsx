@@ -52,16 +52,6 @@ export default function RegistrosScreem({ navigation }) {
         onValueChange={(value) => setSelectedValue(value)}
         placeholder={"Selecciona una opción"}
       />
-      <Pressable
-        onPress={() => {
-          setShowBottomSheet(!showBottomSheet);
-          console.log("showBottomSheet", showBottomSheet);
-        }}
-        className="px-3 py-1 bg-amber-300 w-fit"
-      >
-        <Text>abrir btnSheet</Text>
-      </Pressable>
-      <BottomSheetComponent isOpen={showBottomSheet} />
       {/* <Calendar /> */}
       {/* <CalendarComponent /> */}
       <Toast config={ToastConfig} />
