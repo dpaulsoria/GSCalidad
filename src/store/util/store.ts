@@ -40,6 +40,7 @@ export interface VSelectLists {
 interface UtilStore {
   vSelectLists: VSelectLists;
   loadVSelectLists: () => Promise<void>;
+  calculateUT: (g: number, p: number) => number;
 }
 
 export type VSelectModel = Model & VSelectOption;
@@ -87,6 +88,7 @@ export const useUtilStore = create<UtilStore>((set) => ({
       return newState;
     });
   },
+  calculateUT: (g: number, p: number): number => p !== 0 ? g / p : 0
 }));
 
 async function fetchDataFromDB(): Promise<VSelectLists> {

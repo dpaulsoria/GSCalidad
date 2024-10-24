@@ -1,8 +1,17 @@
-import React, { useEffect, useMemo, useRef, useCallback, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useCallback,
+  useState,
+} from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
-import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
+import BottomSheet, {
+  BottomSheetView,
+  BottomSheetBackdrop,
+} from "@gorhom/bottom-sheet";
 import CustomSelectOption from "@/ui/components/SelectOptions";
-import RadioButtonGroup from "../radioBottonsGroup";
+import RadioButtonGroup from "@/ui/components/RadioBottonsGroup";
 type BottomSheetProps = {
   isOpen: boolean;
 };
@@ -81,7 +90,11 @@ export default function BottomSheetComponent({ isOpen }: BottomSheetProps) {
   };
   return (
     <View style={StyleSheet.absoluteFill}>
-      <BottomSheet ref={bottomSheetRef} snapPoints={snapPoints} enablePanDownToClose={true}>
+      <BottomSheet
+        ref={bottomSheetRef}
+        snapPoints={snapPoints}
+        enablePanDownToClose={true}
+      >
         <BottomSheetView style={styles.contentContainer}>
           <Text>¡Filtro!</Text>
           <Pressable onPress={onClose} style={styles.closeButton}>
@@ -91,18 +104,25 @@ export default function BottomSheetComponent({ isOpen }: BottomSheetProps) {
             <CustomSelectOption
               options={options1}
               selectedValue={selectedPlanta}
-              onValueChange={(value) => setSelectedPlanta(value)}
+              onValueChange={value => setSelectedPlanta(value)}
               placeholder={"Selecciona una opción"}
             />
             <CustomSelectOption
               options={options2}
               selectedValue={selectedArea}
-              onValueChange={(value) => setSelectedArea(value)}
+              onValueChange={value => setSelectedArea(value)}
               placeholder={"Selecciona una opción"}
               disable={selectedPlanta === null}
             />
           </View>
-          <View>{selectedArea && selectedPlanta && <RadioButtonGroup options={option3} onValueChange={(value) => console.log(value)} />}</View>
+          <View>
+            {selectedArea && selectedPlanta && (
+              <RadioButtonGroup
+                options={option3}
+                onValueChange={value => console.log(value)}
+              />
+            )}
+          </View>
         </BottomSheetView>
       </BottomSheet>
     </View>

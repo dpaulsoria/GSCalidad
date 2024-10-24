@@ -4,7 +4,7 @@ import Toast from "react-native-toast-message";
 import FormWizard from "@/ui/components/FormWizard";
 import { Calendar } from "react-native-calendars";
 import CalendarComponent from "@/ui/components/Calendar";
-import RadioButtonGroup from "@/ui/components/radioBottonsGroup";
+// import RadioButtonGroup from "@/ui/components/RadioBottonsGroup";
 import CustomSelectOption from "@/ui/components/SelectOptions";
 import BottomSheetComponent from "@/ui/components/bottonSheet/KeyBoardHandling";
 import { ToastConfig } from "@/utils/toastConfig";
@@ -32,7 +32,7 @@ export default function RegistrosScreem({ navigation }) {
     { name: "Tilapia", value: "opcion2" },
     { name: "Conchas", value: "opcion3" },
   ];
-  const handleValueChange = (value) => {
+  const handleValueChange = value => {
     console.log("value", value);
   };
 
@@ -41,15 +41,20 @@ export default function RegistrosScreem({ navigation }) {
       <Text>Pantalla de Home</Text>
       <Button title="Ir al Perfil" onPress={showToast} />
       <Text className="p-3 bg-stone-300">Hodasdla</Text>
-      <FormWizard steps={pathBreadcrums} activeStep={activeStep} onStepPress={setActiveStep} classNameStyle="mb-9 p-4" />
+      <FormWizard
+        steps={pathBreadcrums}
+        activeStep={activeStep}
+        onStepPress={setActiveStep}
+        classNameStyle="mb-9 p-4"
+      />
       {activeStep === 0 && <Paso1 />}
       {activeStep === 1 && <Paso2 />}
       {activeStep === 2 && <Paso3 />}
-      <RadioButtonGroup options={options} onValueChange={handleValueChange} />
+      {/* <RadioButtonGroup options={options} onValueChange={handleValueChange} /> */}
       <CustomSelectOption
         options={options}
         selectedValue={selectedValue}
-        onValueChange={(value) => setSelectedValue(value)}
+        onValueChange={value => setSelectedValue(value)}
         placeholder={"Selecciona una opción"}
       />
       {/* <Calendar /> */}
