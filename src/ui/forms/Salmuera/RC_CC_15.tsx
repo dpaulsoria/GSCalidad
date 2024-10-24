@@ -68,7 +68,7 @@ export default function DescongeladoSalmuera() {
       <View className="flex flex-row flex-wrap justify-between align-center">
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => {
+            onChange={text => {
               handleChange(
                 "tipo_analisis",
                 functions.handleChangeTipoAnalisis(text)
@@ -82,7 +82,7 @@ export default function DescongeladoSalmuera() {
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("unidad_medida", text)}
+            onChange={text => handleChange("unidad_medida", text)}
             placeholder="Ingrese la Unidad Peso"
             value={state.unidad_medida}
             label="Unidad de Peso"
@@ -92,7 +92,7 @@ export default function DescongeladoSalmuera() {
       <View className="flex flex-row flex-wrap">
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("cabinplant", text)}
+            onChange={text => handleChange("cabinplant", text)}
             value={state.cabinplant}
             label="Cabinplant"
           />
@@ -101,13 +101,15 @@ export default function DescongeladoSalmuera() {
           <CustomSelectOption
             options={vSelectLists.importadores}
             selectedValue={state.co_importador}
-            onValueChange={(text: string) => handleChange("co_importador", text)}
+            onValueChange={(text: string) =>
+              handleChange("co_importador", text)
+            }
             placeholder={"Selecciona una opción"}
           />
         </View>
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) =>
+            onChange={text =>
               handleChange("lote", functions.handleChangeLote(text))
             }
             value={state.lote}
@@ -117,7 +119,7 @@ export default function DescongeladoSalmuera() {
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) =>
+            onChange={text =>
               handleChange("proveedor", functions.handleChangeProveedor(text))
             }
             value={state.proveedor}
@@ -127,7 +129,7 @@ export default function DescongeladoSalmuera() {
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("co_talla", text)}
+            onChange={text => handleChange("co_talla", text)}
             value={state.co_talla}
             label="Talla"
           />
@@ -135,7 +137,7 @@ export default function DescongeladoSalmuera() {
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("pesoNetoFresco", text)}
+            onChange={text => handleChange("pesoNetoFresco", text)}
             value={state.pesoNetoFresco}
             label="Peso Neto Fresco"
             error={errors.pesoNetoFresco}
@@ -143,7 +145,7 @@ export default function DescongeladoSalmuera() {
 
           <ColumnTextField
             className="w-1/3"
-            onChange={(text) => handleChange("Cta_PesoNetoFresco", text)}
+            onChange={text => handleChange("Cta_PesoNetoFresco", text)}
             value={state.Cta_PesoNetoFresco}
             placeholder="Cta Peso Neto Fresco"
           />
@@ -151,7 +153,7 @@ export default function DescongeladoSalmuera() {
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("peso_bruto", text)}
+            onChange={text => handleChange("peso_bruto", text)}
             value={state.peso_bruto}
             label="Peso Bruto"
             error={errors.peso_bruto}
@@ -160,13 +162,13 @@ export default function DescongeladoSalmuera() {
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("pesoCongelado", text)}
+            onChange={text => handleChange("pesoCongelado", text)}
             value={state.pesoCongelado}
             label="Peso Congelado"
           />
 
           <ColumnTextField
-            onChange={(text) => handleChange("Cta_PesoCongelado", text)}
+            onChange={text => handleChange("Cta_PesoCongelado", text)}
             value={state.Cta_PesoCongelado}
             placeholder="Cta Peso Congelado"
           />
@@ -174,13 +176,13 @@ export default function DescongeladoSalmuera() {
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("pesoDescongelado", text)}
+            onChange={text => handleChange("pesoDescongelado", text)}
             value={state.pesoDescongelado}
             label="Peso Descongelado"
           />
 
           <ColumnTextField
-            onChange={(text) => handleChange("Cta_PesoDescongelado", text)}
+            onChange={text => handleChange("Cta_PesoDescongelado", text)}
             value={state.Cta_PesoDescongelado}
             placeholder="Cta Peso Descongelado"
           />
@@ -188,7 +190,7 @@ export default function DescongeladoSalmuera() {
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) => handleChange("observaciones", text)}
+            onChange={text => handleChange("observaciones", text)}
             value={state.observaciones}
             label="Observacion"
           />

@@ -1,15 +1,22 @@
+import { VSelectOption } from "@/store/util/store";
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, FlatList, Animated } from "react-native";
 
 type customSelectoptionTyle = {
-  options: { name: string; value: string }[];
+  options: VSelectOption[];
   onValueChange: (value: string) => void;
   selectedValue: string;
   placeholder?: string;
   disable?: boolean;
 };
 
-export default function CustomSelectOption({ options, onValueChange, selectedValue, placeholder, disable = false }: customSelectoptionTyle) {
+export default function CustomSelectOption({
+  options,
+  onValueChange,
+  selectedValue,
+  placeholder,
+  disable = false,
+}: customSelectoptionTyle) {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isClearIconVisible, setClearIconVisible] = useState(!!selectedValue);
   const iconAnimation = useRef(new Animated.Value(0)).current;
@@ -42,7 +49,9 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
     setClearIconVisible(!!selectedValue);
   }, [selectedValue]);
 
-  const selectedLabel = options.find((option) => option.value === selectedValue)?.name;
+  const selectedLabel = options.find(
+    option => option.value === selectedValue
+  )?.name;
 
   // Interpolaciones de animación
   const arrowOpacity = iconAnimation.interpolate({
@@ -63,18 +72,27 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
             setDropdownVisible(!isDropdownVisible);
           }
         }}
-        className={`bg-white border ${disable ? "border-gray-400" : "border-gray-300"} rounded-md px-4 py-2 flex-row justify-between items-center`}
+        className={`bg-white border ${
+          disable ? "border-gray-400" : "border-gray-300"
+        } rounded-md px-4 py-2 flex-row justify-between items-center`}
         disabled={disable}
       >
-        <Text className="text-black">{selectedLabel || placeholder || "Selecciona una opción"}</Text>
+        <Text className="text-black">
+          {selectedLabel || placeholder || "Selecciona una opción"}
+        </Text>
 
         {/* Animación entre la flecha y la "X" */}
         <View>
-          <Animated.View style={{ position: "absolute", opacity: arrowOpacity }}></Animated.View>
+          <Animated.View
+            style={{ position: "absolute", opacity: arrowOpacity }}
+          ></Animated.View>
 
-          <Animated.View style={{ position: "absolute", opacity: clearOpacity }}>
+          <Animated.View
+            style={{ position: "absolute", opacity: clearOpacity }}
+          >
             <TouchableOpacity onPress={handleClearSelection}>
-              <Text className="text-gray-500">{"\u2715"}</Text> {/* "X" para borrar */}
+              <Text className="text-gray-500">{"\u2715"}</Text>{" "}
+              {/* "X" para borrar */}
             </TouchableOpacity>
           </Animated.View>
         </View>
@@ -85,9 +103,12 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
         <View className="absolute w-full self-center top-9 mt-2 bg-white border border-gray-300 shadow-lg rounded-lg z-10">
           <FlatList
             data={options}
-            keyExtractor={(item) => item.value}
+            keyExtractor={item => item.value.toString()}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => handleOptionPress(item.value)} className="py-2 px-4">
+              <TouchableOpacity
+                onPress={() => handleOptionPress(item.value.toString())}
+                className="py-2 px-4"
+              >
                 <Text className="text-black">{item.name}</Text>
               </TouchableOpacity>
             )}
