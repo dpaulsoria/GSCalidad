@@ -4,8 +4,8 @@ import Toast from "react-native-toast-message";
 import FormWizard from "@/ui/components/FormWizard";
 import { Calendar } from "react-native-calendars";
 import CalendarComponent from "@/ui/components/Calendar";
-import RadioButtonGroup from "@/ui/components/RadioBottonsGroup";
-import CustomSelectOption from "@/ui/components/SelectOptions";
+import RadioButtonGroup from "@/ui/components/radioBottonsGroup";
+import CustomSelectOption from "@/ui/components/selectOptions";
 import KeyBoardHandling from "@/ui/components/bottonSheet/KeyBoardHandling";
 import { ToastConfig } from "@/utils/toastConfig";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -41,12 +41,7 @@ export default function RegistrosScreem({ navigation }) {
       <Text>Pantalla de Home</Text>
       <Button title="Ir al Perfil" onPress={showToast} />
       <Text className="p-3 bg-stone-300">Hodasdla</Text>
-      <FormWizard
-        steps={pathBreadcrums}
-        activeStep={activeStep}
-        onStepPress={setActiveStep}
-        classNameStyle="mb-9 p-4"
-      />
+      <FormWizard steps={pathBreadcrums} activeStep={activeStep} onStepPress={setActiveStep} classNameStyle="mb-9 p-4" />
       {activeStep === 0 && <Paso1 />}
       {activeStep === 1 && <Paso2 />}
       {activeStep === 2 && <Paso3 />}
