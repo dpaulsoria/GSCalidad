@@ -10,7 +10,7 @@ import { useDescongeladoSalmueraStore } from "@/store/Salmuera/RC_CC_15";
 import { useUtilStore } from "@/store/util/store";
 import CustomSelectOption from "@/ui/components/SelectOptions";
 
-const TAG = "[15]";
+const TAG = "[RC.CC.15]";
 
 export default function DescongeladoSalmuera() {
   const validationRules = {
