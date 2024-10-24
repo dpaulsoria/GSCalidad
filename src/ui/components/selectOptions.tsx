@@ -71,16 +71,10 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
           borderColor: disable ? "gray" : "lightgray",
           borderRadius: 8,
           paddingHorizontal: 16,
-          paddingVertical: 10,
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
           minHeight: 50,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.1,
-          shadowRadius: 3,
-          elevation: 3,
         }}
         disabled={disable}
       >
@@ -112,14 +106,7 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
             top: 60,
             width: "100%",
             backgroundColor: "white",
-            borderColor: "lightgray",
-            borderWidth: 1,
             borderRadius: 8,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.2,
-            shadowRadius: 5,
-            elevation: 5,
             zIndex: 10,
           }}
         >
@@ -138,7 +125,7 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
                 <Text style={{ color: "black", fontSize: 16 }}>{item.name}</Text>
               </TouchableOpacity>
             )}
-            ListFooterComponent={<View style={{ padding: 5 }} />} // Espacio adicional al final
+            ListFooterComponent={<View style={{ padding: 5 }} />}
           />
         </View>
       )}
