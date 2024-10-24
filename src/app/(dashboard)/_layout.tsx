@@ -10,8 +10,6 @@ import { StatusBar } from "react-native";
 export default function Layout() {
   return (
     <GestureHandlerRootView className="flex-1">
-      {/* <StatusBar barStyle={isDrawerOpen ? "light-content" : "dark-content"} /> */}
-
       <Drawer
         drawerContent={(props) => <CustomDrawerContent {...props} />}
         screenOptions={{
