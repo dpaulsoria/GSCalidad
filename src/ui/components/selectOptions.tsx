@@ -1,6 +1,8 @@
 import { VSelectOption } from "@/store/util/store";
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, FlatList, Animated } from "react-native";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import Feather from "@expo/vector-icons/Feather";
 
 type customSelectoptionTyle = {
   options: VSelectOption[];
@@ -72,27 +74,34 @@ export default function CustomSelectOption({
             setDropdownVisible(!isDropdownVisible);
           }
         }}
-        className={`bg-white border ${
-          disable ? "border-gray-400" : "border-gray-300"
-        } rounded-md px-4 py-2 flex-row justify-between items-center`}
+        style={{
+          backgroundColor: "white",
+          borderWidth: 1,
+          borderColor: disable ? "gray" : "lightgray",
+          borderRadius: 8,
+          paddingHorizontal: 16,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          minHeight: 50,
+        }}
         disabled={disable}
       >
-        <Text className="text-black">
-          {selectedLabel || placeholder || "Selecciona una opción"}
-        </Text>
+        <Text style={{ color: "black", fontSize: 16 }}>{selectedLabel || placeholder || "Selecciona una opción"}</Text>
 
         {/* Animación entre la flecha y la "X" */}
-        <View>
+        <View style={{ position: "relative", width: 30, height: 30 }}>
           <Animated.View
-            style={{ position: "absolute", opacity: arrowOpacity }}
-          ></Animated.View>
+            style={{ position: "absolute", opacity: arrowOpacity, justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}
+          >
+            <AntDesign name={isDropdownVisible ? "caretup" : "caretdown"} size={18} color="black" />
+          </Animated.View>
 
           <Animated.View
-            style={{ position: "absolute", opacity: clearOpacity }}
+            style={{ position: "absolute", opacity: clearOpacity, justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}
           >
             <TouchableOpacity onPress={handleClearSelection}>
-              <Text className="text-gray-500">{"\u2715"}</Text>{" "}
-              {/* "X" para borrar */}
+              <Feather name="x-circle" size={20} color="black" />
             </TouchableOpacity>
           </Animated.View>
         </View>
@@ -100,18 +109,32 @@ export default function CustomSelectOption({
 
       {/* Dropdown */}
       {isDropdownVisible && !disable && (
-        <View className="absolute w-full self-center top-9 mt-2 bg-white border border-gray-300 shadow-lg rounded-lg z-10">
+        <View
+          style={{
+            position: "absolute",
+            top: 60,
+            width: "100%",
+            backgroundColor: "white",
+            borderRadius: 8,
+            zIndex: 10,
+          }}
+        >
           <FlatList
             data={options}
             keyExtractor={item => item.value.toString()}
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() => handleOptionPress(item.value.toString())}
-                className="py-2 px-4"
+                style={{
+                  padding: 12,
+                  borderBottomWidth: 1,
+                  borderBottomColor: "#f0f0f0",
+                }}
               >
-                <Text className="text-black">{item.name}</Text>
+                <Text style={{ color: "black", fontSize: 16 }}>{item.name}</Text>
               </TouchableOpacity>
             )}
+            ListFooterComponent={<View style={{ padding: 5 }} />}
           />
         </View>
       )}

@@ -1,13 +1,18 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { DrawerContentScrollView, DrawerItem, DrawerItemList, useDrawerStatus } from "@react-navigation/drawer";
 import { Drawer } from "expo-router/drawer";
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import BottomSheetComponent from "@/ui/components/bottonSheet/KeyBoardHandling";
 import Feather from "@expo/vector-icons/Feather";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { StatusBar } from "react-native";
+import { useState } from "react";
 export default function Layout() {
+  const [showBottomSheet, setShowBottomSheet] = useState(false);
+
   return (
     <GestureHandlerRootView className="flex-1">
       <Drawer
@@ -27,6 +32,11 @@ export default function Layout() {
           },
 
           headerShown: true,
+          headerRight: () => (
+            <TouchableOpacity onPress={() => setShowBottomSheet(!showBottomSheet)} style={{ marginRight: 15 }}>
+              <FontAwesome name="filter" size={24} color="black" />
+            </TouchableOpacity>
+          ),
         }}
       >
         <Drawer.Screen
@@ -46,6 +56,7 @@ export default function Layout() {
           }}
         />
       </Drawer>
+      <BottomSheetComponent isOpen={showBottomSheet} />
     </GestureHandlerRootView>
   );
 }
