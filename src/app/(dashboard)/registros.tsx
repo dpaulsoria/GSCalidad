@@ -1,20 +1,20 @@
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, Pressable } from "react-native";
 import { useState } from "react";
 import Toast from "react-native-toast-message";
 import FormWizard from "@/ui/components/FormWizard";
 import { Calendar } from "react-native-calendars";
 import CalendarComponent from "@/ui/components/Calendar";
 import RadioButtonGroup from "@/ui/components/radioBottonsGroup";
-import CustomSelectOption from "@/ui/components/selectOptions";
-import KeyBoardHandling from "@/ui/components/bottonSheet/KeyBoardHandling";
+import CustomSelectOption from "@/ui/components/SelectOptions";
+import BottomSheetComponent from "@/ui/components/bottonSheet/KeyBoardHandling";
 import { ToastConfig } from "@/utils/toastConfig";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function RegistrosScreem({ navigation }) {
   const { top, bottom, left, right } = useSafeAreaInsets();
+  const [showBottomSheet, setShowBottomSheet] = useState(false);
   const [pathBreadcrums, setPathBreadcrums] = useState([
     { id: 1, name: "Registro activo", condition: true },
     { id: 2, name: "Valores Peso", condition: true },
-    { id: 3, name: "Correctivos", condition: true },
     { id: 3, name: "Correctivos", condition: true },
   ]);
   const [selectedValue, setSelectedValue] = useState(null);
@@ -28,9 +28,9 @@ export default function RegistrosScreem({ navigation }) {
     });
   };
   const options = [
-    { label: "Camarones", value: "opcion1" },
-    { label: "Tilapia", value: "opcion2" },
-    { label: "Conchas", value: "opcion3" },
+    { name: "Camarones", value: "opcion1" },
+    { name: "Tilapia", value: "opcion2" },
+    { name: "Conchas", value: "opcion3" },
   ];
   const handleValueChange = (value) => {
     console.log("value", value);
@@ -52,7 +52,16 @@ export default function RegistrosScreem({ navigation }) {
         onValueChange={(value) => setSelectedValue(value)}
         placeholder={"Selecciona una opción"}
       />
-      <KeyBoardHandling />
+      <Pressable
+        onPress={() => {
+          setShowBottomSheet(!showBottomSheet);
+          console.log("showBottomSheet", showBottomSheet);
+        }}
+        className="px-3 py-1 bg-amber-300 w-fit"
+      >
+        <Text>abrir btnSheet</Text>
+      </Pressable>
+      <BottomSheetComponent isOpen={showBottomSheet} />
       {/* <Calendar /> */}
       {/* <CalendarComponent /> */}
       <Toast config={ToastConfig} />

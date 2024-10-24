@@ -14,7 +14,7 @@ export default function RadioButtonGroup({ options, onValueChange }) {
   return (
     <View className="flex flex-wrap flex-row justify-between">
       {options.map((option) => (
-        <RadioButton key={option.value} label={option.label} value={option.value} selected={option.value === selectedValue} onPress={handlePress} />
+        <RadioButton key={option.value} label={option.name} value={option.value} selected={option.value === selectedValue} onPress={handlePress} />
       ))}
     </View>
   );
