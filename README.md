@@ -10,14 +10,16 @@ Las tablas que realizan **pull** (hacen mirror con la base de datos remota):
 ## Listas
 1. **Áreas**
 2. **Colores**
-3. **Tipo de Corte**
-4. **Tipo de Producto**
-5. **Tipo de Producto Embarque**
-6. **Tipo de Registro Estado**
-7. **Unidad de Peso**
-8. **Importadores**
-9. **Maquinas**
-10. **Marcas**
+3. **Importadores**
+4. **Maquinas**
+5. **Marcas**
+6. **Proveedores INP (Camaroneras)**
+7. **Tallas**
+8. **Tipo de Corte**
+9. **Tipo de Producto**
+10. **Tipo de Producto Embarque**
+11. **Tipo de Registro Estado**
+12. **Unidad de Peso**
 ---
 
 ## Navegación
@@ -59,6 +61,11 @@ select * from a26401_sp_tipo_producto;
 select * from a26401_control_calidad_embarque_tipo_producto;
 select * from a26401_cc_estado_registro;
 select * from a26401_sp_unidad_peso;
+select * from a20t1;
+select * from a20t3;
+select * from a20t6;
+select * from a20t7;
+select * from a26t33;
 -- Pivot 
 select * from a26401_registros_por_area;
 select * from a26401_registros_por_planta;
