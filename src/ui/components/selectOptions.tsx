@@ -9,9 +9,17 @@ type customSelectoptionTyle = {
   selectedValue: string;
   placeholder?: string;
   disable?: boolean;
+  isvalue?: boolean;
 };
 
-export default function CustomSelectOption({ options, onValueChange, selectedValue, placeholder, disable = false }: customSelectoptionTyle) {
+export default function CustomSelectOption({
+  options,
+  onValueChange,
+  selectedValue,
+  placeholder,
+  disable = false,
+  isvalue = false,
+}: customSelectoptionTyle) {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isClearIconVisible, setClearIconVisible] = useState(!!selectedValue);
   const iconAnimation = useRef(new Animated.Value(0)).current;
@@ -30,23 +38,20 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
     }
   };
 
-  // Animación entre la flecha y la "X"
   useEffect(() => {
     Animated.timing(iconAnimation, {
-      toValue: isClearIconVisible ? 1 : 0, // Si hay valor seleccionado, mostrar "X"
+      toValue: isClearIconVisible ? 1 : 0,
       duration: 300,
       useNativeDriver: false,
     }).start();
   }, [isClearIconVisible, iconAnimation]);
 
-  // Cambiar el ícono si hay un valor seleccionado
   useEffect(() => {
     setClearIconVisible(!!selectedValue);
   }, [selectedValue]);
 
   const selectedLabel = options.find((option) => option.value === selectedValue)?.name;
 
-  // Interpolaciones de animación
   const arrowOpacity = iconAnimation.interpolate({
     inputRange: [0, 1],
     outputRange: [1, 0],
@@ -58,7 +63,6 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
 
   return (
     <View style={{ zIndex: 1, opacity: disable ? 0.5 : 1 }}>
-      {/* Main Select Box */}
       <TouchableOpacity
         onPress={() => {
           if (!disable) {
@@ -80,7 +84,6 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
       >
         <Text style={{ color: "black", fontSize: 16 }}>{selectedLabel || placeholder || "Selecciona una opción"}</Text>
 
-        {/* Animación entre la flecha y la "X" */}
         <View style={{ position: "relative", width: 30, height: 30 }}>
           <Animated.View
             style={{ position: "absolute", opacity: arrowOpacity, justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}
@@ -98,7 +101,6 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
         </View>
       </TouchableOpacity>
 
-      {/* Dropdown */}
       {isDropdownVisible && !disable && (
         <View
           style={{
@@ -115,7 +117,7 @@ export default function CustomSelectOption({ options, onValueChange, selectedVal
             keyExtractor={(item) => item.value}
             renderItem={({ item }) => (
               <TouchableOpacity
-                onPress={() => handleOptionPress(item.value)}
+                onPress={() => handleOptionPress(isvalue ? item.value : item.name)}
                 style={{
                   padding: 12,
                   borderBottomWidth: 1,

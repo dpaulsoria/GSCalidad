@@ -48,7 +48,7 @@ export default function LoginScreen() {
 
   useEffect(() => {
     if (rootNavigationState?.key && isLoggedIn === false) {
-      router.push("/(dashboard)/registros");
+      router.push("/(dashboard)/informes");
     }
   }, [isLoggedIn, rootNavigationState]);
 

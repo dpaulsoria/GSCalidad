@@ -41,7 +41,7 @@ export const DescongeladoSalmueraSchema = tableSchema({
     { name: "tipo_analisis", type: "string" },
     { name: "co_importador", type: "string" },
     { name: "cabinplant", type: "string" },
-    { name: "lote", type: "string" },
+    { name: "ju", type: "string" },
     { name: "proveedor", type: "string" },
     { name: "co_talla", type: "string" },
     { name: "pesoNetoFresco", type: "number" },

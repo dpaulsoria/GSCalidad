@@ -14,36 +14,21 @@ const TAG = "[RC.CC.15]";
 
 export default function DescongeladoSalmuera() {
   const validationRules = {
-    pesoNetoFresco: (value: number) =>
-      value >= 0 && value < 100
-        ? true
-        : "Peso neto fresco debe estar entre 0 y 100",
-    peso_bruto: (value: number) =>
-      value >= 0 && value < 100 ? true : "Peso bruto debe estar entre 0 y 100",
-    pesoCongelado: (value: number) =>
-      value >= 0 && value < 100
-        ? true
-        : "Peso congelado debe estar entre 0 y 100",
-    pesoDescongelado: (value: number) =>
-      value >= 0 && value < 100
-        ? true
-        : "Peso descongelado debe estar entre 0 y 100",
-    Cta_PesoNetoFresco: (value: number) =>
-      value >= 0 ? true : "Cta Peso Neto Fresco debe ser mayor o igual a 0",
-    Cta_PesoDescongelado: (value: number) =>
-      value >= 0 ? true : "Cta Peso Descongelado debe ser mayor o igual a 0",
-    unidad_medida: (value: string) =>
-      value ? true : "Debe seleccionar una unidad de peso",
+    pesoNetoFresco: (value: number) => (value >= 0 && value < 100 ? true : "Peso neto fresco debe estar entre 0 y 100"),
+    peso_bruto: (value: number) => (value >= 0 && value < 100 ? true : "Peso bruto debe estar entre 0 y 100"),
+    pesoCongelado: (value: number) => (value >= 0 && value < 100 ? true : "Peso congelado debe estar entre 0 y 100"),
+    pesoDescongelado: (value: number) => (value >= 0 && value < 100 ? true : "Peso descongelado debe estar entre 0 y 100"),
+    Cta_PesoNetoFresco: (value: number) => (value >= 0 ? true : "Cta Peso Neto Fresco debe ser mayor o igual a 0"),
+    Cta_PesoDescongelado: (value: number) => (value >= 0 ? true : "Cta Peso Descongelado debe ser mayor o igual a 0"),
+    unidad_medida: (value: string) => (value ? true : "Debe seleccionar una unidad de peso"),
     lote: (value: string) => (value ? true : "Lote no puede estar vacío"),
-    proveedor: (value: string) =>
-      value ? true : "Proveedor no puede estar vacío",
+    proveedor: (value: string) => (value ? true : "Proveedor no puede estar vacío"),
   };
 
-  const { state, handleChange, validateForm, resetForm, errors } =
-    useForm<DescongeladoSalmueraModel>(
-      {} as DescongeladoSalmueraModel,
-      validationRules
-    );
+  const { state, handleChange, validateForm, resetForm, errors } = useForm<DescongeladoSalmueraModel>(
+    {} as DescongeladoSalmueraModel,
+    validationRules,
+  );
   const { register, functions } = useDescongeladoSalmueraStore();
   const [showModal, setShowModal] = useState(false);
   const { vSelectLists } = useUtilStore();
@@ -62,28 +47,23 @@ export default function DescongeladoSalmuera() {
 
   return (
     <ScrollView className="bg-body-light dark:bg-body-dark px-3">
-      <Text className="text-start text-xl text-slate-600 font-semibold pl-4 ">
-        [RC.CC.15] - Descongelado Salmuera
-      </Text>
+      <Text className="text-start text-xl text-slate-600 font-semibold pl-4 ">[RC.CC.15] - Descongelado Salmuera</Text>
       <View className="flex flex-row flex-wrap justify-between align-center">
         <View className="w-1/2 p-2">
           <ColumnTextField
             onChange={(text) => {
-              handleChange(
-                "tipo_analisis",
-                functions.handleChangeTipoAnalisis(text)
-              );
+              handleChange("tipo_analisis", functions.handleChangeTipoAnalisis(text));
             }}
             value={state.tipo_analisis}
             label="Tipo Analisis"
-            placeholder={`Ingrese el tipo de analisis`}
+            // placeholder={`Ingrese el tipo de analisis`}
           />
         </View>
 
         <View className="w-1/2 p-2">
           <ColumnTextField
             onChange={(text) => handleChange("unidad_medida", text)}
-            placeholder="Ingrese la Unidad Peso"
+            // placeholder="Ingrese la Unidad Peso"
             value={state.unidad_medida}
             label="Unidad de Peso"
           />
@@ -91,46 +71,30 @@ export default function DescongeladoSalmuera() {
       </View>
       <View className="flex flex-row flex-wrap">
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("cabinplant", text)}
-            value={state.cabinplant}
-            label="Cabinplant"
-          />
+          <ColumnTextField onChange={(text) => handleChange("cabinplant", text)} value={state.cabinplant} label="Cabinplant" />
         </View>
         <View>
           <CustomSelectOption
             options={vSelectLists.importadores}
             selectedValue={state.co_importador}
             onValueChange={(text: string) => handleChange("co_importador", text)}
-            placeholder={"Selecciona una opción"}
+            // placeholder={"Selecciona una opción"}
           />
         </View>
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) =>
-              handleChange("lote", functions.handleChangeLote(text))
-            }
-            value={state.lote}
-            label="Lote"
-          />
+          <ColumnTextField onChange={(text) => handleChange("lote", functions.handleChangeLote(text))} value={state.lote} label="Lote" />
         </View>
 
         <View className="w-1/2 p-2">
           <ColumnTextField
-            onChange={(text) =>
-              handleChange("proveedor", functions.handleChangeProveedor(text))
-            }
+            onChange={(text) => handleChange("proveedor", functions.handleChangeProveedor(text))}
             value={state.proveedor}
             label="Proveedor"
           />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("co_talla", text)}
-            value={state.co_talla}
-            label="Talla"
-          />
+          <ColumnTextField onChange={(text) => handleChange("co_talla", text)} value={state.co_talla} label="Talla" />
         </View>
 
         <View className="w-1/2 p-2">
@@ -145,7 +109,7 @@ export default function DescongeladoSalmuera() {
             className="w-1/3"
             onChange={(text) => handleChange("Cta_PesoNetoFresco", text)}
             value={state.Cta_PesoNetoFresco}
-            placeholder="Cta Peso Neto Fresco"
+            // placeholder="Cta Peso Neto Fresco"
           />
         </View>
 
@@ -159,50 +123,33 @@ export default function DescongeladoSalmuera() {
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("pesoCongelado", text)}
-            value={state.pesoCongelado}
-            label="Peso Congelado"
-          />
+          <ColumnTextField onChange={(text) => handleChange("pesoCongelado", text)} value={state.pesoCongelado} label="Peso Congelado" />
 
           <ColumnTextField
             onChange={(text) => handleChange("Cta_PesoCongelado", text)}
             value={state.Cta_PesoCongelado}
-            placeholder="Cta Peso Congelado"
+            // placeholder="Cta Peso Congelado"
           />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("pesoDescongelado", text)}
-            value={state.pesoDescongelado}
-            label="Peso Descongelado"
-          />
+          <ColumnTextField onChange={(text) => handleChange("pesoDescongelado", text)} value={state.pesoDescongelado} label="Peso Descongelado" />
 
           <ColumnTextField
             onChange={(text) => handleChange("Cta_PesoDescongelado", text)}
             value={state.Cta_PesoDescongelado}
-            placeholder="Cta Peso Descongelado"
+            // placeholder="Cta Peso Descongelado"
           />
         </View>
 
         <View className="w-1/2 p-2">
-          <ColumnTextField
-            onChange={(text) => handleChange("observaciones", text)}
-            value={state.observaciones}
-            label="Observacion"
-          />
+          <ColumnTextField onChange={(text) => handleChange("observaciones", text)} value={state.observaciones} label="Observacion" />
         </View>
       </View>
 
       <View className="p-2 flex flex-row justify-end">
-        <Pressable
-          className="w-1/4 bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
-          onPress={onSubmitForm}
-        >
-          <Text className="text-white text-center text-xl text-bold">
-            Subir
-          </Text>
+        <Pressable className="w-1/4 bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onPress={onSubmitForm}>
+          <Text className="text-white text-center text-xl text-bold">Subir</Text>
         </Pressable>
       </View>
 

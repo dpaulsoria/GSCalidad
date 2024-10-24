@@ -8,7 +8,7 @@ module.exports = {
       colors: {
         // Body
         "primary-light": "#F1F5F9",
-        "primary-darck": "#020617",
+        "primary-dark": "#020617",
         "secondary-light": "#021D49",
         "secondary-dark": "#F1F5F9",
         "tertiary-light": "#14B8A6",

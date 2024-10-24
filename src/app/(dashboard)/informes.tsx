@@ -1,9 +1,9 @@
-import DescongeladoSalmuera from "@/ui/forms/Salmuera/RC_CC_15";
+import DescongeladoSalmuera from "@/ui/forms/Salmuera/RC_CC_15_Test";
 import { View, Text, Button, StyleSheet } from "react-native";
 
 export default function InformesScreen({ navigation }) {
   return (
-    <View style={styles.container} className="bg-body-light dark:bg-body-dark">
+    <View style={styles.container} className="bg-primary-light dark:bg-primary-dark">
       <DescongeladoSalmuera />
     </View>
   );
