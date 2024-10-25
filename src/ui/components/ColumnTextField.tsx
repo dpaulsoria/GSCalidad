@@ -1,6 +1,12 @@
 import { useRef, useState } from "react";
 import { Controller } from "react-hook-form";
-import { Text, TextInput, View, TouchableOpacity, KeyboardTypeOptions } from "react-native";
+import {
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+  KeyboardTypeOptions,
+} from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 
 interface ColumnTextFieldProps {
@@ -32,9 +38,12 @@ export default function ColumnTextField({
       control={control}
       name={name}
       rules={rules}
-      render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View style={{ flex: 1 }}>
+      render={({
+        field: { onChange, onBlur, value },
+        fieldState: { error },
+      }) => (
+        <View className="flex-row items-center ">
+          <View className="w-full">
             <TextInput
               ref={inputRef}
               onFocus={() => setIsFocused(true)}
@@ -51,13 +60,19 @@ export default function ColumnTextField({
 
             <Text
               className={`absolute bg-primary-light text-gray-400 bg-bod  left-3 ${
-                isFocused || value ? "-top-2.5 text-purple-600 scale-90" : "top-4"
+                isFocused || value
+                  ? "-top-2.5 text-purple-600 scale-90"
+                  : "top-4"
               } duration-100 ease-out px-1`}
             >
               {label}
             </Text>
           </View>
-          {error && <Text style={{ color: "red", fontSize: 12 }}>{error.message || "Error"}</Text>}
+          {error && (
+            <Text className="text-rose-500 text-xs">
+              {error.message || "Error"}
+            </Text>
+          )}
 
           {value ? (
             <TouchableOpacity
@@ -65,9 +80,7 @@ export default function ColumnTextField({
                 onChange("");
                 inputRef.current?.focus();
               }}
-              style={{
-                marginLeft: 8,
-              }}
+              className="ml-2"
             >
               <Feather name="x-circle" size={20} color="gray" />
             </TouchableOpacity>

@@ -1,4 +1,4 @@
-import DescongeladoSalmuera from "@/ui/forms/Salmuera/RC_CC_15";
+import DescongeladoSalmuera from "@/ui/forms/Salmuera/RC_CC_15_Test";
 import { View, Text, Button, StyleSheet } from "react-native";
 
 export default function InformesScreen({ navigation }) {
